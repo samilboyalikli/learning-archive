@@ -1,0 +1,20 @@
+//
+// strategy.entry() Fonksiyonu
+//
+// Bu fonksiyon, if bloklarıyla gerekli şartlar tanımlandıktan sonra bir pozisyon açmak için kullanılan koddur.
+//
+strategy.entry(
+    id, // Emir numarası, bu numara referans gösterilerek bir emir iptal edilebilir veya değiştirilebilir (gerekli bir parametre).
+    direction, // Pozisyonun yönünü belirleyen parametredir. Uzun pozisyon için "strategy.long" kısa pozisyon için "strategy.short" ifadeleri girilir.
+    qty, // İşlem yapılacak sözleşme/hisse/lot/birim sayısı. Opsiyoneldir. Varsayılan değer: NaN.
+    limit, // Bir emrin limit fiyatı belirlenmek istendiğinde bu kullanılabilir. Opsiyoneldir.
+    stop, // Bir emrin belli bir fiyat durumunda durdurulması istendiğinde bu kullanılabilir. Opsiyoneldir.
+    oca_name, // OCA grubu varsa ve emri bu gruba dahil etmek istiyorsak, buraya OCA grubunun ismini yazıyoruz.
+    oca_type, // OCA grubunun davranışlarını belirlemek için bu parametre kullanılır, bu parametre 3 değer alabilir:
+            // 1. strategy.oga.none --> Emrin OCA grubuna dahil olmaması için bunu kullanabiliriz.
+            // 2. strategy.oca.cancel --> Emrin OCA grubuna dahil olduğunu ve gerçekleştiği taktirde gruptaki diğer işlemlerin tümü iptal edilir.
+            // 3. strategy.oca.reduce --> Emrin OCA grubuna dahil olduğunu ve gerçekleştiği taktirde gruptaki diğer işlemlerin işlem hacmi azalır.
+    comment, // Emir ile ilgili ek notlar bu parametreyle girilebilir.
+    alert_message, // Bir işlem girişi veya çıkışı olduğunda oluşturulacak olan uyarı mesajının parametresidir.
+    disable_alert // Bir işlem gerçekleştiğinde uyarı mesajlarının devre dışı bırakılmasını sağlar.
+)

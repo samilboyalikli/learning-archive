@@ -1,0 +1,109 @@
+//
+//genel bilgiler
+//
+//
+//indikatör fonksiyonu
+//
+indicator(
+    title, // İndikatörün başlığı. Eğer shorttitle belirtilmemişse, bu başlık ekranda gösterilir.
+    shorttitle, // İndikatörün başlığının kısaltması. Eğer belirtilmemişse, başlık kullanılır.
+    overlay, // true ise, indikatör grafikte gösterilir; false ise ayrı bir panelde gösterilir. (varsayılan: false)
+    format, // Grafik üzerinde çizilecek göstergenin biçimini belirler.
+            // Olası değerler: format.inherit, format.price, format.volume, format.percent
+            // format.inherit --> mevcut grafiğin biçimini kullanır (varsayılan)
+            // format.price --> gösterge fiyatlarını çizmek için mevcut fiyat biçimini kullanır
+            // format.volume --> hacim verilerini grafiğin alt bölümünde bir histogram olarak gösterir 
+            //                   bu, fiyat hareketleriyle hacim arasındaki ilişkiyi daha net bir şekilde görmeyi sağlar
+            // format.percent --> göstergeyi yüzdelik olarak gösterir
+    precision, // Görüntülenen değerlerin kayan noktadan sonraki basamak sayısını belirtir.
+               // En fazla 16 olmalıdır.
+    scale, // Gösterge grafiğinin yerleştirileceği yeri belirler.
+           // scale.right --> Göstergeyi grafiğin sağ kenarına yerleştirir.
+           // scale.left --> Göstergeyi grafiğin sol kenarına yerleştirir.
+           // scale.none --> Göstergeyi bağımsız bir ölçekte çizer. (sadece overlay=true ile birlikte kullanılabilir)
+    max_bars_back, // Göstergeyi hesaplarken kullanılan maksimum bar sayısını belirtir.
+                   // Bu parametre, yalnızca otomatik algılama başarısız olduğunda gereklidir.
+    timeframe, // Göstergenin belirli bir zaman diliminden verileri hesaplamasını ifade eder.
+               // timeframe.period --> TradingView'in zaman dilimi değişkenlerine bağlıdır.
+               // timeframe.tostring --> Zaman dilimini bir dize olarak döndürür (5m, 1h, 1D, 1W, 1M gibi).
+               // timeframe.isintraday --> Zaman dilimi bir günün altındaysa 'true', aksi halde 'false' döndürür.
+               // timeframe.isdaily --> Zaman dilimi günlükse 'true', aksi halde 'false' döndürür.
+               // timeframe.isweekly --> Zaman dilimi haftalıksa 'true', aksi halde 'false' döndürür.
+               // timeframe.ismonthly --> Zaman dilimi aylıksa 'true', aksi halde 'false' döndürür.
+    timeframe_gaps, // Timeframe grafikten daha yüksekse, gösterge değerlerinin nasıl gösterileceğini belirtir.
+                    // true --> Timeframe grafikten daha yüksekse 'na' değeri döndürür (yani bir boşluk oluşur).
+                    // false --> 'na' değerinden kaçınır ve en son değeri tekrar döndürür.
+    explicit_plot_zorder, // Komut dosyasında çizilen göstergelerin, dolguların ve yatay çizgilerin çizim sırasını belirtir.
+                           // true --> Komut dosyasındaki sırayla çizilir (plot(), hline, fill işlemleri için gerekli).
+                           // false --> Çizimlerin sırası otomatik olarak belirlenir (varsayılan).
+    max_lines_count, // Grafikte gösterilecek çizgi sayısını belirtir. 0-500 arasında bir değer olmalıdır.
+                     // Varsayılan değer 50'dir. Çok çizgi olduğunda grafiğin gözükmesi zorlaşabilir.
+    max_labels_count, // Grafikte gösterilecek etiket (label) sayısını belirtir. 0-500 arasında bir değer olmalıdır.
+                      // Varsayılan değer 50'dir.
+    max_boxes_count, // Grafikte gösterilecek kutu (box) sayısını belirtir. 0-500 arasında bir değer olmalıdır.
+                     // Varsayılan değer 50'dir.
+    max_polylines_count // Grafikte gösterilecek çokgen (polyline) sayısını belirtir. 0-100 arasında bir değer olmalıdır.
+                        // Varsayılan değer 50'dir.
+)
+//
+//
+//strateji fonksiyonu
+//
+strategy(
+        title, // Stratejinin başlığı. Eğer shorttitle belirtilmemişse, bu başlık ekranda gösterilir.
+        shorttitle, // Stratejinin başlığının kısaltması. Eğer belirtilmemişse, başlık kullanılır.
+        overlay, // true ise, strateji grafikte gösterilir; false ise ayrı bir panelde gösterilir. (varsayılan: false)
+        format, // Stratejiye ait emirlerin nasıl görüntüleneceğini ve yürütüleceğini belirtir.
+                // Olası değerler: format.inherit, format.price, format.volume, format.percent
+                // format.inherit --> Stratejinin emirlerinin, grafikteki mevcut biçimlendirme ayarlarına göre görüneceğini belirtir.
+                // format.price --> Stratejinin fiyatları çizmek için mevcut fiyat biçimini kullanacağını ifade eder.
+                // format.volume --> Fiyat hareketleriyle hacim arasındaki ilişkinin daha net görülmesi için grafiğin altında hacim histogramı açar.
+                // format.percent --> Stratejinin göstergesini yüzdelik olarak gösterir.
+        precision, // Görüntülenen değerlerin kayan noktadan sonraki basamak sayısını belirtir.
+                   // En fazla 16 olmalıdır.
+        scale, // Stratejinin gösterge grafiğinin yerleştirileceği yeri belirler.
+           // scale.right --> Göstergeyi grafiğin sağ kenarına yerleştirir.
+           // scale.left --> Göstergeyi grafiğin sol kenarına yerleştirir.
+           // scale.none --> Göstergeyi bağımsız bir ölçekte çizer. (sadece overlay=true ile birlikte kullanılabilir)
+        pyramiding, // Stratejinin aynı anda birden fazla pozisyon açmasına ve böylece potansiyel karı artırmasına olanak tanır. Varsayılan = 0.
+        calc_on_order_fills, // Bir emir doldurulduktan sonra stratejinin yeniden hesaplanıp hesaplanmamasını belirler.
+                             // true --> Yalnızca çubuk kapandığında değil emir doldurulduğunda stratejiyi tekrar hesaplar.
+                             // false --> Varsayılandır. Sadece çubuk kapandığında hesaplama yapar. (varsayılan)
+        calc_on_every_tick, // Stratejinin her gerçke zamanlı işarette yeniden hesaplanıp hesaplanmayacağını belirler.
+                            // true --> Strateji gerçek zamanlı bir çubuk üzerinde çalışırken, her grafik güncellemesinde yeniden hesaplar.
+                            // false --> Strateji yalnızca gerçek zamanlı çubuk kapandığında hesaplama yapar. (varsayılan)
+                            // Bir nüans: Değişken, geçmiş verilerin üzerindeki strateji hesaplamasını etkilemez.
+        max_bars_back, // Stratejinin geçmişteki kaç barı analiz edeceğini belirler.
+        backtest_fill_limits_assumption, // İki değer alabilir:
+                                        // FillLimits.AllBars --> Geri test sürecinde her zaman tüm çubukların dikkate alınmasını sağlar.
+                                        // FillLimits.OncePerBar --> Geri test sürecinde her çubuk için sadece bir kere doldurma işlemi yapar.
+                                                                // Böylece bar üzerindeki tüm hesaplamalar yapılmaz ama işlem hızlanır.
+        default_qty_type, // qty = Quantity (miktar, adet) anlamına geliyor. Bu parametre iki farklı değere sahip olabilir:
+                        // QtyType.Cash --> Stratejinin işlem yaparken kullanacağı miktarı, hesapta bulunan toplam miktara olarak belirler.
+                        // QtyType.Percent --> Stratejinin işlem yaparken kullanacağı miktarı, hesaptaki normal sermayenin belli bir yüzdesine göre belirler.
+        default_qty_value, // Stratejinin işlem yaparken kullanacağı varsayılan miktarı belirlemek için kullanılır.
+        initial_capital, // Stratejinin geçmişe dönük analizindeki başlangıç sermayesini belirler.
+        currency, // Stratejinin geçmişe dönük analizinde kullanılacak para birimini belirler.
+        slippage, // Slippage stratejinin öngördüğü grafikle mevcut grafik arasındaki kaymayı ifade eder.
+        commission_type, // Komisyon miktarını veya oranını belirler. Şu iki değerden birine sahip olabilir:
+                        // CommissionType.Percent --> Komisyonu işlem değerinin belli bir yüzdesi olarak hesaplar.
+                        // ComissionType.Cash --> Komisyonu sabit bir ücret olarak belirler.
+        commission_value, // Komisyonun miktarını belirler. Eğer CommissionType.Percent ise yüzdesini, ComissionType.Value ise miktarını belirler.
+        process_orders_on_close, // Bu işlemin bar kapanışında mı yoksa direkt mi gerçekleşeceğini belirten boolean bir değerdir:
+                                // true --> İşlem emirlerinin bar kapanışında gerçekleşmesini sağlar.
+                                // false --> işlem emirleri için bar kapanışını beklemeyip direkt gerçekleşmesini sağlar.
+        close_entries_rule, // Açık pozisyonların kapatılması için bir kural belirler ve şu değerlere sahip olabilir:
+                        // CloseEntriesRule.AllPositionsAtLimit --> Tüm açık pozisyonların belli bir fiyat limitinde kapatılmasını sağlar.
+                        // CloseEntriesRule.AllPositionsAtMarket --> Tüm açık pozisyonların piyasa fiyatında anlık olarak kapatılmasını sağlar.
+                        // CloseEntriesRule.PerEntry --> Tüm açık pozisyonların belli bir fiyat limitinde veya piyasa fiyatında kapatılmasını sağlar.
+        margin_long, // Uzun pozisyonlar için gerekli olan marj (fon) miktarını belirler.
+        margin_short, // Kısa pozisyonlar için gerekli olan marj (fon) miktarını belirler.
+        explicit_plot_zorder, 
+        max_lines_count, 
+        max_labels_count, 
+        max_boxes_count, 
+        risk_free_rate, 
+        use_bar_magnifier, 
+        fill_orders_on_standard_ohlc, 
+        max_polylines_count
+)
