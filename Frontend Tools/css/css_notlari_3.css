@@ -1,0 +1,86 @@
+/* mesela html kısmımız bu olsun:
+<html lang="tr">
+    <head>
+        <meta charset="utf-8">
+        <title>html document</title>
+        <link rel="stylesheet" href="style.css"
+    </head>
+    <body>
+        <div class="bir_nolu_div">div target</div>
+        <div class="iki_nolu_div">div target</div>
+        <div class="uc_nolu_div" target="dynamic">div target</div>
+        <div class="dort_nolu_div" id="other_dynamic">div target</div>
+        <div class="bes_nolu_div">div target</div>
+        <div class="alti_nolu_div">div target</div>
+        <div class="yedi_nolu_div">div target</div>
+        <p>
+            Bu paragrafta ilk harfin büyük olduğu bir örnek vereceğim.
+            <br><br><br>
+            Bu paragrafta ilk harfin büyük olduğu bir örnek vereceğim.
+
+        </p>
+    </body>
+</html>
+*/
+
+/*buradaki tüm ögelere tek ortak noktaları vasıtasıyla tek komutta işlem yapabiliriz.*/
+div[class*="title"] {
+    background: purple;
+}
+
+/*eğer komutumuzda büyük/küçük harf hassasiyetini kaldırmak istiyorsak "i" flagını eklemeliyiz.*/
+div[class*="title" i] {
+    background: purple;
+}
+
+/*eğer kodlarımızda css'ten sayfaya gömülü yazı koymak istiyorsak ::after ögesini kullanabiliriz. burada koyduğumuz
+  ögeyi kullanıcı seçemeyecek.*/
+div {
+    background: purple;
+}
+
+div::after {
+    content: ' ve bu da ::after ile eklenen metin';
+}
+
+/*aynı şekilde seçtiğimiz ögenin öncesine de gömülü yazı koyabiliriz. yalnız buralarda "::before" ve "::after"
+  komutlarıyla alakalı önemli bir ayrıntı şu ki: content belirtmeden kullanamıyoruz.*/
+div::before {
+    content: 'bu ::before ile eklenen metin ve bu da...';
+}
+
+/*belirli attribute'lara özel değerler atayarak daha dinamik içerikler oluşturabiliyoruz. bunu sağlayan fonksiyon,
+  attribute fonksiyonu a.k.a. "attr()"*/
+div::after {
+    content: attr(target);
+    color: red;
+    background: white;
+}
+
+div::before {
+    content: attr(id);
+    color: black;
+    background: white;
+}
+
+/*paragrafların ilk harfleri üzerinde işlem yapabildiğimiz bir işlem var. bu da "first-letter".*/
+p::first-letter {
+    font-size: 50px;
+}
+
+/*aynı meseleyi ilk satır üzerinde de yapabiliyoruz*/
+p::first-line {
+    font-size: 30px;
+}
+
+/*yine web sayfasına dinamik katacak özelliklerden biri de "selection" seçeneği. bununla kullanıcının mouse imleciyle
+  seçtiği metinler üzerinde işlem yapabiliyoruz.*/
+::selection {
+    background: black;
+}
+
+/*placeholder'ımıza istediğimiz işlemleri uygulayabiliriz. mesela aşağıda placeholder'ı yeşil ve zemini ak yapıyorum*/
+input::placeholder {
+    color: green;
+    background: white;
+}

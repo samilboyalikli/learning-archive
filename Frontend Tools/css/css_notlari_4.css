@@ -1,0 +1,113 @@
+/*parent etiketlerin ilk altögeleri üzerinde işlem yapmak için ":first-child" sözde sınıfını kullanabiliriz.*/
+body div:first-child {
+    color: white;
+    background: black;
+}
+
+/*parent etiketlerinin son altögeleri üzerinde işlem yapmak için ":last-child" sözdesınıfını kullanabiliriz.*/
+body div:last-child {
+    color: white;
+    background: black;
+}
+
+/*parent etiketlerinin ilk ögelerini karışıklığa düşmeyecek biçimde direkt altöge üzerinden seçmek için "first-of-type"
+  sözdesınıfını kullanabiliriz.*/
+div:first-of-type {
+    color: white;
+    background: black;
+}
+
+/*son ögeleri de aynı biçimde rahatlıkla seçebiliyoruz. bunun için "last-of-type" sözdesınıfını kullanıyoruz.*/
+div:last-of-type {
+    color: white;
+    background: black;
+}
+
+/*şimdi bir liste html'i düşünüyoruz:
+
+<body>
+    <ul>
+        <li>birinci öge<li>
+        <li>ikinci öge<li>
+        <li>üçüncü öge<li>
+        <li>dördüncü öge<li>
+        <li>beşinci öge<li>
+    </ul>
+</body>
+
+bu html listesindeki ögelerden herhangi birini seçebiliyoruz. bunun için nth-child() sözdesınıfını kullanıyoruz.
+mesela üçüncü ögeyi seçelim:*/
+ul li:nth-child(3) {
+    color: white;
+    background: black;
+}
+
+/*eğer bu işlemi tersten yapmak istersek:*/
+ul li:nth-last-child(3) {
+    color: white;
+    background: black;
+}
+
+/*eğer tek sayıdaki ögeleri seçmek istersek parantez içine "odd" yazıyoruz:*/
+ul li:nth-child(odd) {
+    color: white;
+    background: black;
+}
+
+/*eğer çift sayıdaki ögeleri seçmek istersek parantez içine "even" yazıyoruz:*/
+ul li:nth-child(even) {
+    color: white;
+    background: black;
+}
+
+/*eğer bir sayının katlarını seçmesini istersek parantezin için xn yazmalıyız. örneğin ikinin katlarını seçmesini
+  istiyorsak 2n, üçün katlarını seçmesini istiyorsak 3n gibi.*/
+ul li:nth-child(2n) {
+    color: white;
+    background: black;
+}
+
+/*burda seçilecek ögenin katını artı sayı ekleyerek belirleyebiliyoruz:*/
+ul li:nth-child(5n+2) {
+    color: white;
+    background: black;
+}
+
+/*belli bir ögenin altındaki tüm ögeleri seçmek istersek n+x kullanabiliriz. mesela 3. maddenin altındaki tüm maddeleri
+  seçelim:*/
+ul li:nth-child(n+3) {
+    color: white;
+    background: black;
+}
+
+/*öncesini seçmek için de -n+x kullanabiliriz. mesela 3. maddenin üstündeki tüm maddeleri seçelim:*/
+ul li:nth-child(-n+3) {
+    color: white;
+    background: black;
+}
+
+/*belli aralıktaki ögeleri de seçebiliyoruz. mesela 3 ile 5 arasındaki ögeleri seçelim:*/
+ul li:nth-child(n+3):nth-child(-n+5) {
+    color: white;
+    background: black;
+}
+
+/*nth-child sözdesınıfı aralara giren diğer ögelerle şaşırtabiliyor. nth-type ise direk olarak verdiğimiz öge etiketini
+  önemsiyor:*/
+li:nth-type(3) {
+    color: white;
+    background: black;
+}
+
+/*"nth-type" sözdesınıfını tersten kullanmak istersek "nth-last-type" sınıfını kullanırız:*/
+li:nth-last-type(3) {
+    color: white;
+    background: black;
+}
+
+/*kullanıcı bir ögenin üzerine geldiği zaman o ögeye özel bir işlem uygulayabiliyoruz. bunun ":hover" sözdesınıfıyla
+  yapıyoruz:*/
+ul li:hover {
+    color: black;
+    background: white;
+}

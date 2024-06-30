@@ -1,0 +1,166 @@
+/* 2.
+<html lang="tr">
+    <head>
+        <meta charset="utf-8">
+        <title>html document</title>
+        <link rel="stylesheet" href="style.css"
+    </head>
+    <body>
+        <div>bu bir div etiketidir</div>
+        <span>bu bir span etiketidir</span>
+        <p>bu bir paragraftır</p>
+    </body>
+</html>
+css dosyasında etiket seçme:
+---style.css---*/
+div {
+    color: black;
+}
+
+span {
+    color: blue;
+}
+
+p {
+    color: red;
+}
+/*--style.css--
+
+----------
+
+<html lang="tr">
+    <head>
+        <meta charset="utf-8">
+        <title>html document</title>
+        <link rel="stylesheet" href="style.css"
+    </head>
+    <body>
+        <div id="div_1">bu bir div etiketidir</div>
+        <div id="div_2">bu bir div etiketidir</div>
+        <div>bu bir div etiketidir</div>
+        <span id="span_1">bu bir span etiketidir</span>
+        <span id="span_2">bu bir span etiketidir</span>
+        <span>bu bir span etiketidir</span>
+        <p id="p_1">bu bir paragraftır</p>
+        <p id="p_2">bu bir paragraftır</p>
+        <p>bu bir paragraftır</p>
+    </body>
+</html>
+css dosyasında id seçmek için "#" işareti kullanırız
+---style.css---*/
+#div_1 {
+    color: black;
+}
+
+#div_2 {
+    color: red;
+}
+
+#div {
+    color: green;
+}
+
+#span_1 {
+    color: black;
+}
+
+#span_2 {
+    color: red;
+}
+
+#span {
+    color: green;
+}
+
+#p_1 {
+    color: black;
+}
+
+#p_2 {
+    color: red;
+}
+
+#p {
+    color: green;
+}
+/*--style.css--
+eğer belli bir target altındaki id'yi belirtmek istersek:
+
+target_adi#id_adı {
+       özellik: özellik;
+}
+
+----------
+
+<html lang="tr">
+    <head>
+        <meta charset="utf-8">
+        <title>html document</title>
+        <link rel="stylesheet" href="style.css"
+    </head>
+    <body>
+        <div id="div_1" class="red">bu bir div etiketidir</div>
+        <div id="div_2">bu bir div etiketidir</div>
+        <div>bu bir div etiketidir</div>
+        <span id="span_1" class="red">bu bir span etiketidir</span>
+        <span id="span_2">bu bir span etiketidir</span>
+        <span>bu bir span etiketidir</span>
+        <p id="p_1" class="red">bu bir paragraftır</p>
+        <p id="p_2">bu bir paragraftır</p>
+        <p>bu bir paragraftır</p>
+    </body>
+</html>
+css dosyasında class seçmek için "." işareti kullanırız
+---style.css---*/
+.class {
+    color: black;
+}
+/*--style.css--
+eğer iki class'ı birlikte belirtmek istersek:
+
+.class_adi.diger_class_adi {
+    özellik: özellik;
+}
+
+eğer etiket vs içindeki class'ı belirtmek istersek:
+
+etiket.class_adi {
+    özellik: özellik;
+}
+
+eğer etiket vs içindeki belirli id'li bir class'ı belirtmek istersek:
+
+etiket.class_adi#id_adı {
+    özellik: özellik;
+}
+
+-----evrensel seçici------*/
+
+* {
+    color: white;
+}
+
+/*evrensel seçici "*" işaretidir, sayfadaki tüm unsurları değiştirmek için bunu kullanırız, örneğin yukarıdaki kod
+sitedeki tüm yazıları beyaz yapacaktır.*/
+
+span * {
+    color: green;
+}
+
+/*bu belli bir etiketin içindeki tüm etiketilerin özelliğini etkilemek için kullanılıyor ama etiketin kendi metnine
+dokanmıyor.
+-----evrensel seçici-----
+
+----------
+
+/*birden fazla etiketin özelliğini tek kodla değiştirebiliyoruz:*/
+
+span, div, p {
+    color: white;
+}
+
+/*burada çeşitli id ve class'lar da kullanılabiliyor:*/
+
+span, div, p, .class_adi, #id_adi {
+    color: white;
+}
