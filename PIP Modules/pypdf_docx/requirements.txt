@@ -1,0 +1,4 @@
+pypdf2 == 3.0.1 #pdf işlemleri için
+python-docx == 0.8.11 #word dosyalarındaki işlemler için
+os (operating system)#python'la birlikte gelen modüllerden
+time #python'la birlikte gelen modüllerden

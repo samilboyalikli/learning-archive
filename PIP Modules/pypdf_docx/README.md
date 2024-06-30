@@ -1,0 +1,3 @@
+# pypdf
+pypdf/docx API notları:
+pypdf ve docx kütüphanelerini kurcalarken bulduğum bazı şeyler...
