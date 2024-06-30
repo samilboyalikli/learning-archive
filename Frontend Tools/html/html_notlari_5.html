@@ -1,0 +1,86 @@
+<!-- 5. -->
+<html lang="tr">
+    <head>
+        <meta charset="utf-8">
+        <title>fifth_etude</title>
+    </head>
+    <body>
+        <table border="1"> <!--tablo başlatmak için <table> etiketi kullanıyoruz-->
+                           <!--eğer "border" belirtmezsek tablo çizgisiz olur-->
+            <tr> <!--tablodaki her bir satır için <tr> etiketi kullanıyoruz-->
+                <th>İsim</th> <!--tablo başlıkları için <th> etiketini kullanıyoruz-->
+                <th>Soyisim</th>
+            </tr>
+            <tr>
+                <td>Ali</td>
+                <td>Acar</td>
+            </tr>
+            <tr>
+                <td>Kemal</td>
+                <td>Acar</td>
+            </tr>
+            <tr>
+                <td>Niyazi</td>
+                <td>Acar</td>
+            </tr>
+        </table>
+        <ul> <!--madde halinde listelerken <ul> etiketini kullanıyoruz (anlamı: unordered list)-->
+            <li>birinci madde</li> <!--listenin maddelerini yazarken <li> etiketini kullanıyoruz-->
+            <li>ikinci madde</li>
+            <li>üçüncü madde</li>
+        </ul>
+        <ol> <!--madde halinde listelediklerimizi sayılarla göstermek için <ol> etiketini kullanıyoruz-->
+            <li>birinci madde</li>
+            <li>ikinci madde</li>
+            <li>üçüncü madde</li>
+        </ol> <!--anlamı: ordered list-->
+        <ul>
+            <li><a href="https://www.youtube.com">birinci madde</a></li>
+            <!--maddelere link ekleyip uzantı oluşturabiliriz-->
+            <li>ikinci madde</li>
+            <li>üçüncü madde</li>
+        </ul>
+        <!--yukarıdaki, donelerle iç içe geçmiş maddeler yazılabiliyor-->
+        <ul>
+            <li>birinci madde</li>
+                <ul>
+                    <li>birinci maddenin birinci maddesi</li>
+                    <li>birinci maddenin ikinci maddesi</li>
+                        <ul>
+                            <li>ikinci altmaddenin birinci maddesi</li>
+                            <li>ikinci altmaddenin ikinci maddesi</li>
+                            <li>ikinci altmaddenin üçüncü maddesi</li>
+                        </ul>
+                    <li>birinci maddenin üçüncü maddesi</li>
+                </ul>
+            <li>ikinci madde</li>
+            <li>üçüncü madde</li>
+        </ul>
+        <ol type="a">
+        <!--<ol> etiketlerinde "type" çeşşitleri vardır. bunlar:
+        type="1" (1-2-3 şeklinde sayısal listeler)
+        type="a" (a-b-c şeklinde alfabetik listeler)
+        type="A" (A-B-C şeklinde büyük harflerle listeler)
+        type="i" (i,ii,iii şeklinde küçük romen rakamlarıyla listeler)
+        type="I" (I,II,III şeklinde büyük romen rakamlarıyla listeler)-->
+            <li>birinci madde</li>
+            <li>ikinci madde</li>
+            <li>üçüncü madde</li>
+        </ol>
+        <ul type="disc">
+        <!--aynı şekilde <ul> etiketlerinde de "type" çeşitleri vardır. bunlar:
+        type="disc" (siyah nokta şeklinde maddeleri listeler)
+        type="square" (siyah kare kutucuk şeklinde maddeleri listeler)
+        type="circle" (içi boş yuvarlak şeklinde maddeleri listeler)-->
+            <li>birinci madde</li>
+            <li>ikinci madde</li>
+            <li>üçüncü madde</li>
+        </ul>
+        <ol type="1" start="15">
+        <!--<ol> listelerinde "start=" komutuyla maddeleri istediğimiz değerlerden başlatabiliyoruz-->
+            <li>birinci madde</li>
+            <li>ikinci madde</li>
+            <li>üçüncü madde</li>
+        </ol>
+    </body>
+</html>

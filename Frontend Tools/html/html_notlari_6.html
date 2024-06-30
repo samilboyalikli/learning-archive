@@ -1,0 +1,43 @@
+<!-- 6. -->
+<html lang="tr">
+    <head>
+        <meta charset="utf-8">
+        <title>sixth_etude</title>
+    </head>
+    <body>
+        <div>
+            <audio controls>
+            <!--ses dosyasını web page'te oynatmak için <audio> etiketi kullanılabilir-->
+            <!--controls ibaresi ses dosyasının web page'te görünür olmasını sağlıyor-->
+                <source src="otherside.mp3" type="audio/mp3">
+                <!--src komutu ses dosyasını programa bildiriyor-->
+                <!--type komutu ses dosyasının türünü bildiriyor-->
+            </audio>
+        </div>
+        <div>
+            <audio controls loop muted> <!--loop ibaresi ses dosyası bittikten sonra otomatik başlatma işlevi görüyor-->
+                <source src="otherside.mp3" type="audio/mp3">
+            </audio>
+            <video controls> <!--loop ve muted komutları burada da çalışıyor-->
+                <source src="tedk.mp4" type="video/mp4">
+                tarayıcınız bu özelliği desteklemiyor
+                <!--eğer kullanıcının ekranı videoyu desteklemezse çıkacak yazıyı buraya yazıyoruz-->
+            </video>
+            <video controls width="320" height="240" poster="una.png">
+            <!--width ve height komutları videonun enini ve boyunu belirliyor-->
+                <source src="tedk.mp4" type="video/mp4">
+                tarayıcınız bu özelliği desteklemiyor
+            </video>
+            <video controls poster="una.png">
+                <source src="tedk.mp4" type="video/mp4">
+                <track src="altyazi.vtt" kind="subtitles" srclang="tr" label="türkçe">
+                <!--altyazı eklemek için <track> etiketini kullanıyoruz-->
+                <!--src ile altyazı dosyasının yolunu belirtiyoruz, aynı dizindeyse gerek yok-->
+                <!--kind ile dosyanın altyazı olduğunu belirtiyoruz-->
+                <!--srclang ile altyazının dilini belirtiyoruz-->
+                <!--label ile de dili belirtiyoruz, label kısmını kullanıcılar görüyor-->
+                tarayıcınız bu özelliği desteklemiyor
+            </video>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,36 @@
+<div class="wp-dark-mode-switcher wp-dark-mode-ignore style-3  floating right_bottom">
+    <!--"class" div ögesine bir veya daha fazla CSS sınıfı atıyor
+         burada 4 farklı CSS sınıfı var:
+                1. "wp-dark-mode-switcher"
+                2. "wp-dark-mode-ignore"
+                3. "style-3"
+                4. "floating right_bottom" -->
+    <label for="wp-dark-mode-switch" class="wp-dark-mode-ignore wp-dark-mode-none"> <!--1-->
+    <!--burada "wp-dark-mode-switch" isimli label'a iki CSS sınıfı atanıyor
+                1. "wp-dark-mode-ignore"
+                2. "wp-dark-mode-none" -->
+        <img class="sun-light"
+             src="https://yolcu360.com/blog/wp-content/plugins/wp-dark-mode/assets/images/btn-3/sun.svg"
+             alt="Light">
+             <!--"class" görüntüye "sun-light" isimli bir CSS sınıfı atıyor-->
+             <!--"src" görüntünün kaynak dosyasının yoludur-->
+             <!--"alt" görüntünün alternatif metnidir, eğer görüntü yüklenemezse bu yazı gözükür-->
+        <div class="toggle wp-dark-mode-ignore"></div>
+        <!--bu <div> maddesi iki farklı CSS sınıfı atar, bunlar:
+                1. "toogle"
+                2. "wp-dark-mode-ignore" -->
+        <img class="moon-light"
+             src="https://yolcu360.com/blog/wp-content/plugins/wp-dark-mode/assets/images/btn-3/moon.svg"
+             alt="Dark">
+             <!--"class" görüntüye "moon-light" isimli bir CSS sınıfı atıyor-->
+             <!--"src" görüntünün kaynak dosyasının yoludur-->
+             <!--"alt" görüntünün alternatif metnidir, eğer görüntü yüklenemezse bu yazı gözükür-->
+    </label>
+</div>
+<!--1--><!--
+-> <label> etiketi, genellikle bir giriş alanının yanında veya üzerinde metin etiketleri oluşturmak için kullanılır.
+-> for Özelliği: for özelliği, bir <label> etiketini bir giriş alanına bağlar.
+   Bu özellik, for özelliği içinde belirtilen değer, bir giriş alanının id özelliği ile aynı olmalıdır.
+   Bu sayede tarayıcı, <label> etiketinin hangi giriş alanına ait olduğunu anlar.
+ÖRNEK:  "<label for="username">Kullanıcı Adı:</label>
+         <input type="text" id="username" name="username">" -->

@@ -1,0 +1,87 @@
+<!-- 8. -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>eighth_etude</title>
+</head>
+<body>
+    <form action="" method="get">
+    <!--action özelliği formun nereye gönderileceğini belirtir-->
+    <!--method gönderme şeklini belirtir-->
+        <input type="text"> <br>
+        <!--type'ımız text olursa input'u yazı şeklinde alır-->
+        <input type="password"> <br>
+        <!--type'ımız password şeklinde olursa input'u şifre şeklinde alır-->
+        <input type="file"> <br>
+        <!--type'ımız file şeklinde olursa input'a pc'den dosya seçmemizi ister-->
+        <input type="checkbox">
+        <!--type'ımız checkbox şeklinde olursa işaretlenebilir kutucuk verir-->
+    </form>
+    <form action="" method="get">
+        <input type="checkbox">sözleşme metnini okudum <br>
+        <!--bu şekilde metin girebiliyoruz-->
+        <label>
+        <input type="checkbox">sözleşme metnini okudum
+        </label> <br>
+        <!--eğer kullanıcı metne dokuduğunda kutucuğun işaretlenmesini istiyorsak <label> etiketini kullanıyoruz-->
+        <label>
+        <input type="checkbox" checked>kabul ediyorum
+        <!--kutucuğu seçili biçimde ekrana getirmek istersek "checked" ibaresini kullanıyoruz-->
+        </label> <br>
+
+    </form>
+    <br><br><br>
+    <form action="" method="get">
+        <label for="username">Kullanıcı Adı</label>
+        <!--form maddeleriyle etkileşimli açıklama metinleri için <label> etiketini kullanıyoruz-->
+        <input id="username" type="text"> <br>
+        <label for="password">Şifre</label>
+        <input id="password" type="password"> <br>
+        <label for="select_file">Dosya</label>
+        <input id="select_file" type="file"> <br>
+        <label>
+            <input type="radio" name="cinsiyet">Erkek
+            <!--input'umuzun type'i radio olduğu zaman seçeneklerin yalnızca birini seçebiliyoruz-->
+        </label>
+        <label>
+            <input type="radio" name="cinsiyet">Kadın
+        </label>
+        <label>
+            <input type="radio" name="cinsiyet">Diğer
+        </label> <br>
+        <input type="submit">
+        <!--formun gönderilmesi için type'ı submit olan inputu kullanıyoruz-->
+        <input type="reset" name="sifirla">
+        <!--formun sıfırlanması için reset butonu kullanabiliriz-->
+    </form>
+    <br><br><br>
+    <form action="" method="get">
+        <label for="username2">Kullanıcı Adı</label>
+        <input maxlength="15" id="username2" type="text"> <br>
+        <!--inputa girilen karakter sayısını maxlength ile sınırlayabiliyoruz-->
+        <label for="password2">Şifre</label>
+        <input id="password2" type="password"> <br>
+        <label for="select_file">Dosya</label>
+        <input id="select_file2" type="file"> <br>
+        <label>
+            <input type="radio" name="cinsiyet">Erkek
+        </label>
+        <label>
+            <input type="radio" name="cinsiyet">Kadın
+        </label>
+        <label>
+            <input type="radio" name="cinsiyet">Diğer
+        </label> <br>
+        <label>
+        <input required type="checkbox">sözleşme metnini okudum
+        </label>
+        <!--işaretlenmesini zorunlu tutmak istediğimiz kısımları required olarak belirliyoruz-->
+        <label>
+        <input type="checkbox" checked>kabul ediyorum
+        </label>
+        <input type="submit">
+        <input type="reset" name="sifirla">
+    </form>
+</body>
+</html>

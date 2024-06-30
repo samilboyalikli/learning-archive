@@ -1,0 +1,94 @@
+<!-- 10. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tenth_etude</title>
+</head>
+<body>
+    <input type="text" name="username" autocomplete="off">
+    <!--eğer input kutumuzda daha önce yaptığımız girdilerin altta çıkmasını kapatmak istiyorsak autocomplete kapatıyoruz-->
+    <input list="diller">
+    <!--istersek buraya form belirterek sayfanın başka bir yerinde kullandığımız forma bu listenin datasını ekleyebiliriz-->
+    <datalist id="diller">
+        <option value="html">
+        <option value="css">
+        <option value="js">
+    </datalist>
+<br><br><br>
+    <form action="" method="get">
+        <label for="username2">Kullanıcı Adı</label>
+        <input placeholder="kullanıcı adı" maxlength="15" id="username2" type="text"> <br>
+        <label for="password2">Şifre</label>
+        <input placeholder="şifre" id="password2" type="password"> <br>
+        <label for="select_file2">Dosya</label>
+        <input id="select_file2" type="file" name=dosya[] multiple accept="image/*"> <br>
+        <input type="submit" formaction="html_notlari_9.html">
+        <!--kullanıcının girdisi neticesinde baka bir html sayfasına aktarılmasını istiyorsak formaction kullanıyoruz-->
+        <input type="reset" name="sifirla">
+    </form>
+<br><br><br>
+    <form action="" method="get">
+        <label for="username3">Kullanıcı Adı</label>
+        <input placeholder="kullanıcı adı" maxlength="15" id="username3" type="text"> <br>
+        <label for="password3">Şifre</label>
+        <input placeholder="şifre" id="password3" type="password"> <br>
+        <label for="select_file3">Dosya</label>
+        <input id="select_file3" type="file" name=dosya[] multiple accept="image/*"> <br>
+        <input type="submit" formtarget="_blank">
+        <!--kullanıcının girdisi neticesinde açılan yeni sayfanın nerede açılacağına formtarget komutunda karar veriyoruz-->
+        <input type="reset" name="sifirla">
+    </form>
+<br><br><br>
+    <select name="diller2">
+        <option value="html">html</option>
+        <option value="css">css</option>
+        <option value="js">js</option>
+    </select>
+    <!--kullanıcının girdisini listeden seçmesini istiyorsak select targetını kullanabiliriz-->
+<br><br><br>
+    <select name="diller2[]" multiple size="5">
+    <!--kullanıcının birden fazla tercih yapmasını istiyorsak multiple komutunu yerleştirebiliriz-->
+    <!--kullanıcının göreceği listedeki eleman sayısını size komutuyla belirleyebiliriz-->
+        <option value="html">html</option>
+        <option value="css">css</option>
+        <option value="js">js</option>
+        <option value="html">html</option>
+        <option value="css">css</option>
+        <option value="js">js</option>
+    </select>
+    <label for="korku">en korkunçlarını seçiniz:</label>
+    <select id="korku" name="diller2[]" multiple size="5">
+    <!--listeyi kendi içinde gruplandırarak kullanıcıya sunmak istersek <optgroup>ları kullanabiliriz-->
+        <optgroup label="hayali korku ögeleri">
+            <option value="cadi">cadı</option>
+            <option value="vampir">vampir</option>
+            <option value="zombi">zombi</option>
+        </optgroup>
+        <optgroup label="gerçek korku ögeleri">
+            <option value="cahil">cahil</option>
+            <option value="zalim">zalim</option>
+            <option value="narsist">narsist</option>
+        </optgroup>
+    </select>
+<br><br><br>
+    <textarea name="textarea" cols="50" rows="20"></textarea>
+    <!--kullanıcının metin girdisi yapabileceği alanlar için <textarea> etiketi kullanılabilir-->
+<br><br><br>
+    <form action="" method="get">
+        <fieldset>
+        <!--eğer girdi yapılacak alanı ayrıca bir çizgiyle belirtmek istersek <fieldset> etiketini kullanabiliriz-->
+            <legend>Giriş</legend>
+            <!--<fieldset> etiketlerine <legend> targetlarıyla başlıklandırabiliriz-->
+            <label for="username4">Kullanıcı Adı</label>
+            <input placeholder="kullanıcı adı" maxlength="15" id="username4" type="text"> <br>
+            <label for="password4">Şifre</label>
+            <input placeholder="şifre" id="password4" type="password"> <br>
+            <label for="select_file4">Dosya</label>
+            <input id="select_file4" type="file" name=dosya[] multiple accept="image/*"> <br>
+            <input type="reset" name="sifirla">
+            <button type="submit">Giriş Yap</button>
+        </fieldset>
+    </form>
+</body>
+</html>

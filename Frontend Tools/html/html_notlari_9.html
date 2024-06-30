@@ -1,0 +1,68 @@
+<!-- 9. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ninth_etude</title>
+</head>
+<body>
+    <form>
+        <input type="color"><br>
+        <!--kullanıcının renk ayarlayabildiği inputların type'ı colordır-->
+        <input type="date"><br>
+        <!--kullanıcının günü gg.aa.yyyy şeklinde ayarlayabildiği inputların type'ı date'dir-->
+        <input type="datetime-local"><br>
+        <!--kullanıcının gün ve saati gg.aa.yyyy --:-- şeklinde ayarlayabildiği inputların type'ı datetime-local'dır-->
+        <input type="email"><br>
+        <!--kullanıcının email girişi yaptığı inputların type'ları email'dir-->
+        <input type="month"><br>
+        <!--kullanıcının sadece ay ve yıl girişi yaptığı inputların type'ları month'dur-->
+        <input type="week"><br>
+        <!--kullanıcının sadece hafta ve yıl girişi yaptığı inputların type'ları week'dir-->
+        <input type="number" min="5" max="15"><br>
+        <!--kullanıcının numara seçimi yaptığı inputların type'ı number'dır-->
+        <input type="range" min="0" max="20" step="5"><br>
+        <!--kullanıcıların manuel dizi seçimi yaptıkları çubukların type'ı range'dir-->
+        <input type="search"><br>
+        <!--kullanıcının input'unun yanında metin girdi temizleme çarpısının bulunduğu input'ların type'ları search'dır-->
+        <input type="tel"><br>
+        <!--kullanıcının telefon numarası girdiği input'ların type'ları tel'dir-->
+        <input type="time"><br>
+        <!--kullanıcının saat girdiği input'ların type'ları time'dır-->
+        <input type="url"><br>
+        <!--kullanıcının url girdiği input'ların type'ları url'dir-->
+        <input type="submit"><br>
+        <input type="reset" name="sifirla">
+    </form>
+<br><br><br>
+    <form action="" method="get">
+        <label for="username2">Kullanıcı Adı</label>
+        <input placeholder="kullanıcı adı" maxlength="15" id="username2" type="text"> <br>
+        <!--kullanıcının giriş yapacağı kutucuğun içine yazı yazmak istiyorsak placeholder kullanabiliriz-->
+        <label for="password2">Şifre</label>
+        <input placeholder="şifre" id="password2" type="password"> <br>
+        <label for="select_file2">Dosya</label>
+        <input id="select_file2" type="file" name=dosya[] multiple accept="image/*"> <br>
+        <!--kullanıcının sadece resim dosyasını yüklemesini istersek accept="image/*" kullanabiliriz-->
+        <!--kullanıcının birden fazla dosya yüklemesini sağlamak için name'ine köşeli parantez ekleyip multiple
+            komutu girebiliriz-->
+        <label>
+            <input type="radio" name="cinsiyet">Erkek
+        </label>
+        <label>
+            <input type="radio" name="cinsiyet">Kadın
+        </label>
+        <label>
+            <input type="radio" name="cinsiyet">Diğer
+        </label> <br>
+        <label>
+        <input required type="checkbox">sözleşme metnini okudum
+        </label>
+        <label>
+        <input type="checkbox" checked>kabul ediyorum
+        </label>
+        <input type="submit">
+        <input type="reset" name="sifirla">
+    </form>
+</body>
+</html>
