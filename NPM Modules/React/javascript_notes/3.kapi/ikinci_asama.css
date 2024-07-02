@@ -1,0 +1,52 @@
+body {
+    background-color: rgb(81, 40, 21);
+}
+
+header {
+    background-color: rgb(50, 10, 10);
+    color: wheat;
+
+    text-align: center;
+    font-size: 1em;
+    font-family: Arial, Helvetica, sans-serif;
+
+    width: 100%;
+    padding: 1em 0;
+}
+
+#door1, #door2, #door3, #door4, #door5 {
+    /*çoklu ögelerde araya virgül koymak gerekir*/
+    background-color: rgb(81, 40, 21);
+
+    text-align: center;
+    font-size: 5em;
+    transition-duration: 0.3s;
+    border-style: none;
+    cursor: pointer;
+    /*cursor fare imlecinin görüntüsünü ayarlayan bir komut*/
+    /*pointer, yani tıklanabilir öge olarak görünmesini sağlıyor*/
+}
+
+#door1:hover, #door2:hover, #door3:hover, #door4:hover, #door5:hover {
+    font-size: 6em;
+}
+
+div {
+    text-align: center;
+    margin-top: 10%;
+}
+
+footer {
+    background-color: rgb(50, 10, 10);
+    color: wheat;
+
+    text-align: center;
+    font-size: 1em;
+    font-family: 'Times New Roman', Times, serif;
+
+    padding: 1em 0;
+    bottom: 0;
+
+    width: 100%;
+    position: absolute;
+}

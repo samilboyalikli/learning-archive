@@ -1,0 +1,36 @@
+body {
+    background-color: rgb(0, 0, 0);
+  }
+  
+  img {
+    padding: 15px;
+    border-radius: 10px;
+    background-color: rgb(50, 10, 10);
+  }
+  
+  div.gallery {
+    margin:100px;
+    padding:50px;
+    text-align: center;
+  }
+  
+  footer {
+    background-color: rgb(50, 10, 10);
+    font-family: "Arial", sans-serif;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 1em 0;
+    margin-top: 0;
+    font-size: 1em;
+  }
+  
+  header {
+    background-color: rgb(50, 10, 10);
+    font-family: "Times New Roman", sans-serif;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 1em 0;
+    margin-top: 0;
+    font-size: 1em;
+  }
+  

@@ -1,0 +1,83 @@
+body {
+  max-width: 800px;
+  background-color: rgb(50, 50, 50);
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  font-family: "Gill Sans", sans-serif;
+}
+
+.container {
+  background-color: rgb(30, 30, 30);
+  display: flex;
+  justify-content: center; /* Yatayda ortala */
+  align-items: center; /* Dikeyde ortala */
+  flex-wrap: wrap; /* Öğelerin bir alt satıra geçmesine izin ver */
+  gap: 30px; /* Öğeler arasında boşluk bırak */
+  border-radius: 50px;
+}
+
+
+
+@media (max-width: 600px) {
+  .container {
+    width: 400px;
+    flex-direction: column; 
+    display: grid;
+    place-items: center;
+  }
+  .taskContent{
+    
+    display: grid;
+    place-items: center;
+
+  }
+  .personLi{
+    
+      display: grid;
+      place-items: center;
+  
+  }
+
+}
+
+
+@media (min-width: 750px) {
+  .container {
+    width: 700px; 
+  }
+}
+@media (min-width: 900px) {
+  .container {
+    width: 850px; 
+  }
+}
+
+
+.taskContent{
+  border: none;
+  padding: 10 px;
+  margin-bottom: 20px;
+
+}
+.taskLi{
+  color: white;
+  font-size: 1.1em;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  padding: 1px;
+  margin-top: 0;
+  border: none;
+  text-align: left;
+  width: 100%;
+}
+
+.personLi{
+  list-style: none;
+}
+
+.taskH1{
+  text-align: center;
+}
+
