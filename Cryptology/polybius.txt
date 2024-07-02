@@ -1,0 +1,21 @@
+    | 1 | 2 | 3 | 4 | 5 | 6 |
+  1 | a | b | c | ç | d | e |
+  2 | f | g | ğ | h | ı | i |
+  3 | j | k | l | m | n | o |
+  4 | ö | p | r | s | ş | t |
+  5 | u | ü | v | y | z |
+
+Yunanlılar tarafından mö 2-3. yy'da kullanılmıştır.
+İlk Yunan ve Roma alfabesinde yapıldı.
+Polybius'un dama tahtası yukarıdaki gibi 5X5'lik bir matristir.
+Alfabe sırayla matrisin sıralarına yazılır.
+Her harf iki rakamlı bir kodla ifade edilir.
+Kodun ilk harfi bulunulan satırı ifade eder.
+Kodun ikinci harfi bulunulan sütunu ifade eder.
+
+a = 11          f = 21          j = 31          ö = 41          u = 51
+b = 12          g = 22          k = 32          p = 42          ü = 52
+c = 13          ğ = 23          l = 33          r = 43          v = 53
+ç = 14          h = 24          m = 34          s = 44          y = 54
+d = 15          ı = 25          n = 35          ş = 45          z = 55
+e = 16          i = 26          o = 36          t = 46

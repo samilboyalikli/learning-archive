@@ -1,0 +1,11 @@
+Scytale Yunanca inceden uzun bir odun çubuk anlamına geliyor.
+İlk Spartalılar tarafından Perslerin saldırı haberini uçurmak için kullanılmıştır.
+İki tarafında bildiği veya anladığı bir çubuk yarıçapı belirlenir.
+Bu çubuğa bir şerit sarılır. Mesaj yazılır.
+Ardından harfler verilir. Mesajın alıcısı çapını bildiği çubuğa şerit sarar ve harfleri yazınca mesaj okunaklı hale gelir.
+Bunu saklamak için çeşitli steganografi yöntemleri kullanılabilir.
+
+Cryptex ise aynı yöntemin kalabalıklaştırılmış versiyonu.
+Cryptex, Scytale gibi iletişim değil, daha çok saklama amacıyla kullanılan bir araçtır.
+Örneğin yine şerite bir mesaj yazılır ama mesaj anlamsız bir metnin içine yazılır.
+Şeriti elde ettiğinizde anlamsız bir harf yığını okursunuz ama mesaj arada bir yerdedir.

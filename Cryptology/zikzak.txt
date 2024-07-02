@@ -1,0 +1,25 @@
+Steganografi mesajın saklanması anlamına gelir.
+Kriptografi ise mesajın anlamsız hale getirilmesi anlamına gelir.
+İkisinin birlikte kullanıldığı olmuştur:
+WW2'da Alman'lar bir şifreli mesajı önemsiz bir mektubun sonundaki noktaya sığdırarak bu iki yöntemi birlikte kullanmışlardır.
+
+Zikzak şifrelemede, deşifre edilirken harf sayısı ortadan ikiye bölünür.
+İkinci parça, birinci parçanın altına yazılır ve zikzak yaparak okunur.
+
+ZKAİZK
+
+Burada altı harf var. İlk 3 harfi üste, ikinci 3 harfi alta yazıyoruz.
+
+ZKA
+İZK
+
+Önce üst satırdaki ilk harfi alıyoruz sonra alt satırdaki ilk harfi.
+Sonra üst satırdaki ikinci harfi sonra alt satırdaki ikinci harfi ve böyle ilerliyoruz.
+Eğer harf sayısı tek sayıysa ortadan ikiye bölüp üst parçayı büyük yapıyoruz.
+
+ZKAŞFEEEİZKİRLM
+
+Burada 15 harf var. Bir parçanın 2n+1 diğerinin 2n olması lazım. O halde 8+7 biçiminde ayırıyoruz.
+
+ZKAŞFEEE (8 harf)
+İZKİRLM (7 harf)

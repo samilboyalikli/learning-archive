@@ -1,0 +1,7 @@
+A(1),  B(2),  C(3),  Ç(4),  D(5),  E(6),  F(7),  G(8),  Ğ(9),  H(10), I(11), İ(12), J(13), K(14), L(15),
+Z(29), Y(28), V(27), Ü(26), U(25), T(24), S(23), Ş(22), R(21), P(20), Ö(19), O(18), N(17), M(16), L(15)
+
+Toplamları 30 yapan sayılar birbirlerini karşılıyor.
+Bu teknik ilk İbrani alfabesinde uygulanmıştır.
+Alfabenin ilk harfi son harfiye, ikinci harfi sondan ikinci harfiyle eşleşiyor. 
+Ve bu paternle tüm alfabe birbiriyle eşleştiriliyor.
