@@ -1,0 +1,21 @@
+//@version=5
+strategy("InSide Bar Strategy", overlay=true)
+// title = "Inside Bar Strategy" (grafiğin ismi çubuk içi stratejisi)
+// overlay = true (strateji grafiğin üzerinde gösterilecek)
+
+// İç çubuk koşulunu kontrol et
+if (high < high[1] and low > low[1])
+// Şu anki barın high seviyesi önceki barın high seviyesinden küçükse
+// ve şu anki barın low seviyesi önceki barın low seviyesinden büyükse
+// İç çubuk oluşmuş demektir...
+    // Eğer iç çubuk oluştuysa
+    if (close > open)
+    // Şu anki barın close fiyatı open fiyatının üstündeyse
+        // Alım sinyali üret ve işlemi gerçekleştir
+        strategy.entry("InsBarLE", strategy.long, comment="InsBarLE")
+    if (close < open)
+        // Satım sinyali üret ve işlemi gerçekleştir
+        strategy.entry("InsBarSE", strategy.short, comment="InsBarSE")
+
+// Stratejinin eşitliğini çiz
+//plot(strategy.equity, title="equity", color=color.red, linewidth=2, style=plot.style_area)

@@ -1,0 +1,32 @@
+//@version=5
+indicator(title = "Arnaud Legoux Moving Average", shorttitle="ALMA", overlay=true, timeframe="", timeframe_gaps=true)
+source = close
+windowsize = input(title="Window Size", defval=9)
+offset = input.float(title="Offset", defval=0.85)
+sigma = input.float(title="Sigma", defval=6)
+plot(ta.alma(source, windowsize, offset, sigma))
+
+//---------------------------------------------------------------------------------------------------------------------
+
+
+//@version=5 // Pine Script sürümü belirtiliyor.
+
+indicator(title = "Arnaud Legoux Moving Average", shorttitle="ALMA", overlay=true, timeframe="", timeframe_gaps=true)
+// İndikatör başlığı ve kısa başlığı tanımlanıyor. Overlay parametresi grafiğe üst üste bindirme yapılacağını, 
+// timeframe parametresinin boş bırakıldığını ve timeframe_gaps parametresinin true olduğunu belirtiyor.
+// Bu, göstergeyi zaman diliminde herhangi bir boşluk olmaksızın çalıştırır.
+
+source = close // Hesaplama için kullanılacak veri kaynağı belirleniyor. Genellikle kapanış fiyatı kullanılır.
+
+windowsize = input(title="Window Size", defval=9) // Pencere boyutu kullanıcı girişine bağlanıyor.
+// Bu, ALMA'nın dönemini belirler. Varsayılan olarak 9 olarak ayarlanmıştır.
+
+offset = input.float(title="Offset", defval=0.85) // Kaydırma (Offset) değeri kullanıcı girişine bağlanıyor.
+// ALMA'nın kaydırma miktarını belirler. Varsayılan olarak 0.85 olarak ayarlanmıştır.
+
+sigma = input.float(title="Sigma", defval=6) // Sigma değeri kullanıcı girişine bağlanıyor.
+// ALMA'nın ağırlık fonksiyonunda kullanılan sigma parametresini belirler. Varsayılan olarak 6 olarak ayarlanmıştır.
+
+plot(ta.alma(source, windowsize, offset, sigma)) // ALMA gösterge grafiğe çiziliyor.
+// ALMA hesaplaması yapılır ve sonuç grafiğe çizilir. 'ta.alma()' fonksiyonu ALMA'nın Pine Script içindeki 
+// yerleşik bir fonksiyonudur ve belirtilen parametrelerle çağrılır.

@@ -98,12 +98,21 @@ strategy(
                         // CloseEntriesRule.PerEntry --> Tüm açık pozisyonların belli bir fiyat limitinde veya piyasa fiyatında kapatılmasını sağlar.
         margin_long, // Uzun pozisyonlar için gerekli olan marj (fon) miktarını belirler.
         margin_short, // Kısa pozisyonlar için gerekli olan marj (fon) miktarını belirler.
-        explicit_plot_zorder, 
-        max_lines_count, 
-        max_labels_count, 
-        max_boxes_count, 
-        risk_free_rate, 
-        use_bar_magnifier, 
-        fill_orders_on_standard_ohlc, 
-        max_polylines_count
+        explicit_plot_zorder, // z-index'in nasıl belirleneceğini belirleyen boolean parametredir.
+                                // true --> z-index'in manuel belirlenmesini sağlar. plot() fonksiyonunun zorder parametresiyle belirlenir.
+                                // false --> z-idnex'in otomatik belirlenmesini sağlar.
+        max_lines_count, // Grafikte gösterilecek çizgi sayısını belirtir. 0-500 arasında bir değer olmalıdır.
+                        // Varsayılan değer 50'dir. Çok çizgi olduğunda grafiğin gözükmesi zorlaşabilir.
+        max_labels_count, // Grafikte gösterilecek etiket (label) sayısını belirtir. 0-500 arasında bir değer olmalıdır.
+                        // Varsayılan değer 50'dir.
+        max_boxes_count, // Grafikte gösterilecek kutu (box) sayısını belirtir. 0-500 arasında bir değer olmalıdır.
+                        // Varsayılan değer 50'dir.
+        risk_free_rate, // risk_free faiz oranını belirli bir finansal varlık için risksiz getiri oranını ifade eder.
+        use_bar_magnifier, // bar_magnifier (bar büyütücü)'in kullanılıp kullanılmayacağını belirler.
+                        // Bu geri test işlemi sırasında kullanılan bir araçtır ve geri testin hızını artırırken doğruluğunu korur.
+        fill_orders_on_standard_ohlc, // İşlem emirlerinin standart OHLC fiyatları üzerinden doldurulup doldurulmayacağını belirleyen boolean parametredir.
+                                // true --> İşlem emirlerini standart OHLC fiyatları üzerinden doldurur.
+                                // false --> İşlem emirleri belirli bir fiyattan doldurulur.
+        max_polylines_count // Grafikte gösterilecek çokgen (polyline) sayısını belirtir. 0-100 arasında bir değer olmalıdır.
+                        // Varsayılan değer 50'dir.
 )
