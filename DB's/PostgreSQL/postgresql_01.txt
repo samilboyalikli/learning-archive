@@ -1,0 +1,31 @@
+(+) 96'dan beri bağımsız olarak geliştiriliyor.
+(+) Arkasında bir şirket, vakıf vs yoktur.
+    (-) Bu yüzden kendini duyurma noktasında güçlük çekmektedir.
+        (-) Açık kaynaklı pek çok uygulama mySQL'i desteklerken PostgreSQL'i desteklemiyor olabilir.
+(+) Açık kaynak bir db yöneticisidir.
+(-) PostgreSQL veri güvenliğine odaklandığı için hız konusunda bazı dezavantajlara sahip.
+(+) PostgreSQL coğrafi nesneleri de destekliyor. Bu bağlamda konum tabanlı servisler için de kullanılabiliyor.
+(+) Bakım yönetimi hem kurumsal hem de gömülü kullanımlar için düşüktür.
+(+) Güvenlik ve uyumluluğu önceler.
+    (-) Uyumluluk konusuna odaklandığı için hız konusunda yapılan tüm iyileştirmeler mySQL'e nazaran daha çok çalışma gerektirmektedir.
+
+
+
+------------------------------------------------------------------
+|                            LIMITATION                          |
++-----------------------------------+----------------------------+
+|   MAX DB BÜYÜKLÜĞÜ                |   sınırsız                 |
+|   1 TABLO İÇİN MAX BÜYÜKLÜK       |   32 tb                    |
+|   1 SATIR İÇİN MAX BÜYÜKLÜK       |   1.6 tb                   |
+|   1 HÜCRE İÇİN MAX BÜYÜKLÜK       |   1 gb                     |
+|   MAX SATIR SAYISI                |   sınırsız                 |
+|   MAX SÜTUN SAYISI                |   250-1600 arası(1)        |
+|   1 TABLODAKİ MAX İNDEX SAYISI    |   sınırsız                 |
+------------------------------------+-----------------------------
+
+
+
+(1) veri tipine bağlı olarak değişmektedir.
+(?) LAMP yığını nedir?
+(?) LAMP yığınıyla PostgreSQL arasındaki ilişki nedir?
+
