@@ -36,6 +36,7 @@ import findspark
 from pyspark.sql import SparkSession
 import os
 
+
 os.environ['HADOOP_HOME'] = "C:\\hadoop"
 os.environ['hadoop.home.dir'] = "C:\\hadoop"
 
@@ -47,6 +48,18 @@ titanic_df = spark.read.csv("test.csv", header=True, inferSchema=True)
 
 def dataframe_schema(x):
     """1. Dataset schema will be created"""
+    # root
+    # | -- PassengerId: integer(nullable=true)
+    # | -- Pclass: integer(nullable=true)
+    # | -- Name: string(nullable=true)
+    # | -- Sex: string(nullable=true)
+    # | -- Age: double(nullable=true)
+    # | -- SibSp: integer(nullable=true)
+    # | -- Parch: integer(nullable=true)
+    # | -- Ticket: string(nullable=true)
+    # | -- Fare: double(nullable=true)
+    # | -- Cabin: string(nullable=true)
+    # | -- Embarked: string(nullable=true)
     return x.printSchema()
 
 
@@ -54,12 +67,15 @@ def missing_values(x):
     """3.1. Missing Values Operations"""
     processed_dataset = x
     cleaned_dataset = processed_dataset.na.drop(how="all")
+    gender_distribution = cleaned_dataset.groupBy("Sex").count()
+    city_distribution = cleaned_dataset.groupBy("Embarked").count()
     # TODO
     #   3.1.1. (checked) tablonun kopyası alınacak ve analiz kopya üzerinde gerçekleştirilecek.
-    #   3.1.2. eksik değerler kontrol edilecek.
-    #   3.1.3. eksik değerler silinecek.
-    #   3.1.4. cinsiyet ve şehir dağılımları hesaplanacak.
-    return cleaned_dataset.show()
+    #   3.1.2. (checked) eksik değerler kontrol edilecek.
+    #   3.1.3. (checked) eksik değerler silinecek.
+    #   3.1.4. (checked) cinsiyet dağılımları hesaplanacak.
+    #   3.1.5. (checked) şehir dağılımları hesaplanacak.
+    return cleaned_dataset, gender_distribution, city_distribution
 
 
 def calculation_of_descriptive_statistics(x):
@@ -102,3 +118,7 @@ def group_analyzes(x):
     #   3.6.1. cinsiyet ve sınıfa göre hayatta kalan yolcu sayıları hesaplanacak.
     #   3.6.2. farklı şehirlerden gelen yolcuların sayısı karşılaştırılacak.
     print(x)
+
+
+cleaned_ds, gender_dist, city_dist = missing_values(titanic_df)
+gender_dist.show()
