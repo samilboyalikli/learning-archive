@@ -6,11 +6,12 @@ SIMPLE ANALYSIS OF TITANIC DATASET FROM KAGGLE
 #   1. (checked) Verisetinin Şeması çıkarılacak.
 #   2. (checked) Şema GPT'ye verilecek.
 #   3. İstenen datalar tespit edilecek.
-#       3.1. veri temizleme işlemleri
-#           3.1.1. tablonun kopyası alınacak ve analiz kopya üzerinde gerçekleştirilecek.
-#           3.1.2. eksik değerler kontrol edilecek.
-#           3.1.3. eksik değerler silinecek.
-#           3.1.4. cinsiyet ve şehir dağılımları hesaplanacak.
+#       3.1. (checked) veri temizleme işlemleri
+#           3.1.1. (checked) tablonun kopyası alınacak ve analiz kopya üzerinde gerçekleştirilecek.
+#           3.1.2. (checked) eksik değerler kontrol edilecek.
+#           3.1.3. (checked) eksik değerler silinecek.
+#           3.1.4. (checked) cinsiyet dağılımları hesaplanacak
+#           3.1.5. (checked) şehir dağılımları hesaplanacak.
 #       3.2. tanımlayıcı istatistiklerin hesaplanması (tüm sütunlar için)
 #           3.2.1. ortamala
 #           3.2.2. medyan
@@ -63,19 +64,35 @@ def dataframe_schema(x):
     return x.printSchema()
 
 
-def missing_values(x):
-    """3.1. Missing Values Operations"""
-    processed_dataset = x
-    cleaned_dataset = processed_dataset.na.drop(how="all")
-    gender_distribution = cleaned_dataset.groupBy("Sex").count()
-    city_distribution = cleaned_dataset.groupBy("Embarked").count()
-    # TODO
-    #   3.1.1. (checked) tablonun kopyası alınacak ve analiz kopya üzerinde gerçekleştirilecek.
-    #   3.1.2. (checked) eksik değerler kontrol edilecek.
-    #   3.1.3. (checked) eksik değerler silinecek.
-    #   3.1.4. (checked) cinsiyet dağılımları hesaplanacak.
-    #   3.1.5. (checked) şehir dağılımları hesaplanacak.
-    return cleaned_dataset, gender_distribution, city_distribution
+class CleanedData:
+    """
+    Data Cleaning Operations
+    and
+    Some Process with Cleaned Data
+
+    This class usable with these ways:
+        CleanedData(dataset).cd.show()
+        CleanedData(dataset).gd.show()
+        CleanedData(dataset).cd.show()
+
+    also usable with these ways:
+        CleanedData(dataset).clean_dataset
+        CleanedData(dataset).gender_dist
+        CleanedData(dataset).city_dist
+    """
+    def __init__(self, x):
+        """
+        :param x: dataset which to be analyzed
+        :returns: Returns the cleaned dataset, gender distribution and city distribution
+
+        cd = cleaned data
+        gd = gender distribution
+        cd = city distribution
+
+        """
+        self.cd = x.na.drop(how="all")
+        self.gd = self.cd.groupBy("Sex").count()
+        self.cd = self.cd.groupBy("Embarked").count()
 
 
 def calculation_of_descriptive_statistics(x):
@@ -120,5 +137,4 @@ def group_analyzes(x):
     print(x)
 
 
-cleaned_ds, gender_dist, city_dist = missing_values(titanic_df)
-gender_dist.show()
+CleanedData(titanic_df).cd.show()
