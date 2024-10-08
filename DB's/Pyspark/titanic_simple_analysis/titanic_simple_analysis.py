@@ -47,9 +47,58 @@ titanic_df = spark.read.csv("test.csv", header=True, inferSchema=True)
 
 def dataframe_schema(x):
     """1. Dataset schema will be created"""
-    return x.dfprintSchema()
+    return x.printSchema()
 
 
 def missing_values(x):
-    """Missing Values Operations"""
+    """3.1. Missing Values Operations"""
+    processed_dataset = x
+    cleaned_dataset = processed_dataset.na.drop(how="all")
+    # TODO
+    #   3.1.1. (checked) tablonun kopyası alınacak ve analiz kopya üzerinde gerçekleştirilecek.
+    #   3.1.2. eksik değerler kontrol edilecek.
+    #   3.1.3. eksik değerler silinecek.
+    #   3.1.4. cinsiyet ve şehir dağılımları hesaplanacak.
+    return cleaned_dataset.show()
+
+
+def calculation_of_descriptive_statistics(x):
+    """Descriptive Statistics"""
+    # TODO
+    #   3.2.1. ortalama
+    #   3.2.2. medyan
+    #   3.2.3. standart sapma
+    #   3.2.4. min/max değerler
     return print(x)
+
+
+def price_analysis(x):
+    """Price Analysis Operations"""
+    # TODO
+    #   3.3.1. farklı sınıflardaki bilet fiyatlarını hesaplanacak.
+    #   3.3.2. yaş ve bilet arasındaki ilişki analiz edilecek.
+    return print(x)
+
+
+def visualisation(x):
+    """Visualisation Processes"""
+    # TODO
+    #   3.4.1. yaş dağılımı görselleştirilecek.
+    #   3.4.2. cinsiyete göre hayatta kalma oranları karşılaştırılacak.
+    return print(x)
+
+
+def property_analysis(x):
+    """Property Analysis Operations"""
+    # TODO
+    #   3.5.1. aile büyüklüğü üzerine bir sütun oluşturulacak.
+    #   3.5.2. yaş gruplarının tanımlandığı yeni bir kategori oluşturulacak.
+    return print(x)
+
+
+def group_analyzes(x):
+    """Group Analyzes"""
+    # TODO
+    #   3.6.1. cinsiyet ve sınıfa göre hayatta kalan yolcu sayıları hesaplanacak.
+    #   3.6.2. farklı şehirlerden gelen yolcuların sayısı karşılaştırılacak.
+    print(x)
