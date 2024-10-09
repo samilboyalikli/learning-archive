@@ -48,10 +48,10 @@ titanic_df = spark.read.csv("test.csv", header=True, inferSchema=True)
 
 
 def dataframe_schema(x):
-    """1. Dataset schema will be created"""
+    """This method gives you schema of dataset."""
     # root
     # | -- PassengerId: integer(nullable=true)
-    # | -- Pclass: integer(nullable=true)
+    # | -- "Pclass": integer(nullable=true)
     # | -- Name: string(nullable=true)
     # | -- Sex: string(nullable=true)
     # | -- Age: double(nullable=true)
@@ -104,13 +104,15 @@ class CleanedData:
 
 def calculation_of_descriptive_statistics(x):
     """Descriptive Statistics"""
-    x.agg()
+    show_avg = x.groupBy().avg("Pclass", "SibSp", "Parch", "Age", "Fare").show()
+    show_median = x.approxQuantile(["Pclass", "SibSp", "Parch", "Age", "Fare"], [0.5], 0)
+    df_describe = x.describe("Pclass", "SibSp", "Parch", "Age", "Fare").show()
     # TODO
     #   3.2.1. ortalama
     #   3.2.2. medyan
     #   3.2.3. standart sapma
     #   3.2.4. min/max değerler
-    return print(x)
+    return show_avg, print(show_median), df_describe
 
 
 def price_analysis(x):
@@ -143,3 +145,6 @@ def group_analyzes(x):
     #   3.6.1. cinsiyet ve sınıfa göre hayatta kalan yolcu sayıları hesaplanacak.
     #   3.6.2. farklı şehirlerden gelen yolcuların sayısı karşılaştırılacak.
     print(x)
+
+
+calculation_of_descriptive_statistics(titanic_df)
