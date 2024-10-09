@@ -12,11 +12,11 @@ SIMPLE ANALYSIS OF TITANIC DATASET FROM KAGGLE
 #           3.1.3. (checked) eksik değerler silinecek.
 #           3.1.4. (checked) cinsiyet dağılımları hesaplanacak
 #           3.1.5. (checked) şehir dağılımları hesaplanacak.
-#       3.2. tanımlayıcı istatistiklerin hesaplanması (tüm sütunlar için)
-#           3.2.1. ortamala
-#           3.2.2. medyan
-#           3.2.3. standart sapma
-#           3.2.4. min/max değerler
+#       3.2. (checked) tanımlayıcı istatistiklerin hesaplanması (tüm sütunlar için)
+#           3.2.1. (checked) ortamala
+#           3.2.2. (checked) medyan
+#           3.2.3. (checked) standart sapma
+#           3.2.4. (checked) min/max değerler
 #       3.3. fiyat analizi
 #           3.3.1. farklı sınıflardaki bilet fiyatlarını hesaplanacak.
 #           3.3.2. yaş ve bilet arasındaki ilişki analiz edilecek.
@@ -68,7 +68,7 @@ class CleanedData:
     """
     This class includes data cleaning operations and some processes with cleaned data.
 
-    This class usable with these ways:
+    Usable with these ways:
         CleanedData(dataset).city_d.show()
         CleanedData(dataset).gd.show()
         CleanedData(dataset).cd.show()
@@ -102,17 +102,42 @@ class CleanedData:
         self.city_d.show()
 
 
-def calculation_of_descriptive_statistics(x):
-    """Descriptive Statistics"""
-    show_avg = x.groupBy().avg("Pclass", "SibSp", "Parch", "Age", "Fare").show()
-    show_median = x.approxQuantile(["Pclass", "SibSp", "Parch", "Age", "Fare"], [0.5], 0)
-    df_describe = x.describe("Pclass", "SibSp", "Parch", "Age", "Fare").show()
-    # TODO
-    #   3.2.1. ortalama
-    #   3.2.2. medyan
-    #   3.2.3. standart sapma
-    #   3.2.4. min/max değerler
-    return show_avg, print(show_median), df_describe
+class DescriptiveStats:
+    """
+    This class includes some descriptive statistics.
+
+    You can see output of this class with these ways:
+        DescriptiveStats(dataset).a.show()
+        DescriptiveStats(dataset).d.show()
+        print(DescriptiveStats(dataset).m)
+
+    also usable with these ways:
+        DescriptiveStats(dataset).show_average()
+        DescriptiveStats(dataset).show_describe()
+        DescriptiveStats(dataset).show_median()
+    """
+    def __init__(self, x):
+        """
+        Args:
+            a (dict): Average values
+            d (dict): Descriptive datas
+            m (dict): Median of columns
+
+        :param x: The input dataset.
+        :returns: Returns the average values, descriptive datas and median of columns.
+        """
+        self.a = x.groupBy().avg("Pclass", "SibSp", "Parch", "Age", "Fare")
+        self.d = x.describe("Pclass", "SibSp", "Parch", "Age", "Fare")
+        self.m = x.approxQuantile(["Pclass", "SibSp", "Parch", "Age", "Fare"], [0.5], 0)
+
+    def show_average(self):
+        self.a.show()
+
+    def show_describe(self):
+        self.d.show()
+
+    def show_median(self):
+        print(self.m)
 
 
 def price_analysis(x):
@@ -145,6 +170,3 @@ def group_analyzes(x):
     #   3.6.1. cinsiyet ve sınıfa göre hayatta kalan yolcu sayıları hesaplanacak.
     #   3.6.2. farklı şehirlerden gelen yolcuların sayısı karşılaştırılacak.
     print(x)
-
-
-calculation_of_descriptive_statistics(titanic_df)
