@@ -66,37 +66,45 @@ def dataframe_schema(x):
 
 class CleanedData:
     """
-    Data Cleaning Operations
-    and
-    Some Process with Cleaned Data
+    This class includes data cleaning operations and some processes with cleaned data.
 
     This class usable with these ways:
-        CleanedData(dataset).cd.show()
+        CleanedData(dataset).city_d.show()
         CleanedData(dataset).gd.show()
         CleanedData(dataset).cd.show()
 
     also usable with these ways:
-        CleanedData(dataset).clean_dataset
-        CleanedData(dataset).gender_dist
-        CleanedData(dataset).city_dist
+        CleanedData(dataset).show_clean_dataset
+        CleanedData(dataset).show_gender_distribution
+        CleanedData(dataset).show_city_distribution
     """
     def __init__(self, x):
         """
-        :param x: dataset which to be analyzed
-        :returns: Returns the cleaned dataset, gender distribution and city distribution
+        Args:
+            cd (dataframe): Cleaned data.
+            gd (dict): Gender distribution.
+            city_d (dict): City distribution.
 
-        cd = cleaned data
-        gd = gender distribution
-        cd = city distribution
-
+        :param x: The input dataset.
+        :returns: Returns the cleaned dataframe, gender distribution and city distribution
         """
         self.cd = x.na.drop(how="all")
         self.gd = self.cd.groupBy("Sex").count()
-        self.cd = self.cd.groupBy("Embarked").count()
+        self.city_d = self.cd.groupBy("Embarked").count()
+
+    def show_clean_dataset(self):
+        self.cd.show()
+
+    def show_gender_distribution(self):
+        self.gd.show()
+
+    def show_city_distribution(self):
+        self.city_d.show()
 
 
 def calculation_of_descriptive_statistics(x):
     """Descriptive Statistics"""
+    x.agg()
     # TODO
     #   3.2.1. ortalama
     #   3.2.2. medyan
@@ -135,6 +143,3 @@ def group_analyzes(x):
     #   3.6.1. cinsiyet ve sınıfa göre hayatta kalan yolcu sayıları hesaplanacak.
     #   3.6.2. farklı şehirlerden gelen yolcuların sayısı karşılaştırılacak.
     print(x)
-
-
-CleanedData(titanic_df).cd.show()
