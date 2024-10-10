@@ -55,8 +55,8 @@ def dataframe_schema(x):
     # | -- Name: string(nullable=true)
     # | -- Sex: string(nullable=true)
     # | -- Age: double(nullable=true)
-    # | -- SibSp: integer(nullable=true)
-    # | -- Parch: integer(nullable=true)
+    # | -- SibSp: integer(nullable=true) (Siblings/Spouses)
+    # | -- Parch: integer(nullable=true) (Parents/Children)
     # | -- Ticket: string(nullable=true)
     # | -- Fare: double(nullable=true)
     # | -- Cabin: string(nullable=true)
@@ -141,11 +141,19 @@ class DescriptiveStats:
 
 
 def price_analysis(x):
-    """Price Analysis Operations"""
+    """
+    Price Analysis Operations
+
+    fare_ob_class = Fare order by class.
+
+    Example:
+        price_analysis(titanic_df).show()
+    """
     # TODO
-    #   3.3.1. farklı sınıflardaki bilet fiyatlarını hesaplanacak.
+    #   3.3.1. (checked) farklı sınıflardaki bilet fiyatları hesaplanacak.
     #   3.3.2. yaş ve bilet arasındaki ilişki analiz edilecek.
-    return print(x)
+    fare_ob_class = x.groupBy("Pclass").avg("Fare").orderBy("Pclass")
+    return fare_ob_class
 
 
 def visualisation(x):
@@ -170,3 +178,69 @@ def group_analyzes(x):
     #   3.6.1. cinsiyet ve sınıfa göre hayatta kalan yolcu sayıları hesaplanacak.
     #   3.6.2. farklı şehirlerden gelen yolcuların sayısı karşılaştırılacak.
     print(x)
+
+
+df = titanic_df
+
+first_group = df.where(df["Age"] < 10) \
+    .groupBy("Age") \
+    .agg({"Fare": "avg", "Age": "avg"}) \
+    .orderBy("Age")
+second_group = df.where((df["Age"] > 10) & (df["Age"] < 20)) \
+    .groupBy("Age") \
+    .agg({"Fare": "avg", "Age": "avg"}) \
+    .orderBy("Age")
+third_group = df.where((df["Age"] > 20) & (df["Age"] < 30)) \
+    .groupBy("Age") \
+    .agg({"Fare": "avg", "Age": "avg"}) \
+    .orderBy("Age")
+
+first_group.agg({"avg(Fare)": "avg", "avg(Age)": "avg"}).show()
+second_group.agg({"avg(Fare)": "avg", "avg(Age)": "avg"}).show()
+third_group.agg({"avg(Fare)": "avg", "avg(Age)": "avg"}).show()
+
+collected_first = first_group.collect()[0]
+collected_second = second_group.collect()[0]
+collected_third = third_group.collect()[0]
+
+collected_data = [
+    (collected_first["Age"], collected_first["avg(avg(Fare))"]),
+    (collected_second["Age"], collected_second["avg(avg(Fare))"]),
+    (collected_third["Age"], collected_third["avg(avg(Fare))"])
+]
+
+
+forth_group = df.where((df["Age"] > 30) & (df["Age"] < 40)) \
+    .groupBy("Age") \
+    .agg({"Fare": "avg"}) \
+    .orderBy("Age")
+fifth_group = df.where((df["Age"] > 40) & (df["Age"] < 50)) \
+    .groupBy("Age") \
+    .agg({"Fare": "avg"}) \
+    .orderBy("Age")
+sixth_group = df.where((df["Age"] > 50) & (df["Age"] < 60)) \
+    .groupBy("Age") \
+    .agg({"Fare": "avg"}) \
+    .orderBy("Age")
+seventh_group = df.where((df["Age"] > 60) & (df["Age"] < 70)) \
+    .groupBy("Age") \
+    .agg({"Fare": "avg"}) \
+    .orderBy("Age")
+eighth_group = df.where((df["Age"] > 70) & (df["Age"] < 80)) \
+    .groupBy("Age") \
+    .agg({"Fare": "avg"}) \
+    .orderBy("Age")
+ninth_group = df.where((df["Age"] > 80) & (df["Age"] < 90)) \
+    .groupBy("Age") \
+    .agg({"Fare": "avg"}) \
+    .orderBy("Age")
+tenth_group = df.where((df["Age"] > 90) & (df["Age"] < 100)) \
+    .groupBy("Age") \
+    .agg({"Fare": "avg"}) \
+    .orderBy("Age")
+
+# 0-10 yaş arası fiyat ortalaması null olanlar hariç
+#
+#
+#
+#
