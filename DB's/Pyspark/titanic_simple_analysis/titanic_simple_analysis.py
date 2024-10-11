@@ -18,8 +18,8 @@ SIMPLE ANALYSIS OF TITANIC DATASET FROM KAGGLE
 #           3.2.3. (checked) standart sapma
 #           3.2.4. (checked) min/max değerler
 #       3.3. fiyat analizi
-#           3.3.1. farklı sınıflardaki bilet fiyatlarını hesaplanacak.
-#           3.3.2. yaş ve bilet arasındaki ilişki analiz edilecek.
+#           3.3.1. (checked) farklı sınıflardaki bilet fiyatlarını hesaplanacak.
+#           3.3.2. (checked) yaş ve bilet arasındaki ilişki analiz edilecek.
 #       3.4. görselleştirme
 #           3.4.1. yaş dağılımı görselleştirilecek.
 #           3.4.2. cinsiyete göre hayatta kalma oranları karşılaştırılacak.
@@ -140,78 +140,70 @@ class DescriptiveStats:
         print(self.m)
 
 
-def price_analysis(x):
-    """
-    Price Analysis Operations
+class PriceAnalysis:
+    def __init__(self, x):
+        self.fare_ob_class = x.groupBy("Pclass").avg("Fare").orderBy("Pclass")
 
-    fare_ob_class = Fare order by class.
+        self.first_class = x.where(x["Age"] < 10) \
+            .groupBy("Age") \
+            .agg({"Fare": "avg", "Age": "avg"}) \
+            .orderBy("Age")
+        self.second_group = x.where((x["Age"] > 10) & (x["Age"] < 20)) \
+            .groupBy("Age") \
+            .agg({"Fare": "avg", "Age": "avg"}) \
+            .orderBy("Age")
+        self.third_group = x.where((x["Age"] > 20) & (x["Age"] < 30)) \
+            .groupBy("Age") \
+            .agg({"Fare": "avg", "Age": "avg"}) \
+            .orderBy("Age")
+        self.forth_group = x.where((x["Age"] > 30) & (x["Age"] < 40)) \
+            .groupBy("Age") \
+            .agg({"Fare": "avg"}) \
+            .orderBy("Age")
+        self.fifth_group = x.where((x["Age"] > 40) & (x["Age"] < 50)) \
+            .groupBy("Age") \
+            .agg({"Fare": "avg"}) \
+            .orderBy("Age")
+        self.sixth_group = x.where((x["Age"] > 50) & (x["Age"] < 60)) \
+            .groupBy("Age") \
+            .agg({"Fare": "avg"}) \
+            .orderBy("Age")
+        self.seventh_group = x.where((x["Age"] > 60) & (x["Age"] < 70)) \
+            .groupBy("Age") \
+            .agg({"Fare": "avg"}) \
+            .orderBy("Age")
+        self.eighth_group = x.where((x["Age"] > 70) & (x["Age"] < 80)) \
+            .groupBy("Age") \
+            .agg({"Fare": "avg"}) \
+            .orderBy("Age")
 
-    Example:
-        price_analysis(titanic_df).show()
-    """
+        self.first_group_first_column = self.first_class.agg({"avg(Fare)": "avg"}).collect()[0][0]
+        self.second_group_first_column = self.second_group.agg({"avg(Fare)": "avg"}).collect()[0][0]
+        self.third_group_first_column = self.third_group.agg({"avg(Fare)": "avg"}).collect()[0][0]
+        self.forth_group_first_column = self.forth_group.agg({"avg(Fare)": "avg"}).collect()[0][0]
+        self.fifth_group_first_column = self.fifth_group.agg({"avg(Fare)": "avg"}).collect()[0][0]
+        self.sixth_group_first_column = self.sixth_group.agg({"avg(Fare)": "avg"}).collect()[0][0]
+        self.seventh_group_first_column = self.seventh_group.agg({"avg(Fare)": "avg"}).collect()[0][0]
+        self.eighth_group_first_column = self.eighth_group.agg({"avg(Fare)": "avg"}).collect()[0][0]
 
-    # TODO
-    #   3.3.1. (checked) farklı sınıflardaki bilet fiyatları hesaplanacak.
-    #   3.3.2. (checked) yaş ve bilet arasındaki ilişki analiz edilecek.
+        self.columns = ["Fare Average", "Age Range"]
+        self.data = [
+            (round(self.first_group_first_column, 3), "0-10"),
+            (round(self.second_group_first_column, 3), "10-20"),
+            (round(self.third_group_first_column, 3), "20-30"),
+            (round(self.forth_group_first_column, 3), "30-40"),
+            (round(self.fifth_group_first_column, 3), "40-50"),
+            (round(self.sixth_group_first_column, 3), "50-60"),
+            (round(self.seventh_group_first_column, 3), "60-70"),
+            (round(self.eighth_group_first_column, 3), "70-80")
+        ]
+        self.new_df = spark.createDataFrame(self.data, self.columns)
 
-    fare_ob_class = x.groupBy("Pclass").avg("Fare").orderBy("Pclass")
+    def show_price_average_by_class(self):
+        self.fare_ob_class.show()
 
-    first_group = x.where(x["Age"] < 10) \
-        .groupBy("Age") \
-        .agg({"Fare": "avg", "Age": "avg"}) \
-        .orderBy("Age")
-    second_group = x.where((x["Age"] > 10) & (x["Age"] < 20)) \
-        .groupBy("Age") \
-        .agg({"Fare": "avg", "Age": "avg"}) \
-        .orderBy("Age")
-    third_group = x.where((x["Age"] > 20) & (x["Age"] < 30)) \
-        .groupBy("Age") \
-        .agg({"Fare": "avg", "Age": "avg"}) \
-        .orderBy("Age")
-    forth_group = x.where((x["Age"] > 30) & (x["Age"] < 40)) \
-        .groupBy("Age") \
-        .agg({"Fare": "avg"}) \
-        .orderBy("Age")
-    fifth_group = x.where((x["Age"] > 40) & (x["Age"] < 50)) \
-        .groupBy("Age") \
-        .agg({"Fare": "avg"}) \
-        .orderBy("Age")
-    sixth_group = x.where((x["Age"] > 50) & (x["Age"] < 60)) \
-        .groupBy("Age") \
-        .agg({"Fare": "avg"}) \
-        .orderBy("Age")
-    seventh_group = x.where((x["Age"] > 60) & (x["Age"] < 70)) \
-        .groupBy("Age") \
-        .agg({"Fare": "avg"}) \
-        .orderBy("Age")
-    eighth_group = x.where((x["Age"] > 70) & (x["Age"] < 80)) \
-        .groupBy("Age") \
-        .agg({"Fare": "avg"}) \
-        .orderBy("Age")
-
-    first_group_first_column = first_group.agg({"avg(Fare)": "avg"}).collect()[0][0]
-    second_group_first_column = second_group.agg({"avg(Fare)": "avg"}).collect()[0][0]
-    third_group_first_column = third_group.agg({"avg(Fare)": "avg"}).collect()[0][0]
-    forth_group_first_column = forth_group.agg({"avg(Fare)": "avg"}).collect()[0][0]
-    fifth_group_first_column = fifth_group.agg({"avg(Fare)": "avg"}).collect()[0][0]
-    sixth_group_first_column = sixth_group.agg({"avg(Fare)": "avg"}).collect()[0][0]
-    seventh_group_first_column = seventh_group.agg({"avg(Fare)": "avg"}).collect()[0][0]
-    eighth_group_first_column = eighth_group.agg({"avg(Fare)": "avg"}).collect()[0][0]
-
-    columns = ["Fare Average", "Age Range"]
-    data = [
-        (round(first_group_first_column, 3), "0-10"),
-        (round(second_group_first_column, 3), "10-20"),
-        (round(third_group_first_column, 3), "20-30"),
-        (round(forth_group_first_column, 3), "30-40"),
-        (round(fifth_group_first_column, 3), "40-50"),
-        (round(sixth_group_first_column, 3), "50-60"),
-        (round(seventh_group_first_column, 3), "60-70"),
-        (round(eighth_group_first_column, 3), "70-80")
-    ]
-    new_df = spark.createDataFrame(data, columns)
-
-    return fare_ob_class, new_df
+    def show_price_age_association(self):
+        self.new_df.show()
 
 
 def visualisation(x):
