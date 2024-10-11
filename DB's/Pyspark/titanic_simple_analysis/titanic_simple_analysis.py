@@ -2,34 +2,6 @@
 SIMPLE ANALYSIS OF TITANIC DATASET FROM KAGGLE
 """
 
-# TODO
-#   1. (checked) Verisetinin Şeması çıkarılacak.
-#   2. (checked) Şema GPT'ye verilecek.
-#   3. İstenen datalar tespit edilecek.
-#       3.1. (checked) veri temizleme işlemleri
-#           3.1.1. (checked) tablonun kopyası alınacak ve analiz kopya üzerinde gerçekleştirilecek.
-#           3.1.2. (checked) eksik değerler kontrol edilecek.
-#           3.1.3. (checked) eksik değerler silinecek.
-#           3.1.4. (checked) cinsiyet dağılımları hesaplanacak
-#           3.1.5. (checked) şehir dağılımları hesaplanacak.
-#       3.2. (checked) tanımlayıcı istatistiklerin hesaplanması (tüm sütunlar için)
-#           3.2.1. (checked) ortamala
-#           3.2.2. (checked) medyan
-#           3.2.3. (checked) standart sapma
-#           3.2.4. (checked) min/max değerler
-#       3.3. (checked) fiyat analizi
-#           3.3.1. (checked) farklı sınıflardaki bilet fiyatlarını hesaplanacak.
-#           3.3.2. (checked) yaş ve bilet arasındaki ilişki analiz edilecek.
-#       3.4. özellik analizi
-#           3.4.1. aile büyüklüğü üzerine bir sütun oluşturulacak.
-#           3.4.2. yaş gruplarının tanımlandığı yeni bir kategori oluşturulacak.
-#       3.5. grup analizleri
-#           3.5.1. cinsiyet ve sınıfa göre hayatta kalan yolcu sayıları hesaplanacak.
-#           3.5.2. farklı şehirlerden gelen yolcuların sayısı karşılaştırılacak.
-#   4. İstenen datalar bulunacak.
-#   5. İstenen datalar kaydedilecek.
-
-
 import findspark
 from pyspark.sql import SparkSession
 from pyspark.sql import functions as f
@@ -157,37 +129,21 @@ class PriceAnalysis:
         self.fare_ob_class = x.groupBy("Pclass").avg("Fare").orderBy("Pclass")
 
         self.first_class = x.where(x["Age"] < 10) \
-            .groupBy("Age") \
-            .agg({"Fare": "avg", "Age": "avg"}) \
-            .orderBy("Age")
+            .groupBy("Age").agg({"Fare": "avg"})
         self.second_group = x.where((x["Age"] > 10) & (x["Age"] < 20)) \
-            .groupBy("Age") \
-            .agg({"Fare": "avg", "Age": "avg"}) \
-            .orderBy("Age")
+            .groupBy("Age").agg({"Fare": "avg"})
         self.third_group = x.where((x["Age"] > 20) & (x["Age"] < 30)) \
-            .groupBy("Age") \
-            .agg({"Fare": "avg", "Age": "avg"}) \
-            .orderBy("Age")
+            .groupBy("Age").agg({"Fare": "avg"})
         self.forth_group = x.where((x["Age"] > 30) & (x["Age"] < 40)) \
-            .groupBy("Age") \
-            .agg({"Fare": "avg"}) \
-            .orderBy("Age")
+            .groupBy("Age").agg({"Fare": "avg"})
         self.fifth_group = x.where((x["Age"] > 40) & (x["Age"] < 50)) \
-            .groupBy("Age") \
-            .agg({"Fare": "avg"}) \
-            .orderBy("Age")
+            .groupBy("Age").agg({"Fare": "avg"})
         self.sixth_group = x.where((x["Age"] > 50) & (x["Age"] < 60)) \
-            .groupBy("Age") \
-            .agg({"Fare": "avg"}) \
-            .orderBy("Age")
+            .groupBy("Age").agg({"Fare": "avg"})
         self.seventh_group = x.where((x["Age"] > 60) & (x["Age"] < 70)) \
-            .groupBy("Age") \
-            .agg({"Fare": "avg"}) \
-            .orderBy("Age")
+            .groupBy("Age").agg({"Fare": "avg"})
         self.eighth_group = x.where((x["Age"] > 70) & (x["Age"] < 80)) \
-            .groupBy("Age") \
-            .agg({"Fare": "avg"}) \
-            .orderBy("Age")
+            .groupBy("Age").agg({"Fare": "avg"})
 
         self.first_group_first_column = self.first_class.agg({"avg(Fare)": "avg"}).collect()[0][0]
         self.second_group_first_column = self.second_group.agg({"avg(Fare)": "avg"}).collect()[0][0]
@@ -219,6 +175,19 @@ class PriceAnalysis:
 
 
 class PropertyAnalysis:
+    """
+    This class gives you a chance to calculate the family size of all passengers and calculate age groups.
+
+    show_table_with_family_size():
+    For calculate the family size of all passengers.
+
+    show_table_with_age_group()
+    For calculate age groups of all passengers.
+
+    Examples:
+        PropertyAnalysis(dataframe).show_table_with_family_size()
+        PropertyAnalysis(dataframe).show_table_with_age_group()
+    """
     def __init__(self, x):
         self.family_size = x.withColumn("Family Size", x["SibSp"] + x["Parch"])
         self.age_group = x.withColumn("Age Group", f.when(x["Age"] < 18, "Minor")
@@ -230,20 +199,3 @@ class PropertyAnalysis:
 
     def show_table_with_age_group(self):
         self.age_group.show()
-
-
-def property_analysis(x):
-    """Property Analysis Operations"""
-    family_size = x.withColumn("Family Size", x["SibSp"] + x["Parch"])
-    age_group = x.withColumn("Age Group", f.when(x["Age"] < 18, "Minor")
-                                           .when((x["Age"] > 18) & (x["Age"] < 65), "Adult")
-                                           .otherwise("Senior"))
-    return family_size, age_group
-
-
-def group_analyzes(x):
-    """Group Analyzes"""
-    # TODO
-    #   3.5.1. cinsiyet ve sınıfa göre hayatta kalan yolcu sayıları hesaplanacak.
-    #   3.5.2. farklı şehirlerden gelen yolcuların sayısı karşılaştırılacak.
-    print(x)
