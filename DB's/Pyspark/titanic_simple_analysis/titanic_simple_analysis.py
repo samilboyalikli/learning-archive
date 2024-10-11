@@ -17,24 +17,22 @@ SIMPLE ANALYSIS OF TITANIC DATASET FROM KAGGLE
 #           3.2.2. (checked) medyan
 #           3.2.3. (checked) standart sapma
 #           3.2.4. (checked) min/max değerler
-#       3.3. fiyat analizi
+#       3.3. (checked) fiyat analizi
 #           3.3.1. (checked) farklı sınıflardaki bilet fiyatlarını hesaplanacak.
 #           3.3.2. (checked) yaş ve bilet arasındaki ilişki analiz edilecek.
-#       3.4. görselleştirme
-#           3.4.1. yaş dağılımı görselleştirilecek.
-#           3.4.2. cinsiyete göre hayatta kalma oranları karşılaştırılacak.
-#       3.5. özellik analizi
-#           3.5.1. aile büyüklüğü üzerine bir sütun oluşturulacak.
-#           3.5.2. yaş gruplarının tanımlandığı yeni bir kategori oluşturulacak.
-#       3.6. grup analizleri
-#           3.6.1. cinsiyet ve sınıfa göre hayatta kalan yolcu sayıları hesaplanacak.
-#           3.6.2. farklı şehirlerden gelen yolcuların sayısı karşılaştırılacak.
+#       3.4. özellik analizi
+#           3.4.1. aile büyüklüğü üzerine bir sütun oluşturulacak.
+#           3.4.2. yaş gruplarının tanımlandığı yeni bir kategori oluşturulacak.
+#       3.5. grup analizleri
+#           3.5.1. cinsiyet ve sınıfa göre hayatta kalan yolcu sayıları hesaplanacak.
+#           3.5.2. farklı şehirlerden gelen yolcuların sayısı karşılaştırılacak.
 #   4. İstenen datalar bulunacak.
 #   5. İstenen datalar kaydedilecek.
 
 
 import findspark
 from pyspark.sql import SparkSession
+from pyspark.sql import functions as f
 import os
 
 
@@ -141,6 +139,20 @@ class DescriptiveStats:
 
 
 class PriceAnalysis:
+    """
+    This class includes some price analysis as understand its name.
+
+    show_price_average_by_class():
+    For analysing price average according to class.
+
+    show_price_age_association():
+    For see price/age association.
+
+    Examples
+    --------
+    PriceAnalysis(dataset).show_price_average_by_class()
+    PriceAnalysis(dataset).show_price_age_association()
+    """
     def __init__(self, x):
         self.fare_ob_class = x.groupBy("Pclass").avg("Fare").orderBy("Pclass")
 
@@ -206,25 +218,32 @@ class PriceAnalysis:
         self.new_df.show()
 
 
-def visualisation(x):
-    """Visualisation Processes"""
-    # TODO
-    #   3.4.1. yaş dağılımı görselleştirilecek.
-    #   3.4.2. cinsiyete göre hayatta kalma oranları karşılaştırılacak.
-    return print(x)
+class PropertyAnalysis:
+    def __init__(self, x):
+        self.family_size = x.withColumn("Family Size", x["SibSp"] + x["Parch"])
+        self.age_group = x.withColumn("Age Group", f.when(x["Age"] < 18, "Minor")
+                                                    .when((x["Age"] > 18) & (x["Age"] < 65), "Adult")
+                                                    .otherwise("Senior"))
+
+    def show_table_with_family_size(self):
+        self.family_size.show()
+
+    def show_table_with_age_group(self):
+        self.age_group.show()
 
 
 def property_analysis(x):
     """Property Analysis Operations"""
-    # TODO
-    #   3.5.1. aile büyüklüğü üzerine bir sütun oluşturulacak.
-    #   3.5.2. yaş gruplarının tanımlandığı yeni bir kategori oluşturulacak.
-    return print(x)
+    family_size = x.withColumn("Family Size", x["SibSp"] + x["Parch"])
+    age_group = x.withColumn("Age Group", f.when(x["Age"] < 18, "Minor")
+                                           .when((x["Age"] > 18) & (x["Age"] < 65), "Adult")
+                                           .otherwise("Senior"))
+    return family_size, age_group
 
 
 def group_analyzes(x):
     """Group Analyzes"""
     # TODO
-    #   3.6.1. cinsiyet ve sınıfa göre hayatta kalan yolcu sayıları hesaplanacak.
-    #   3.6.2. farklı şehirlerden gelen yolcuların sayısı karşılaştırılacak.
+    #   3.5.1. cinsiyet ve sınıfa göre hayatta kalan yolcu sayıları hesaplanacak.
+    #   3.5.2. farklı şehirlerden gelen yolcuların sayısı karşılaştırılacak.
     print(x)
