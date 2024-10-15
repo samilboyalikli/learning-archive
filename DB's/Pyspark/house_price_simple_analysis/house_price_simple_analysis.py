@@ -9,13 +9,13 @@ SIMPLE ANALYSIS ON THE HOUSE PRICE PREDICTION DATASET FROM KAGGLE
 #   4. (checked) Price, Area, Bedrooms, Bathrooms gibi sütunların max ve min değerleri tespit edilecek.
 #   5. (checked) hangi sütunlarda eksik veri olup olmadığı kontrol edilecek (filter or na).
 #   6. (checked) eksik veriler doldurulacak (fillna()).
-#   7. Bedrooms değeri 3'den büyük olan evler bulunacak.
-#   8. 2010'dan sonra inşa edilmiş olan evler listelenecek.
-#   9. evler bulundukları lokasyonlara göre gruplanacak.
-#   10. her bir lokasyonda kaç ev olduğu tespit edilecek.
-#   11. lokasyon bazında ortalama ev fiyatları tespit edilecek.
-#   12. Price Per Square Foot adında bir sütun oluşturulacak (metrekare başına evin fiyatı)
-#   13. Price sütununa göre evler en ucuzdan en pahalıya doğru sıralanacak.
+#   7. (checked) Bedrooms değeri 3'den büyük olan evler bulunacak.
+#   8. (checked) 2010'dan sonra inşa edilmiş olan evler listelenecek.
+#   9. (checked) evler bulundukları lokasyonlara göre gruplanacak.
+#   10. (checked) her bir lokasyonda kaç ev olduğu tespit edilecek.
+#   11. (checked) lokasyon bazında ortalama ev fiyatları tespit edilecek.
+#   12. (checked) Price Per Square Foot adında bir sütun oluşturulacak (metrekare başına evin fiyatı)
+#   13. (checked) Price sütununa göre evler en ucuzdan en pahalıya doğru sıralanacak.
 #   14. Area ve Price sütunlarına göre büyükten küçüğe sıralama yapılacak (alan aynıysa fiyat büyükten küçüğe).
 #   15. eğer evin Garage deperi yes ise HasGarage adında bir değer oluşturulacak ve o değer True olacak.
 
@@ -107,7 +107,7 @@ class AggProcesses:
 class MissingDatas:
     def __init__(self, x):
         self.columns = ["Id", "Area", "Bedrooms", "Bathrooms", "Floors", "YearBuilt", "Location", "Condition", "Garage",
-                   "Price"]
+                        "Price"]
         self.x = x
 
     def control(self):
@@ -128,4 +128,34 @@ class MissingDatas:
                 new_col = self.x.approxQuantile(col, [0.5], 0)[0]
                 filled_df = self.x.na.fill({col: new_col})
         return filled_df
+
+
+def bedrooms_biggest_than_three(x):
+    """
+    >>> houses_df.select(houses_df.Bedrooms > 3).show()
+    output of this codes, gives us just boolean datas of selected columns.
+    >>> houses_df.filter(houses_df.Bedrooms > 3).show()
+    output of this codes, gives us all columns of filtered datas.
+    """
+    x.filter(x.Bedrooms > 3).show()
+
+
+def year_built_search(x):
+    x.filter(x.YearBuilt > 2010).show()
+
+
+def location(x):
+    x.groupBy("Location").count().show()
+
+
+def price_order_by_location(x):
+    x.groupBy("Location").avg("Price").show()
+
+
+def price_per_square_(x):
+    x.withColumn("price_per_square", x["Area"] / x["Price"]).show()
+
+
+def order_by_price(x):
+    x.orderBy(x.Price.asc()).show()
 
