@@ -2,23 +2,6 @@
 SIMPLE ANALYSIS ON THE HOUSE PRICE PREDICTION DATASET FROM KAGGLE
 """
 
-# TODO
-#   1. (checked) ilk birkaç satırı show() ile görüntülenecek.
-#   2. (checked) veri setinde kaç satır ve sütun olduğu tespit edilecek (count and columns).
-#   3. (checked) sayısal sütunlar için temel istatistiksel özetler alınacak (describe).
-#   4. (checked) Price, Area, Bedrooms, Bathrooms gibi sütunların max ve min değerleri tespit edilecek.
-#   5. (checked) hangi sütunlarda eksik veri olup olmadığı kontrol edilecek (filter or na).
-#   6. (checked) eksik veriler doldurulacak (fillna()).
-#   7. (checked) Bedrooms değeri 3'den büyük olan evler bulunacak.
-#   8. (checked) 2010'dan sonra inşa edilmiş olan evler listelenecek.
-#   9. (checked) evler bulundukları lokasyonlara göre gruplanacak.
-#   10. (checked) her bir lokasyonda kaç ev olduğu tespit edilecek.
-#   11. (checked) lokasyon bazında ortalama ev fiyatları tespit edilecek.
-#   12. (checked) Price Per Square Foot adında bir sütun oluşturulacak (metrekare başına evin fiyatı)
-#   13. (checked) Price sütununa göre evler en ucuzdan en pahalıya doğru sıralanacak.
-#   14. (checked) Area/Price sütunlarına göre büyükten küçüğe sıralama yapılacak (alan aynıysa fiyat büyükten küçüğe).
-#   15. (checked) eğer evin Garage değeri yes ise HasGarage adında bir değer oluşturulacak ve o değer True olacak.
-
 import findspark
 from pyspark.sql import SparkSession
 from pyspark.sql import functions as f
@@ -153,16 +136,28 @@ def price_order_by_location(x):
 
 
 def price_per_square_(x):
+    """
+    withColumn("new_column_name", new_column_conditions)
+    """
     x.withColumn("price_per_square", x["Area"] / x["Price"]).show()
 
 
 def order_by_price(x):
+    """
+    orderBy(df.columnName.asc()/desc())
+    """
     x.orderBy(x.Price.asc()).show()
 
 
 def price_by_area(x):
+    """
+    orderBy([orderedByColumns], ascending=[boolean])
+    """
     x.orderBy(["Area", "Price"], ascending=[True, False]).show()
 
 
 def has_garage(x):
+    """
+    withColumn("new_column_name", new_column_conditions)
+    """
     x.withColumn("HasGarage", f.when(x["Garage"] == "Yes", True).otherwise(False)).show()
