@@ -16,8 +16,8 @@ SIMPLE ANALYSIS ON THE HOUSE PRICE PREDICTION DATASET FROM KAGGLE
 #   11. (checked) lokasyon bazında ortalama ev fiyatları tespit edilecek.
 #   12. (checked) Price Per Square Foot adında bir sütun oluşturulacak (metrekare başına evin fiyatı)
 #   13. (checked) Price sütununa göre evler en ucuzdan en pahalıya doğru sıralanacak.
-#   14. Area ve Price sütunlarına göre büyükten küçüğe sıralama yapılacak (alan aynıysa fiyat büyükten küçüğe).
-#   15. eğer evin Garage deperi yes ise HasGarage adında bir değer oluşturulacak ve o değer True olacak.
+#   14. (checked) Area/Price sütunlarına göre büyükten küçüğe sıralama yapılacak (alan aynıysa fiyat büyükten küçüğe).
+#   15. (checked) eğer evin Garage değeri yes ise HasGarage adında bir değer oluşturulacak ve o değer True olacak.
 
 import findspark
 from pyspark.sql import SparkSession
@@ -159,3 +159,10 @@ def price_per_square_(x):
 def order_by_price(x):
     x.orderBy(x.Price.asc()).show()
 
+
+def price_by_area(x):
+    x.orderBy(["Area", "Price"], ascending=[True, False]).show()
+
+
+def has_garage(x):
+    x.withColumn("HasGarage", f.when(x["Garage"] == "Yes", True).otherwise(False)).show()
