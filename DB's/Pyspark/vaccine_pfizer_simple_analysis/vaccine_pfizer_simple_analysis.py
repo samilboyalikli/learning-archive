@@ -126,25 +126,32 @@ def subjectivity_polarity():
         2.3.    Love: Score between 0.33333 and 1. \n
 
     TODO
-        1. Determining the "objective" range for the Subjectivity column.
-        2. Determining the "half-objective" range for the Subjectivity column.
-        3. Determining the "subjective" range for the Subjectivity column.
-        4. Determining the "hate" range for the Polarity column.
-        5. Determining the "neutral" range for the Polarity column.
-        6. Determining the "love" range for the Polarity column.
+        1. (checked) Determining the "objective" range for the Subjectivity column. (oc)
+        2. (checked) Determining the "half-objective" range for the Subjectivity column. (hoc)
+        3. (checked) Determining the "subjective" range for the Subjectivity column. (sc)
+        4. (checked) Determining the "hate" range for the Polarity column. (hc)
+        5. (checked) Determining the "neutral" range for the Polarity column. (nc)
+        6. (checked) Determining the "love" range for the Polarity column. (lc)
+        7. Average of hc according to oc
+        8. Average of nc according to oc
+        9. Average of lc according to oc
+        10. Average of oc according to nc
+        11. Average of hoc according to nc
+        12. Average of sc according to nc
     """
+    df = pfizer_df.na.drop()
+    oc = df.select("*").filter((df.Subjectivity >= 0.00000) & (df.Subjectivity <= 0.33333))
+    hoc = df.select("*").filter((df.Subjectivity >= 0.33333) & (df.Subjectivity <= 0.66666))
+    sc = df.select("*").filter((df.Subjectivity >= 0.66666) & (df.Subjectivity <= 1))
+    hc = df.select("*").filter((df.Polarity >= -1) & (df.Polarity <= -0.33333))
+    nc = df.select("*").filter((df.Polarity >= -0.33333) & (df.Polarity <= 0.33333))
+    lc = df.select("*").filter((df.Polarity >= 0.33333) & (df.Polarity <= 1))
 
-
-q1 = pfizer_df.select("Subjectivity").filter((pfizer_df.Subjectivity >= 0.0000) & (pfizer_df.Subjectivity <= 0.33333)) \
-              .count()
-q1s1 = pfizer_df \
-    .select("Polarity", "Subjectivity").filter((pfizer_df.Polarity.isNotNull()) & (pfizer_df.Subjectivity.isNotNull()))\
-    .count()
-print(q1s1)
-
-q2 = pfizer_df.select("Polarity").filter((pfizer_df.Polarity >= -0.33333) & (pfizer_df.Polarity <= 0.33333)).count()
+# q1 = pfizer_df.select("Subjectivity").filter((pfizer_df.Subjectivity >= 0.0000) & (pfizer_df.Subjectivity <= 0.33333)) \
+#               .count()
+# q1s1 = pfizer_df \
+#     .select("Polarity", "Subjectivity").filter((pfizer_df.Polarity.isNotNull()) & (pfizer_df.Subjectivity.isNotNull()))\
+#     .count()
+#
+# q2 = pfizer_df.select("Polarity").filter((pfizer_df.Polarity >= -0.33333) & (pfizer_df.Polarity <= 0.33333)).count()
 # print("Subjectivity Range: ", q1, " ", "Polarity Range: ", q2)
-
-
-# s1 = pfizer_df.select("Subjectivity", "Polarity").filter((pfizer_df.Polarity == 0) & (pfizer_df.Subjectivity != 0))
-# .count()
