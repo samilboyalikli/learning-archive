@@ -126,26 +126,37 @@ def subjectivity_polarity():
         2.3.    Love: Score between 0.33333 and 1. \n
 
     TODO
-        1. (checked) Determining the "objective" range for the Subjectivity column. (oc)
-        2. (checked) Determining the "half-objective" range for the Subjectivity column. (hoc)
-        3. (checked) Determining the "subjective" range for the Subjectivity column. (sc)
-        4. (checked) Determining the "hate" range for the Polarity column. (hc)
-        5. (checked) Determining the "neutral" range for the Polarity column. (nc)
-        6. (checked) Determining the "love" range for the Polarity column. (lc)
-        7. Average of hc according to oc
-        8. Average of nc according to oc
-        9. Average of lc according to oc
-        10. Average of oc according to nc
-        11. Average of hoc according to nc
-        12. Average of sc according to nc
+        1. (checked) Determining the "objective" range for the Subjectivity column.
+        2. (checked) Determining the "half-objective" range for the Subjectivity column.
+        3. (checked) Determining the "subjective" range for the Subjectivity column.
+        4. (checked) Determining the "hate" range for the Polarity column.
+        5. (checked) Determining the "neutral" range for the Polarity column.
+        6. (checked) Determining the "love" range for the Polarity column.
+        7. Count of "hate" according to "objective"
+        8. Count of "neutral" according to "objective"
+        9. Count of "love" according to "objective"
+        10. Count of "objective" according to "neutral"
+        11. Count of "half-objective" according to "neutral"
+        12. Count of "subjective" according to "neutral"
     """
-    df = pfizer_df.na.drop()
-    oc = df.select("*").filter((df.Subjectivity >= 0.00000) & (df.Subjectivity <= 0.33333))
-    hoc = df.select("*").filter((df.Subjectivity >= 0.33333) & (df.Subjectivity <= 0.66666))
-    sc = df.select("*").filter((df.Subjectivity >= 0.66666) & (df.Subjectivity <= 1))
-    hc = df.select("*").filter((df.Polarity >= -1) & (df.Polarity <= -0.33333))
-    nc = df.select("*").filter((df.Polarity >= -0.33333) & (df.Polarity <= 0.33333))
-    lc = df.select("*").filter((df.Polarity >= 0.33333) & (df.Polarity <= 1))
+
+
+df = pfizer_df.na.drop()
+df = df.withColumn("subjectivity_level",
+                   f.when((df.Subjectivity >= 0.00000) & (df.Subjectivity <= 0.33333), "objective")
+                    .when((df.Subjectivity >= 0.33333) & (df.Subjectivity <= 0.66666), "half_objective")
+                    .when((df.Subjectivity >= 0.66666) & (df.Subjectivity <= 1), "subjective")
+                    .otherwise(":/"))
+df = df.withColumn("polarity_level",
+                   f.when((df.Polarity >= -1) & (df.Polarity <= -0.33333), "hate")
+                    .when((df.Polarity >= -0.33333) & (df.Polarity <= 0.33333), "neutral")
+                    .when((df.Polarity >= 0.33333) & (df.Polarity <= 1), "love")
+                    .otherwise(":/"))
+q1_1 = df.select("*").filter(df.subjectivity_level == "objective").groupBy("polarity_level").count()
+q1_2 = df.select("*").filter(df.subjectivity_level == "objective").count()
+q1_1.show()
+
+
 
 # q1 = pfizer_df.select("Subjectivity").filter((pfizer_df.Subjectivity >= 0.0000) & (pfizer_df.Subjectivity <= 0.33333)) \
 #               .count()
