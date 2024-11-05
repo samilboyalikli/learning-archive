@@ -1,42 +1,26 @@
 """
 SIMPLE ANALYSIS ON THE VACCINE PFIZER DATASET
 
-TEXT:
-Description: The content of the tweet in textual form.
-Type: String.
-Purpose: Provides the actual content of each tweet.
-This column can be used for various natural language processing (NLP) tasks such as sentiment analysis,
-keyword extraction, and topic modeling.
+This dataset will be show some relationship between subjectivity and polarity.
+Here exist some descriptions about "components" and "queries" which I coded:
 
-SUBJECTIVITY:
-Description: A score between 0 and 1 that represents the degree of subjectivity in the tweet.
-A score of 0 means the tweet is objective, while a score of 1 indicates it is highly subjective.
-Type: Float (range: 0 to 1).
-Purpose: Indicates how much of the tweet is based on personal opinion versus factual information.
-This can be useful for identifying tweets that are more opinion-driven.
-
-POLARITY:
-Description: A sentiment polarity score, ranging from -1 (extremely negative) to 1 (extremely positive).
-Type: Float (range: -1 to 1).
-Purpose: Used to determine the emotional tone of the tweet, whether it is negative, neutral, or positive.
-This column is key for sentiment analysis tasks.
-
-TARGET:
-Description: A binary variable indicating the overall sentiment of the tweet towards the Pfizer vaccine.
-A value of 0 indicates a negative sentiment, and a value of 1 indicates a positive sentiment.
-Type: Integer (0 or 1).
-Purpose: Serves as the target label for machine learning models. It helps to classify the sentiment of the tweets as
-positive or negative.
+1. Components
+    1.1. Subjectivity: A score between 0 and 1 that represents the degree of subjectivity in the tweet.
+         1.1.1.    Objective: Score between 0.00000 and 0.33333. \n
+         1.1.2.    Half-Objective: Score between 0.33333 and 0.66666. \n
+         1.1.3.    Subjective: Score between 0.66666 and 1. \n
+    1.2. Polarity: A sentiment polarity score, ranging from -1 (extremely negative) to 1 (extremely positive).
+         1.2.1.    Hate: Score between -1 and -0.33333. \n
+         1.2.2.    Neutral: Score between -0.33333 and 0.33333. \n
+         1.2.3.    Love: Score between 0.33333 and 1.
+2. Queries
+    2.1. q1     |   Count of "hate" according to "objective" \n
+    2.2. q2     |   Count of "neutral" according to "objective" \n
+    2.3. q3     |   Count of "love" according to "objective" \n
+    2.4. q4     |   Count of "objective" according to "neutral" \n
+    2.5. q5     |   Count of "half-objective" according to "neutral" \n
+    2.6. q6     |   Count of "subjective" according to "neutral"
 """
-
-# TODO
-#   1. (checked) tweet sayısı bulunacak.
-#   2. (checked) pozitif/negatif tweet sayısı bulunacak.
-#   3. (checked) "pfizer" kelimesini içeren tweetler bulunup görüntülenecek.
-#   4. (checked) en uzun tweet bulunacak.
-#   5. (checked) en çok geçen kelime bulunacak.
-#   6. (checked) konu dağılımı analiz edilecek.
-#   7. (checked) subjectivity/polarity arasındaki ilişki analiz edilecek.
 
 import findspark
 from pyspark.sql import SparkSession
@@ -112,55 +96,26 @@ def subjectivity_of_targets(x):
     result.show()
 
 
-def subjectivity_polarity():
-    """
-    This dataset will be show some relationship between subjectivity and polarity.
-
-    1. Subjectivity: A score between 0 and 1 that represents the degree of subjectivity in the tweet.
-        1.1.    Objective: Score between 0.00000 and 0.33333. \n
-        1.2.    Half-Objective: Score between 0.33333 and 0.66666. \n
-        1.3.    Subjective: Score between 0.66666 and 1. \n
-    2. Polarity: A sentiment polarity score, ranging from -1 (extremely negative) to 1 (extremely positive).
-        2.1.    Hate: Score between -1 and -0.33333. \n
-        2.2.    Neutral: Score between -0.33333 and 0.33333. \n
-        2.3.    Love: Score between 0.33333 and 1. \n
-
-    TODO
-        01. (checked) Determining the "objective" range for the Subjectivity column.
-        02. (checked) Determining the "half-objective" range for the Subjectivity column.
-        03. (checked) Determining the "subjective" range for the Subjectivity column.
-        04. (checked) Determining the "hate" range for the Polarity column.
-        05. (checked) Determining the "neutral" range for the Polarity column.
-        06. (checked) Determining the "love" range for the Polarity column.
-        07. (checked) Count of "hate" according to "objective"
-        08. (checked) Count of "neutral" according to "objective"
-        09. (checked) Count of "love" according to "objective"
-        10. (checked) Count of "objective" according to "neutral"
-        11. (checked) Count of "half-objective" according to "neutral"
-        12. (checked) Count of "subjective" according to "neutral"
-    """
-
-
 df = pfizer_df.na.drop()
 df = df.withColumn("subjectivity_level",
                    f.when((df.Subjectivity >= 0.00000) & (df.Subjectivity <= 0.33333), "objective")
-                    .when((df.Subjectivity >= 0.33333) & (df.Subjectivity <= 0.66666), "half_objective")
-                    .when((df.Subjectivity >= 0.66666) & (df.Subjectivity <= 1), "subjective")
-                    .otherwise(":/"))
+                   .when((df.Subjectivity >= 0.33333) & (df.Subjectivity <= 0.66666), "half_objective")
+                   .when((df.Subjectivity >= 0.66666) & (df.Subjectivity <= 1), "subjective")
+                   .otherwise(":/"))
 df = df.withColumn("polarity_level",
                    f.when((df.Polarity >= -1) & (df.Polarity <= -0.33333), "hate")
-                    .when((df.Polarity >= -0.33333) & (df.Polarity <= 0.33333), "neutral")
-                    .when((df.Polarity >= 0.33333) & (df.Polarity <= 1), "love")
-                    .otherwise(":/"))
+                   .when((df.Polarity >= -0.33333) & (df.Polarity <= 0.33333), "neutral")
+                   .when((df.Polarity >= 0.33333) & (df.Polarity <= 1), "love")
+                   .otherwise(":/"))
 q1 = df.select("*").filter((df.subjectivity_level == "objective") & (df.polarity_level == "hate")) \
-                   .groupBy("polarity_level").count()
+    .groupBy("polarity_level").count()
 q2 = df.select("*").filter((df.subjectivity_level == "objective") & (df.polarity_level == "neutral")) \
-                   .groupBy("polarity_level").count()
+    .groupBy("polarity_level").count()
 q3 = df.select("*").filter((df.subjectivity_level == "objective") & (df.polarity_level == "love")) \
-                   .groupBy("polarity_level").count()
+    .groupBy("polarity_level").count()
 q4 = df.select("*").filter((df.polarity_level == "neutral") & (df.subjectivity_level == "objective")) \
-                   .groupBy("subjectivity_level").count()
+    .groupBy("subjectivity_level").count()
 q5 = df.select("*").filter((df.polarity_level == "neutral") & (df.subjectivity_level == "half_objective")) \
-                   .groupBy("subjectivity_level").count()
+    .groupBy("subjectivity_level").count()
 q6 = df.select("*").filter((df.polarity_level == "neutral") & (df.subjectivity_level == "subjective")) \
-                   .groupBy("subjectivity_level").count()
+    .groupBy("subjectivity_level").count()
