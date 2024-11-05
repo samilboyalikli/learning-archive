@@ -36,7 +36,7 @@ positive or negative.
 #   4. (checked) en uzun tweet bulunacak.
 #   5. (checked) en çok geçen kelime bulunacak.
 #   6. (checked) konu dağılımı analiz edilecek.
-#   7. subjectivity/polarity arasındaki ilişki analiz edilecek.
+#   7. (checked) subjectivity/polarity arasındaki ilişki analiz edilecek.
 
 import findspark
 from pyspark.sql import SparkSession
@@ -126,18 +126,18 @@ def subjectivity_polarity():
         2.3.    Love: Score between 0.33333 and 1. \n
 
     TODO
-        1. (checked) Determining the "objective" range for the Subjectivity column.
-        2. (checked) Determining the "half-objective" range for the Subjectivity column.
-        3. (checked) Determining the "subjective" range for the Subjectivity column.
-        4. (checked) Determining the "hate" range for the Polarity column.
-        5. (checked) Determining the "neutral" range for the Polarity column.
-        6. (checked) Determining the "love" range for the Polarity column.
-        7. Count of "hate" according to "objective"
-        8. Count of "neutral" according to "objective"
-        9. Count of "love" according to "objective"
-        10. Count of "objective" according to "neutral"
-        11. Count of "half-objective" according to "neutral"
-        12. Count of "subjective" according to "neutral"
+        01. (checked) Determining the "objective" range for the Subjectivity column.
+        02. (checked) Determining the "half-objective" range for the Subjectivity column.
+        03. (checked) Determining the "subjective" range for the Subjectivity column.
+        04. (checked) Determining the "hate" range for the Polarity column.
+        05. (checked) Determining the "neutral" range for the Polarity column.
+        06. (checked) Determining the "love" range for the Polarity column.
+        07. (checked) Count of "hate" according to "objective"
+        08. (checked) Count of "neutral" according to "objective"
+        09. (checked) Count of "love" according to "objective"
+        10. (checked) Count of "objective" according to "neutral"
+        11. (checked) Count of "half-objective" according to "neutral"
+        12. (checked) Count of "subjective" according to "neutral"
     """
 
 
@@ -152,17 +152,15 @@ df = df.withColumn("polarity_level",
                     .when((df.Polarity >= -0.33333) & (df.Polarity <= 0.33333), "neutral")
                     .when((df.Polarity >= 0.33333) & (df.Polarity <= 1), "love")
                     .otherwise(":/"))
-q1_1 = df.select("*").filter(df.subjectivity_level == "objective").groupBy("polarity_level").count()
-q1_2 = df.select("*").filter(df.subjectivity_level == "objective").count()
-q1_1.show()
-
-
-
-# q1 = pfizer_df.select("Subjectivity").filter((pfizer_df.Subjectivity >= 0.0000) & (pfizer_df.Subjectivity <= 0.33333)) \
-#               .count()
-# q1s1 = pfizer_df \
-#     .select("Polarity", "Subjectivity").filter((pfizer_df.Polarity.isNotNull()) & (pfizer_df.Subjectivity.isNotNull()))\
-#     .count()
-#
-# q2 = pfizer_df.select("Polarity").filter((pfizer_df.Polarity >= -0.33333) & (pfizer_df.Polarity <= 0.33333)).count()
-# print("Subjectivity Range: ", q1, " ", "Polarity Range: ", q2)
+q1 = df.select("*").filter((df.subjectivity_level == "objective") & (df.polarity_level == "hate")) \
+                   .groupBy("polarity_level").count()
+q2 = df.select("*").filter((df.subjectivity_level == "objective") & (df.polarity_level == "neutral")) \
+                   .groupBy("polarity_level").count()
+q3 = df.select("*").filter((df.subjectivity_level == "objective") & (df.polarity_level == "love")) \
+                   .groupBy("polarity_level").count()
+q4 = df.select("*").filter((df.polarity_level == "neutral") & (df.subjectivity_level == "objective")) \
+                   .groupBy("subjectivity_level").count()
+q5 = df.select("*").filter((df.polarity_level == "neutral") & (df.subjectivity_level == "half_objective")) \
+                   .groupBy("subjectivity_level").count()
+q6 = df.select("*").filter((df.polarity_level == "neutral") & (df.subjectivity_level == "subjective")) \
+                   .groupBy("subjectivity_level").count()
