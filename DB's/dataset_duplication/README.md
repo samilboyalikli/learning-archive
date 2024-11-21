@@ -1,5 +1,5 @@
 ### DATA DUPLICATION
-We will duplicate the dataset with dask in this file. Before of that I try to do it with PySpark. But because of many reason (there was so variable to set) I falled. Afterward with my seniors advice, I tried to dublicate dataset with Dask.
+We will duplicate the dataset with dask in this file. Before of that I try to do it with PySpark. But because of many reason (there was so variable to set) I falled. Afterward with my seniors advice, I tried to duplicate dataset with Dask.
 
 Here important to care on channels of modules. Because I got so many errors. When I made sure to set the same channel between the installed modules, the errors stopped.
 ***
