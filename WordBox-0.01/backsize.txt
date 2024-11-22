@@ -1,0 +1,53 @@
+{
+        "1": [{"word" : "word"}, {"meaning": "kelime"}],
+        "2": [{"word": "english"}, {"meaning": "ingilizce"}],
+        "3": [{"word": "box"}, {"meaning": "kutu"}],
+        "4": [{"word": "turkish"}, {"meaning": "türkçe"}],
+        "5": [{"word": "application"}, {"meaning": "uygulama"}]
+}
+
+-------
+
+word_box = [
+    {'word': 'word', 'meaning': 'kelime'},
+    {'word': 'english', 'meaning': 'ingilizce'},
+    {'word': 'box', 'meaning': 'kutu'},
+    {'word': 'turkish', 'meaning': 'türkçe'},
+    {'word': 'application', 'meaning': 'uygulama'}
+]
+
+------
+
+words = {
+    "word": "kelime",
+    "english": "ingilizce",
+    "box": "kutu",
+    "turkish": "türkçe",
+    "application": "uygulama"
+}
+
+-----
+
+INPUT
+
+new_set = dict(word=input("word: "), meaning=input("meaning: "))
+
+----
+
+LIST PROCESS
+
+print(words.get("word"))
+# key'i girince value'yü getiriyor
+
+print(words.items())
+
+-----
+
+[
+    {"word": "word", "meaning": "kelime"},
+    {"word": "english", "meaning": "ingilizce"},
+    {"word": "box", "meaning": "kutu"},
+    {"word": "turkish", "meaning": "türkçe"},
+    {"word": "application", "meaning": "uygulama"}
+]
+
