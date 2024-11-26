@@ -48,6 +48,7 @@ for your wordbox press 1
             else: print(f"False. Answer was: {opposite}")
 else: 
     word_dict = {
+        "card_id": "",
         "card_name": "",
         "card_opposite": "",
         "card_type": "Daily",
@@ -62,16 +63,17 @@ else:
     word_dict["card_level"] = new_card_level
     formatted_date = datetime.now().strftime("%d-%m-%Y")
     word_dict["card_time"] = formatted_date
+    new_word_list = list(dataset.values())[1]
+    last_new_word = new_word_list[-1]
+    word_dict["card_id"] = int(last_new_word["card_id"]) + 1
     print(word_dict)
+    dataset["new_words"].append(word_dict)
 
-
-# with open(file_path, "w") as file:
-#         json.dump(dataset, file, indent=4)
+with open(file_path, "w") as file:
+    json.dump(dataset, file, indent=4)
 
 
 # new_word = {
-#     "card_id": "",
 #     "card_opposite2": "",
-#     "card_opposite3": "",
+#     "card_opposite3": ""
 # }
-
