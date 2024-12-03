@@ -374,7 +374,7 @@
                 "card_name": "aunt",
                 "card_opposite": "teyze",
                 "card_opposite2": "hala",
-                "card_type": "Daily",
+                "card_type": "Weekly",
                 "card_level": "A1",
                 "card_time": "23.10.2024"
             },
@@ -8753,30 +8753,6 @@
             "card_type": "Weekly",
             "card_level": "A1",
             "card_time": "31.10.2024"
-        },
-        {
-            "card_id": 893,
-            "card_name": "key",
-            "card_opposite": "klavye",
-            "card_type": "Daily",
-            "card_level": "a1",
-            "card_time": "30-11-2024"
-        },
-        {
-            "card_id": 894,
-            "card_name": "love",
-            "card_opposite": "a\u015fk",
-            "card_type": "Daily",
-            "card_level": "a1",
-            "card_time": "30-11-2024"
-        },
-        {
-            "card_id": 895,
-            "card_name": "dome",
-            "card_opposite": "kubbe",
-            "card_type": "Weekly",
-            "card_level": "b1",
-            "card_time": "30-11-2024"
         }
     ]
 }
