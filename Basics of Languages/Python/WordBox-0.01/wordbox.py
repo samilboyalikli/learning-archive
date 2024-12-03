@@ -78,13 +78,8 @@ For adding other word press 1
         if input() == '1':
             print(
             """
-
-
-
+            
 WordBox 0.01
-
-
-
 
             """
             )
