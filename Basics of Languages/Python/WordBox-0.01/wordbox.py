@@ -9,20 +9,16 @@ with open(file_path, "r") as file:
 a1 = dataset.get("A1", {})
 a = a1.get("A", {})
 
-print(
-"""
-for training press 0
-for add new word press 1
-"""
-)
+
+def saving():
+    with open(file_path, "w") as file:
+        json.dump(dataset, file, indent=4)
+
+
+print("\nfor testing press 0\nfor add new word press 1\n")
 
 if input() == "0":
-    print(
-    """
-for wordbox press 0
-for your wordbox press 1
-    """
-    )
+    print("\nfor wordbox press 0\nfor your wordbox press 1\n")
     if input() == "0":
         a1 = dataset.get("A1", {})
         a = a1.get("A", {})
@@ -35,18 +31,20 @@ for your wordbox press 1
                 print("True")
                 random_word["card_type"] = "Weekly"
             else: print(f"False. Answer was: {opposite}")
-    else: 
-        new_words = dataset.get("new_words", {})
-        random_word = random.choice(new_words)
-        # PROBLEM - We wrote the wrong word and program is showing us true of the word. And program wanna correct answer from us.
-        while random_word["card_type"] == "Daily":
+    else:
+        while True:
+            new_words = dataset.get("new_words", {})
+            random_word = random.choice(new_words)
+            random_word["card_type"] == "Daily"
             word = random_word.get("card_name", "")
             opposite = random_word.get("card_opposite", "")
             print(word)
             if input("Answer: ") == opposite:
-                print("True")
+                print("\nTrue\n\n")
                 random_word["card_type"] = "Weekly"
-            else: print(f"False. Answer was: {opposite}")
+                saving()
+            else: 
+                print(f"\nFalse. Answer was: {opposite}\n\n")
 else: 
     while True:
         word_dict = {
@@ -70,27 +68,9 @@ else:
         word_dict["card_id"] = int(last_new_word["card_id"]) + 1
         print(word_dict)
         dataset["new_words"].append(word_dict)
-        print(
-        """
-For exit press 0
-For adding other word press 1
-        """
-            )
+        print("\nFor exit press 0\nFor adding other word press 1")
         if input() == '1':
-            print(
-            """
-            
-WordBox 0.01
-
-            """
-            )
+            print("\nWordBox 0.01\n\n")
         else: break
 
-with open(file_path, "w") as file:
-    json.dump(dataset, file, indent=4)
-
-
-# new_word = {
-#     "card_opposite2": "",
-#     "card_opposite3": ""
-# }
+saving()
