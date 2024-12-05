@@ -38,6 +38,7 @@ for your wordbox press 1
     else: 
         new_words = dataset.get("new_words", {})
         random_word = random.choice(new_words)
+        # PROBLEM - We wrote the wrong word and program is showing us true of the word. And program wanna correct answer from us.
         while random_word["card_type"] == "Daily":
             word = random_word.get("card_name", "")
             opposite = random_word.get("card_opposite", "")
