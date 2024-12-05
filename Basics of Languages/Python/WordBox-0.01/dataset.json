@@ -8753,6 +8753,430 @@
             "card_type": "Weekly",
             "card_level": "A1",
             "card_time": "31.10.2024"
+        },
+        {
+            "card_id": 893,
+            "card_name": "constraints",
+            "card_opposite": "k\u0131s\u0131tlamalar",
+            "card_type": "Daily",
+            "card_level": "b1",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 894,
+            "card_name": "runner-up",
+            "card_opposite": "yar\u0131\u015fma ikincisi",
+            "card_type": "Daily",
+            "card_level": "a2",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 895,
+            "card_name": "store x in a list",
+            "card_opposite": "x'i bir listede sakla",
+            "card_type": "Daily",
+            "card_level": "b1",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 896,
+            "card_name": "separated",
+            "card_opposite": "ayr\u0131lm\u0131\u015f",
+            "card_type": "Daily",
+            "card_level": "b1",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 897,
+            "card_name": "nested",
+            "card_opposite": "i\u00e7 i\u00e7e ge\u00e7mi\u015f",
+            "card_type": "Daily",
+            "card_level": "b1",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 898,
+            "card_name": "explanation",
+            "card_opposite": "a\u00e7\u0131klama",
+            "card_type": "Daily",
+            "card_level": "b1",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 899,
+            "card_name": "odd",
+            "card_opposite": "tek say\u0131",
+            "card_type": "Daily",
+            "card_level": "a2",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 900,
+            "card_name": "even",
+            "card_opposite": "\u00e7ift say\u0131",
+            "card_type": "Daily",
+            "card_level": "a2",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 901,
+            "card_name": "inclusive",
+            "card_opposite": "i\u00e7eren, kapsayan",
+            "card_type": "Daily",
+            "card_level": "b1",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 902,
+            "card_name": "provided",
+            "card_opposite": "temin edilen",
+            "card_type": "Daily",
+            "card_level": "b1",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 903,
+            "card_name": "product",
+            "card_opposite": "\u00e7arp\u0131m",
+            "card_type": "Daily",
+            "card_level": "a2",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 904,
+            "card_name": "consecutive",
+            "card_opposite": "ard\u0131\u015f\u0131k",
+            "card_type": "Daily",
+            "card_level": "b1",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 905,
+            "card_name": "represent",
+            "card_opposite": "temsil etmek",
+            "card_type": "Daily",
+            "card_level": "b2",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 906,
+            "card_name": "comprehension",
+            "card_opposite": "anlama, kavrama",
+            "card_type": "Weekly",
+            "card_level": "b2",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 907,
+            "card_name": "dimension",
+            "card_opposite": "\u00f6l\u00e7\u00fc",
+            "card_type": "Daily",
+            "card_level": "b1",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 908,
+            "card_name": "involving",
+            "card_opposite": "i\u00e7eren",
+            "card_type": "Daily",
+            "card_level": "b2",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 909,
+            "card_name": "expression",
+            "card_opposite": "ifade",
+            "card_type": "Daily",
+            "card_level": "b2",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 910,
+            "card_name": "straighforward",
+            "card_opposite": "basit",
+            "card_type": "Daily",
+            "card_level": "b2",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 911,
+            "card_name": "immutable",
+            "card_opposite": "de\u011fi\u015fmez",
+            "card_type": "Daily",
+            "card_level": "b2",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 912,
+            "card_name": "sequence",
+            "card_opposite": "sekans, dizi, s\u0131ra",
+            "card_type": "Daily",
+            "card_level": "a1",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 913,
+            "card_name": "assignment",
+            "card_opposite": "atama",
+            "card_type": "Daily",
+            "card_level": "b1",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 914,
+            "card_name": "cost",
+            "card_opposite": "maliyet",
+            "card_type": "Daily",
+            "card_level": "b1",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 915,
+            "card_name": "invalid",
+            "card_opposite": "ge\u00e7ersiz",
+            "card_type": "Daily",
+            "card_level": "b2",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 916,
+            "card_name": "interpreter",
+            "card_opposite": "derleyici",
+            "card_type": "Daily",
+            "card_level": "b1",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 917,
+            "card_name": "various",
+            "card_opposite": "\u00e7e\u015fitli, bir\u00e7ok",
+            "card_type": "Daily",
+            "card_level": "b1",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 918,
+            "card_name": "configure",
+            "card_opposite": "yap\u0131land\u0131rmak",
+            "card_type": "Daily",
+            "card_level": "b2",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 919,
+            "card_name": "experimental",
+            "card_opposite": "deneysel",
+            "card_type": "Daily",
+            "card_level": "b1",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 920,
+            "card_name": "forge",
+            "card_opposite": "olu\u015fturmak, d\u00f6vmek (d\u00f6vmek)",
+            "card_type": "Daily",
+            "card_level": "b2",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 921,
+            "card_name": "compatible",
+            "card_opposite": "uyumlu",
+            "card_type": "Daily",
+            "card_level": "b2",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 922,
+            "card_name": "destination",
+            "card_opposite": "var\u0131\u015f noktas\u0131, hedef",
+            "card_type": "Daily",
+            "card_level": "b1",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 923,
+            "card_name": "pane",
+            "card_opposite": "b\u00f6lme",
+            "card_type": "Daily",
+            "card_level": "b2",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 924,
+            "card_name": "accelerated",
+            "card_opposite": "h\u0131zland\u0131r\u0131lm\u0131\u015f",
+            "card_type": "Daily",
+            "card_level": "b2",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 925,
+            "card_name": "instance",
+            "card_opposite": "misal, \u00f6rnek, durum",
+            "card_type": "Daily",
+            "card_level": "b2",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 926,
+            "card_name": "bogus",
+            "card_opposite": "sahte, taktit",
+            "card_type": "Daily",
+            "card_level": "b2",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 927,
+            "card_name": "expect",
+            "card_opposite": "beklemek",
+            "card_type": "Daily",
+            "card_level": "b1",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 928,
+            "card_name": "trouble",
+            "card_opposite": "sorun, bela",
+            "card_type": "Daily",
+            "card_level": "a2",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 929,
+            "card_name": "collapse",
+            "card_opposite": "y\u0131k\u0131lmak, \u00e7\u00f6k\u00fc\u015f",
+            "card_type": "Daily",
+            "card_level": "a2",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 930,
+            "card_name": "become aware of x",
+            "card_opposite": "x'in fark\u0131na varmak",
+            "card_type": "Daily",
+            "card_level": "b2",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 931,
+            "card_name": "sample",
+            "card_opposite": "\u00f6rnek",
+            "card_type": "Daily",
+            "card_level": "b1",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 932,
+            "card_name": "shortcut",
+            "card_opposite": "k\u0131sayol",
+            "card_type": "Daily",
+            "card_level": "b1",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 933,
+            "card_name": "junction",
+            "card_opposite": "kav\u015fak, ba\u011flant\u0131 noktas\u0131",
+            "card_type": "Daily",
+            "card_level": "b2",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 934,
+            "card_name": "sufficient",
+            "card_opposite": "yeterli, kafi",
+            "card_type": "Daily",
+            "card_level": "b2",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 935,
+            "card_name": "privilege",
+            "card_opposite": "ayr\u0131cal\u0131k, imtiyaz",
+            "card_type": "Daily",
+            "card_level": "b1",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 936,
+            "card_name": "utility",
+            "card_opposite": "fayda",
+            "card_type": "Daily",
+            "card_level": "b1",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 937,
+            "card_name": "consistency",
+            "card_opposite": "tutarl\u0131l\u0131k",
+            "card_type": "Daily",
+            "card_level": "b1",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 938,
+            "card_name": "disrupting",
+            "card_opposite": "rahats\u0131z edici",
+            "card_type": "Daily",
+            "card_level": "b1",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 939,
+            "card_name": "access",
+            "card_opposite": "eri\u015fim",
+            "card_type": "Daily",
+            "card_level": "b1",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 940,
+            "card_name": "util",
+            "card_opposite": "faydalanmak",
+            "card_type": "Daily",
+            "card_level": "b1",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 941,
+            "card_name": "bind",
+            "card_opposite": "ba\u011flamak, ciltlemek",
+            "card_type": "Daily",
+            "card_level": "b1",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 942,
+            "card_name": "socket",
+            "card_opposite": "soket, priz, duy",
+            "card_type": "Daily",
+            "card_level": "b1",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 943,
+            "card_name": "compress",
+            "card_opposite": "s\u0131k\u0131\u015ft\u0131rmak",
+            "card_type": "Daily",
+            "card_level": "a2",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 944,
+            "card_name": "notice",
+            "card_opposite": "fark etmek, dikkat",
+            "card_type": "Daily",
+            "card_level": "b1",
+            "card_time": "05-12-2024"
+        },
+        {
+            "card_id": 945,
+            "card_name": "hash",
+            "card_opposite": "do\u011framak, dilimlemek",
+            "card_type": "Daily",
+            "card_level": "b2",
+            "card_time": "05-12-2024"
         }
     ]
 }
