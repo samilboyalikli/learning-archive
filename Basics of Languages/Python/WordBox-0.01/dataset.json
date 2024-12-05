@@ -8766,7 +8766,7 @@
             "card_id": 894,
             "card_name": "runner-up",
             "card_opposite": "yar\u0131\u015fma ikincisi",
-            "card_type": "Daily",
+            "card_type": "Weekly",
             "card_level": "a2",
             "card_time": "05-12-2024"
         },
@@ -8790,7 +8790,7 @@
             "card_id": 897,
             "card_name": "nested",
             "card_opposite": "i\u00e7 i\u00e7e ge\u00e7mi\u015f",
-            "card_type": "Daily",
+            "card_type": "Weekly",
             "card_level": "b1",
             "card_time": "05-12-2024"
         },
@@ -8886,7 +8886,7 @@
             "card_id": 909,
             "card_name": "expression",
             "card_opposite": "ifade",
-            "card_type": "Daily",
+            "card_type": "Weekly",
             "card_level": "b2",
             "card_time": "05-12-2024"
         },
@@ -9054,7 +9054,7 @@
             "card_id": 930,
             "card_name": "become aware of x",
             "card_opposite": "x'in fark\u0131na varmak",
-            "card_type": "Daily",
+            "card_type": "Weekly",
             "card_level": "b2",
             "card_time": "05-12-2024"
         },
