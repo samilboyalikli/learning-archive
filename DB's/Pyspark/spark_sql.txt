@@ -1,0 +1,53 @@
+
+
++--------------------------------------------------------------+
+|                                                              |
+| HOUSE PRICE SIMPLE ANALYSIS (0/16)                           |
+|                                                              |
+|     - [ ] Schema of the dataset.                             |
+|     - [ ] Row count of the dataset.                          |
+|     - [ ] Column count of the dataset.                       |
+|     - [ ] Describes of descriptive stats.                    |
+|     - [ ] Min of descriptive stats.                          |
+|     - [ ] Max of descriptive stats.                          |
+|     - [ ] Null control for some columns.                     |
+|     - [ ] Fill null rows.                                    |
+|     - [ ] Bedrooms biggest than three.                       |
+|     - [ ] Year built < 2010.                                 |
+|     - [ ] Location count.                                    |
+|     - [ ] Price order by location.                           |
+|     - [ ] Price per square.                                  |
+|     - [ ] Order by price.                                    |
+|     - [ ] Price by area.                                     |
+|     - [ ] Adding has_garage column to dataset.               |
+|                                                              |
++--------------------------------------------------------------+
+|                                                              |
+| TITANIC SIMPLE ANALYSIS (0/10)                               |
+|                                                              |
+|     - [ ] Schema of the dataset.                             |
+|     - [ ] Gender distribution of cleaned dataset.            |
+|     - [ ] City distribution of cleaned dataset.              |
+|     - [ ] Average of descriptive stats.                      |
+|     - [ ] Describe of descriptive stats.                     |
+|     - [ ] Median of descriptive stats.                       |
+|     - [ ] Price averages according to classes.               |
+|     - [ ] Association between price and age.                 |
+|     - [ ] Family size table.                                 |
+|     - [ ] Age group table.                                   |
+|                                                              |
++--------------------------------------------------------------+
+|                                                              |
+| VACCINE PFIZER SIMPLE ANALYSIS (0/9)                         |
+|                                                              |
+|     - [ ] Schema of the dataset.                             |
+|     - [ ] Number of tweets.                                  |
+|     - [ ] Polarity of users.                                 |
+|     - [ ] Count of contain pfizer.                           |
+|     - [ ] Tallest tweet.                                     |
+|     - [ ] Most used word.                                    |
+|     - [ ] Subjectivity of targets.                           |
+|     - [ ] Data cleaning.                                     |
+|     - [ ] Relationship between Subjectivity and Polarity.    |
+|                                                              |
++--------------------------------------------------------------+
