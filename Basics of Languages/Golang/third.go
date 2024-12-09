@@ -4,17 +4,46 @@ import (
 	"fmt"
 )
 
-// 13 - CREATING MAP WITHOUT JSON DECODER
+// 15 - SUM OF VALUES IN A DICT
 func main() {
-		il_nufus := map[string]int{
-			"Bilecik": 210000,
-			"İstanbul": 15000000,
-			"Sakarya": 1000000,
-		}
-		for anahtar, deger := range il_nufus {
-			fmt.Printf("İl: %s, Nüfus: %d\n", anahtar, deger)
-		}
+	var toplam int
+	bilgisayar := map[string]int {
+		"Dizüstü": 27,
+		"Masaüstü": 123,
+		"Tablet": 8,
+		"Sunucu": 3,
+	}
+	for _, deger := range bilgisayar {
+		toplam += deger
+	}
+	fmt.Printf("Toplam %d bilgisayar var.\n", toplam)
 }
+
+// 14 - DELETING A KEY FROM DICT
+// func main() {
+// 		sozluk := make(map[string]string)
+// 		sozluk["IP"] = "Internet Protocol"
+// 		sozluk["GNU"] = "GNU is Not Unix"
+// 		sozluk["WWW"] = "World Wide Web"
+// 		delete(sozluk, "GNU")
+// 		if karşılık, sonuç := sozluk["GNU"]; sonuç {
+// 			fmt.Println(karşılık)
+// 		} else {
+// 			fmt.Println("aranan sözcük bulunamadı.")
+// 		}
+// }
+
+// 13 - CREATING MAP WITHOUT JSON DECODER
+// func main() {
+// 		il_nufus := map[string]int{
+// 			"Bilecik": 210000,
+// 			"İstanbul": 15000000,
+// 			"Sakarya": 1000000,
+// 		}
+// 		for anahtar, deger := range il_nufus {
+// 			fmt.Printf("İl: %s, Nüfus: %d\n", anahtar, deger)
+// 		}
+// }
 
 // 12 - MAP METHOD WITH JSON
 // REQ: "encoding/json"
