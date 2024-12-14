@@ -8750,7 +8750,7 @@
             "card_opposite": "kendiniz",
             "card_opposite2": "kendin",
             "card_opposite3": "kendini",
-            "card_type": "Weekly",
+            "card_type": "Daily",
             "card_level": "A1",
             "card_time": "31.10.2024"
         },
@@ -8766,7 +8766,7 @@
             "card_id": 894,
             "card_name": "runner-up",
             "card_opposite": "yar\u0131\u015fma ikincisi",
-            "card_type": "Weekly",
+            "card_type": "Daily",
             "card_level": "a2",
             "card_time": "05-12-2024"
         },
@@ -8774,7 +8774,7 @@
             "card_id": 895,
             "card_name": "store x in a list",
             "card_opposite": "x'i bir listede sakla",
-            "card_type": "Daily",
+            "card_type": "Weekly",
             "card_level": "b1",
             "card_time": "05-12-2024"
         },
@@ -8790,7 +8790,7 @@
             "card_id": 897,
             "card_name": "nested",
             "card_opposite": "i\u00e7 i\u00e7e ge\u00e7mi\u015f",
-            "card_type": "Weekly",
+            "card_type": "Daily",
             "card_level": "b1",
             "card_time": "05-12-2024"
         },
@@ -8822,7 +8822,7 @@
             "card_id": 901,
             "card_name": "inclusive",
             "card_opposite": "i\u00e7eren, kapsayan",
-            "card_type": "Daily",
+            "card_type": "Weekly",
             "card_level": "b1",
             "card_time": "05-12-2024"
         },
@@ -8854,7 +8854,7 @@
             "card_id": 905,
             "card_name": "represent",
             "card_opposite": "temsil etmek",
-            "card_type": "Daily",
+            "card_type": "Weekly",
             "card_level": "b2",
             "card_time": "05-12-2024"
         },
@@ -8862,7 +8862,7 @@
             "card_id": 906,
             "card_name": "comprehension",
             "card_opposite": "anlama, kavrama",
-            "card_type": "Weekly",
+            "card_type": "Daily",
             "card_level": "b2",
             "card_time": "05-12-2024"
         },
@@ -8886,7 +8886,7 @@
             "card_id": 909,
             "card_name": "expression",
             "card_opposite": "ifade",
-            "card_type": "Weekly",
+            "card_type": "Daily",
             "card_level": "b2",
             "card_time": "05-12-2024"
         },
@@ -9054,7 +9054,7 @@
             "card_id": 930,
             "card_name": "become aware of x",
             "card_opposite": "x'in fark\u0131na varmak",
-            "card_type": "Weekly",
+            "card_type": "Daily",
             "card_level": "b2",
             "card_time": "05-12-2024"
         },
@@ -9110,7 +9110,7 @@
             "card_id": 937,
             "card_name": "consistency",
             "card_opposite": "tutarl\u0131l\u0131k",
-            "card_type": "Daily",
+            "card_type": "Weekly",
             "card_level": "b1",
             "card_time": "05-12-2024"
         },
