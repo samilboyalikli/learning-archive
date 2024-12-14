@@ -15,11 +15,28 @@ def saving():
         json.dump(dataset, file, indent=4)
 
 
-print("\nfor testing press 0\nfor add new word press 1\n")
+def true_answer(x):
+    if x["card_type"] == "Daily":
+        x["card_type"] = "Weekly"
+        saving()
+    else:
+        x["card_type"] = "Monthly"
+        saving()
 
-if input() == "0":
-    print("\nfor wordbox press 0\nfor your wordbox press 1\n")
-    if input() == "0":
+
+def wrong_answer(x):
+    if x["card_type"] == "Monthly":
+        x["card_type"] = "Weekly"
+        saving()
+    else:
+        x["card_type"] = "Daily"
+        saving()
+
+
+user_input = input("\nfor testing press 0\nfor add new word press 1\n")
+if user_input == "0":
+    user_input_0 = input("\nfor wordbox press 0\nfor your wordbox press 1\n")
+    if user_input_0 == "0":
         a1 = dataset.get("A1", {})
         a = a1.get("A", {})
         random_word = random.choice(a)
@@ -29,9 +46,11 @@ if input() == "0":
             print(word)
             if input("Answer: ") == opposite:
                 print("True")
-                random_word["card_type"] = "Weekly"
-            else: print(f"False. Answer was: {opposite}")
-    else:
+                true_answer(random_word)
+            else:
+                print(f"False. Answer was: {opposite}")
+                wrong_answer(random_word)
+    elif user_input_0 == "1":
         while True:
             new_words = dataset.get("new_words", {})
             random_word = random.choice(new_words)
@@ -41,11 +60,13 @@ if input() == "0":
             print(word)
             if input("Answer: ") == opposite:
                 print("\nTrue\n\n")
-                random_word["card_type"] = "Weekly"
-                saving()
+                true_answer(random_word)
             else: 
                 print(f"\nFalse. Answer was: {opposite}\n\n")
-else: 
+                wrong_answer(random_word)
+    else:
+        print("\n\nPlease press 0 or 1\n\n\nWordBox")
+elif user_input == "1": 
     while True:
         word_dict = {
             "card_id": "",
@@ -71,6 +92,7 @@ else:
         print("\nFor exit press 0\nFor adding other word press 1")
         if input() == '1':
             print("\nWordBox 0.01\n\n")
-        else: break
-
-saving()
+        else: 
+            break
+else:
+    print("\n\nPlease press 0 or 1\n\n\nWordBox")
