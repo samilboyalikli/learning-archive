@@ -86,6 +86,7 @@ elif user_input == "1":
         word_dict["card_id"] = int(last_new_word["card_id"]) + 1
         print(word_dict)
         dataset["new_words"].append(word_dict)
+        saving()
         print("\nFor exit press 0\nFor adding other word press 1")
         if input() == '1':
             print("\nWordBox 0.01\n\n")
