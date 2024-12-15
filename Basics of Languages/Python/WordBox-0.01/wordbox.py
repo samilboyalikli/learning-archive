@@ -6,8 +6,6 @@ file_path = "dataset.json"
 with open(file_path, "r") as file:
     dataset = json.load(file)
 
-a1 = dataset.get("A1", {})
-a = a1.get("A", {})
 
 
 def saving():
@@ -52,9 +50,8 @@ if user_input == "0":
                 wrong_answer(random_word)
     elif user_input_0 == "1":
         while True:
-            new_words = dataset.get("new_words", {})
-            random_word = random.choice(new_words)
-            random_word["card_type"] == "Daily"
+            daily_word = [word for word in dataset.get("new_words", []) if word.get("card_type") == "Daily"]
+            random_word = random.choice(daily_word)
             word = random_word.get("card_name", "")
             opposite = random_word.get("card_opposite", "")
             print(word)
