@@ -8966,7 +8966,7 @@
             "card_id": 919,
             "card_name": "experimental",
             "card_opposite": "deneysel",
-            "card_type": "Daily",
+            "card_type": "Weekly",
             "card_level": "b1",
             "card_time": "05-12-2024"
         },
@@ -9062,7 +9062,7 @@
             "card_id": 931,
             "card_name": "sample",
             "card_opposite": "\u00f6rnek",
-            "card_type": "Daily",
+            "card_type": "Weekly",
             "card_level": "b1",
             "card_time": "05-12-2024"
         },
@@ -9118,7 +9118,7 @@
             "card_id": 938,
             "card_name": "disrupting",
             "card_opposite": "rahats\u0131z edici",
-            "card_type": "Daily",
+            "card_type": "Weekly",
             "card_level": "b1",
             "card_time": "05-12-2024"
         },
