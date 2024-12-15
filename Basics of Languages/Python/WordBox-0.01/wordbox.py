@@ -31,9 +31,9 @@ def wrong_answer(x):
         saving()
 
 
-user_input = input("\nfor testing press 0\nfor add new word press 1\n")
+user_input = input("\nfor testing press 0\nfor add new word press 1\n\n")
 if user_input == "0":
-    user_input_0 = input("\nfor wordbox press 0\nfor your wordbox press 1\n")
+    user_input_0 = input("\nfor wordbox press 0\nfor your wordbox press 1\n\n")
     if user_input_0 == "0":
         a1 = dataset.get("A1", {})
         a = a1.get("A", {})
@@ -41,12 +41,12 @@ if user_input == "0":
         while random_word["card_type"] == "Daily":
             word = random_word.get("card_name", "")
             opposite = random_word.get("card_opposite", "")
-            print(word)
+            print(f"\n{word}")
             if input("Answer: ") == opposite:
                 print("True")
                 true_answer(random_word)
             else:
-                print(f"False. Answer was: {opposite}")
+                print(f"\nFalse\nAnswer was: {opposite}\n")
                 wrong_answer(random_word)
     elif user_input_0 == "1":
         while True:
@@ -54,12 +54,12 @@ if user_input == "0":
             random_word = random.choice(daily_word)
             word = random_word.get("card_name", "")
             opposite = random_word.get("card_opposite", "")
-            print(word)
+            print(f"\n{word}")
             if input("Answer: ") == opposite:
-                print("\nTrue\n\n")
+                print("\nTrue\n")
                 true_answer(random_word)
             else: 
-                print(f"\nFalse. Answer was: {opposite}\n\n")
+                print(f"\nFalse\nAnswer was: {opposite}\n")
                 wrong_answer(random_word)
     else:
         print("\n\nPlease press 0 or 1\n\n\nWordBox")
