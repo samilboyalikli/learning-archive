@@ -25,16 +25,16 @@
 |                                                              |
 | TITANIC SIMPLE ANALYSIS (0/10)                               |
 |                                                              |
-|     - [ ] Schema of the dataset.                             |
-|     - [ ] Gender distribution of cleaned dataset.            |
-|     - [ ] City distribution of cleaned dataset.              |
-|     - [ ] Average of descriptive stats.                      |
-|     - [ ] Describe of descriptive stats.                     |
-|     - [ ] Median of descriptive stats.                       |
-|     - [ ] Price averages according to classes.               |
-|     - [ ] Association between price and age.                 |
-|     - [ ] Family size table.                                 |
-|     - [ ] Age group table.                                   |
+|     - [x] Schema of the dataset.                             |
+|     - [x] Gender distribution of cleaned dataset.            |
+|     - [x] City distribution of cleaned dataset.              |
+|     - [x] Average of descriptive stats.                      |
+|     - [x] Describe of descriptive stats.                     |
+|     - [x] Median of descriptive stats.                       |
+|     - [x] Price averages according to classes.               |
+|     - [x] Association between price and age.                 |
+|     - [x] Family size table.                                 |
+|     - [x] Age group table.                                   |
 |                                                              |
 +--------------------------------------------------------------+
 |                                                              |
