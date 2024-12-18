@@ -2,28 +2,28 @@
 
 +--------------------------------------------------------------+
 |                                                              |
-| HOUSE PRICE SIMPLE ANALYSIS (0/16)                           |
+| HOUSE PRICE SIMPLE ANALYSIS (16/16)                          |
 |                                                              |
-|     - [ ] Schema of the dataset.                             |
-|     - [ ] Row count of the dataset.                          |
-|     - [ ] Column count of the dataset.                       |
-|     - [ ] Describes of descriptive stats.                    |
-|     - [ ] Min of descriptive stats.                          |
-|     - [ ] Max of descriptive stats.                          |
-|     - [ ] Null control for some columns.                     |
-|     - [ ] Fill null rows.                                    |
-|     - [ ] Bedrooms biggest than three.                       |
-|     - [ ] Year built < 2010.                                 |
-|     - [ ] Location count.                                    |
-|     - [ ] Price order by location.                           |
-|     - [ ] Price per square.                                  |
-|     - [ ] Order by price.                                    |
-|     - [ ] Price by area.                                     |
-|     - [ ] Adding has_garage column to dataset.               |
+|     - [x] Schema of the dataset.                             |
+|     - [x] Row count of the dataset.                          |
+|     - [x] Column count of the dataset.                       |
+|     - [x] Describes of descriptive stats.                    |
+|     - [x] Min of descriptive stats.                          |
+|     - [x] Max of descriptive stats.                          |
+|     - [x] Null control for some columns.                     |
+|     - [x] Fill null rows.                                    |
+|     - [x] Bedrooms biggest than three.                       |
+|     - [x] Year built < 2010.                                 |
+|     - [x] Location count.                                    |
+|     - [x] Price order by location.                           |
+|     - [x] Price per square.                                  |
+|     - [x] Order by price.                                    |
+|     - [x] Price by area.                                     |
+|     - [x] Adding has_garage column to dataset.               |
 |                                                              |
 +--------------------------------------------------------------+
 |                                                              |
-| TITANIC SIMPLE ANALYSIS (0/10)                               |
+| TITANIC SIMPLE ANALYSIS (10/10)                              |
 |                                                              |
 |     - [x] Schema of the dataset.                             |
 |     - [x] Gender distribution of cleaned dataset.            |
