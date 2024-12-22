@@ -38,16 +38,16 @@
 |                                                              |
 +--------------------------------------------------------------+
 |                                                              |
-| VACCINE PFIZER SIMPLE ANALYSIS (0/9)                         |
+| VACCINE PFIZER SIMPLE ANALYSIS (8/9)                         |
 |                                                              |
-|     - [ ] Schema of the dataset.                             |
-|     - [ ] Number of tweets.                                  |
-|     - [ ] Polarity of users.                                 |
-|     - [ ] Count of contain pfizer.                           |
-|     - [ ] Tallest tweet.                                     |
-|     - [ ] Most used word.                                    |
-|     - [ ] Subjectivity of targets.                           |
-|     - [ ] Data cleaning.                                     |
+|     - [x] Schema of the dataset.                             |
+|     - [x] Number of tweets.                                  |
+|     - [x] Polarity of users.                                 |
+|     - [x] Count of contain pfizer.                           |
+|     - [x] Tallest tweet.                                     |
+|     - [x] Most used word.                                    |
+|     - [x] Subjectivity of targets.                           |
+|     - [x] Data cleaning.                                     |
 |     - [ ] Relationship between Subjectivity and Polarity.    |
 |                                                              |
 +--------------------------------------------------------------+
