@@ -1,7 +1,7 @@
 
 while True:
-    y_h_s_ = input("Yüzdesi Hesaplanacak Sayı: ")  # yuzdesi_hesaplanacak_sayi
-    y_ = input("Hesaplanmak istenen Yüzde: ")  # yuzdesi
+    y_h_s_ = input("Yüzdesi Hesaplanacak Sayı: ")
+    y_ = input("Hesaplanmak istenen Yüzde: ")
 
     yuzdesi_hesaplanacak_sayi = float(y_h_s_)
     yuzdesi = float(y_)
