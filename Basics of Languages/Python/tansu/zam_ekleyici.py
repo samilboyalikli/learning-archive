@@ -1,5 +1,5 @@
-y_h_s_ = input("Zam Eklenecek Fiyat: ")  # yuzdesi_hesaplanacak_sayi
-y_ = input("Eklenmek İstenen Zam Yüzdesi: ")  # yuzdesi
+y_h_s_ = input("Zam Eklenecek Fiyat: ")
+y_ = input("Eklenmek İstenen Zam Yüzdesi: ")
 
 yuzdesi_hesaplanacak_sayi = float(y_h_s_)
 yuzdesi = float(y_)
