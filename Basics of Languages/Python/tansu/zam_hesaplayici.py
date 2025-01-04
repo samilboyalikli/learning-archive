@@ -1,6 +1,6 @@
 
-y_f_ = input("Ürünün Şimdiki Fiyatını Giriniz: ")  # yeni fiyat
-e_f_ = input("Ürünün Eski Fiyatını Giriniz: ")  # eski fiyat
+y_f_ = input("Ürünün Şimdiki Fiyatını Giriniz: ")
+e_f_ = input("Ürünün Eski Fiyatını Giriniz: ")
 
 y_f = float(y_f_)
 e_f = float(e_f_)
