@@ -1,0 +1,34 @@
+TODO
+1. demoya kafka entegre edilecek.
+    1.1. docker-compose.yml'ye zookeeper ve kafka servisleri eklenecek.
+        [STATUS] eklendi.
+        [BUG] Error response from daemon: Conflict. The container name "/zookeeper" is already in use by container "cf42ea15596fc9b95cb02013ec9f426f15f6ab4a38da9b4e0bc4e18bbf676b3c". You have to remove (or rename) that container to be able to reuse that name.
+        [SUCCESS] eski zookeeper konteynerını sildim `docker rm -f `container_id`` ve çalıştı.
+    1.2. hospital-simulation'daki atlanta producer'ı kopyalanacak.
+        [STATUS] kopyalandı.
+        [BUG] [Errno 2] No such file or directory: 'gender_name.csv'
+        [ENH] atlanta.py, csv dataset'siz çalışacak biçimde revize edildi.
+        [BUG] ne yazık ki atlanta.py herhangi bir output vermiyor, herhangi bir error da vermiyor.
+        [ENH] atlanta.py yerine saniyede bir mesaj yollayan basit bir producer kodlanabilir.
+        [SUCCESS] producer buffer'dan dolayı outputu göstermiyormuş, program çalışmasını tamamlayınca tüm output geldi.
+    1.3. docker-compose.yml'ye atlanta servisi eklenecek.
+        [STATUS] isimleri producer olarak değiştirilerek eklendi.
+        [SUCCESS] çalıştı.
+    1.4. analyzer kodlanacak.
+        1.4.1. önce sadece consume edecek.
+            [STATUS] spark dizininin adını spark-batch olarak değiştirdim.
+            [BUG] pyspark.errors.exceptions.captured.AnalysisException: [PATH_NOT_FOUND] Path does not exist: file:/spark/dataset.csv.
+            [ENH] dosya yolunu düzelttim.
+            [SUCCESS] spark_batch servisi çalıştı. 
+            [BUG] pyspark.errors.exceptions.captured.AnalysisException: Failed to find data source: kafka. Please deploy the application as per the deployment section of Structured Streaming + Kafka Integration Guide.
+            [ENH] spark_batch için hazır şablon kullandık başarılı oldu ama spark_streaming çalıştırılırken extra bağımlılıklar istiyor.
+            [ENH] extra bağımlılıkları hazır şablona yamamaya çalışıyoruz.
+            [BUG] aynı problem devam ediyor.
+            [ENH] hazır image kullanmayacağım bir senaryoda bağımlılıkları daha rahat yönetebileceğimi düşünüyorum.
+            [ENH] hazır image kullanmadığım bir şablon kodluyorum.
+            [SUCCESS] hata almadım. şimdi kafka'yı entegre etmeliyim.
+        1.4.2. consume ettiği dataları flush edecek.
+        1.4.3. consumer ettiği dataları count edecek.
+    1.5. analyzer elde ettiği sonuçları result topic'ine yazacak.
+    1.6. result topic'ini okuyan bir consumer kodlanacak.
+    1.7. analyzer ve consumer servisleri docker-compose.yml'ye eklenecek.
