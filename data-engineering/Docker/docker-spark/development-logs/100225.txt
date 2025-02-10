@@ -1,0 +1,8 @@
+TODO
+    1. analyzer kodlanacak.
+        1.1. önce sadece consume edecek.
+        1.2. consume ettiği dataları flush edecek.
+        1.3. consumer ettiği dataları count edecek.
+    2. analyzer elde ettiği sonuçları result topic'ine yazacak.
+    3. result topic'ini okuyan bir consumer kodlanacak.
+    4. analyzer ve consumer servisleri docker-compose.yml'ye eklenecek.
