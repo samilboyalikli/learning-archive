@@ -212,3 +212,58 @@ Varsayılan olarak, dosya tabanlı kaynaklardan yapılan Structured Streaming i�
 
 Eğer dizin yapısı `/key=value/` formatında isimlendirilmiş alt dizinler içeriyorsa, bölüm keşfi (partition discovery) otomatik olarak gerçekleşir ve Spark bu dizinleri tarayarak içeriğe erişir. Kullanıcı tarafından sağlanan şema içerisinde bu bölüm sütunları (partition columns) yer alıyorsa, Spark okunan dosyanın yolu üzerinden bu değerleri otomatik olarak dolduracaktır. Ancak, bölümleme şemasını oluşturan dizinler sorgu başladığında mevcut olmalı ve sorgu süresince değişmemelidir. Örneğin, `/data/year=2015/` dizini mevcutken `/data/year=2016/` eklemek geçerlidir, ancak bölümleme sütununu değiştirmek (örn. `/data/date=2016-04-17/` şeklinde bir dizin oluşturmak) geçersizdir.
 
+## **Akışkan (Streaming) DataFrame/Dataset Üzerinde İşlemler**  
+
+Akışkan DataFrame/Dataset'ler üzerinde çeşitli işlemler uygulayabilirsiniz. SQL benzeri, şemasız işlemler (örneğin: `select`, `where`, `groupBy`) ile; RDD benzeri, türü belirli işlemler (örneğin: `map`, `filter`, `flatMap`) yapabilirsiniz. Daha fazla ayrıntı için SQL programlama kılavuzuna göz atabilirsiniz. Şimdi, kullanabileceğiniz birkaç temel işlem örneğine bakalım.  
+
+### **Temel İşlemler - Seçim (Selection), Yansıtma (Projection), ve Kümeleme (Aggregation)**  
+
+DataFrame/Dataset üzerindeki en yaygın işlemlerin çoğu akışkan veriler için desteklenmektedir. Ancak, desteklenmeyen bazı işlemler de bulunmaktadır; bunlar bu bölümün ilerleyen kısımlarında açıklanacaktır.
+
+```Py
+df = ...  # streaming DataFrame with IOT device data with schema { device: string, deviceType: string, signal: double, time: DateType }
+
+# Select the devices which have signal more than 10
+df.select("device").where("signal > 10")
+
+# Running count of the number of updates for each device type
+df.groupBy("deviceType").count()
+```
+
+Bir akışkan (streaming) DataFrame/Dataset'i geçici bir görünüm (temporary view) olarak kaydedebilir ve ardından üzerinde SQL komutları çalıştırabilirsiniz.
+
+```Py
+df.createOrReplaceTempView("updates")
+spark.sql("select count(*) from updates")  # returns another streaming DF
+```
+
+Bir DataFrame/Dataset'in akış verisi içerip içermediğini df.isStreaming kullanarak belirleyebilirsiniz.
+
+```Py
+df.isStreaming()
+```
+
+Bir sorgunun planını kontrol etmek isteyebilirsiniz, çünkü Spark, akış veri kümesine karşı SQL ifadesini işlerken durumsal işlemler ekleyebilir. Sorgu planına durumsal işlemler eklendiğinde, sorgunuzu durumsal işlemleri göz önünde bulundurarak değerlendirmeniz gerekebilir (örn. çıktı modu, watermark, durum deposu boyutunun yönetimi vb.).
+
+#### Olay Zamanına Göre Pencere İşlemleri
+
+Kaynaklanan olay-zamanına (event-time) göre kayan pencere (sliding window) üzerinden yapılan toplu işlemler, **Structured Streaming** ile oldukça basittir ve gruplandırılmış toplu işlemlere oldukça benzer. Gruplandırılmış bir toplu işlemde, kullanıcı tarafından belirtilen gruplama sütunundaki her benzersiz değer için toplu veriler (örn. sayaçlar) tutulur. Pencere tabanlı toplu işlemlerde ise, bir satırın olay zamanı hangi pencereye denk geliyorsa, o pencere için toplu veriler saklanır. Bunu bir örnekle daha iyi anlayalım.  
+
+Örneğin, önceki hızlı örneğimizi biraz değiştirip, veri akışının artık her satırla birlikte o satırın oluşturulma zamanını da içerdiğini düşünelim. Kelimeleri saymak yerine, 10 dakikalık pencerelerde, her 5 dakikada bir güncellenen kelime sayımlarını almak istiyoruz. Yani, 12:00 - 12:10, 12:05 - 12:15, 12:10 - 12:20 gibi 10 dakikalık pencerelerdeki kelime sayımlarını hesaplayacağız. Burada 12:00 - 12:10, 12:00'dan sonra ve 12:10'dan önce gelen verileri içerir. Şimdi, 12:07’de alınan bir kelimeyi düşünelim. Bu kelimenin hem 12:00 - 12:10 hem de 12:05 - 12:15 pencerelerine dahil edilmesi gerekir, çünkü her ikisinin de zaman aralığına uymaktadır. Böylece, kelime sayıları hem gruplama anahtarına (kelimenin kendisi) hem de pencereye (olay zamanına göre hesaplanan) göre indekslenir.  
+
+Sonuç tabloları şu şekilde görünecektir.
+
+!["A Result Table"](./images/ss4.png "A Result Table")
+
+Bu pencereleme işlemi gruplamaya benzediğinden, kod içinde `groupBy()` ve `window()` işlemlerini kullanarak pencere tabanlı toplu işlemleri ifade edebilirsiniz. Aşağıdaki örneklerin tam kodunu Scala/Java/Python dillerinde bulabilirsiniz.
+
+```Py
+words = ...  # streaming DataFrame of schema { timestamp: Timestamp, word: String }
+
+# Group the data by window and word and compute the count of each group
+windowedCounts = words.groupBy(
+    window(words.timestamp, "10 minutes", "5 minutes"),
+    words.word
+).count()
+```
+
