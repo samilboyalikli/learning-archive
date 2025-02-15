@@ -267,3 +267,40 @@ windowedCounts = words.groupBy(
 ).count()
 ```
 
+### **Gecikmeli Verileri Yönetme ve Su İşaretleme (Watermarking)**  
+
+Şimdi, olaylardan birinin uygulamaya geç ulaştığını düşünelim. Örneğin, 12:04'te (olay zamanı) üretilen bir kelimenin 12:11'de uygulamaya ulaştığını varsayalım. Uygulamanın, 12:11 yerine 12:04'ü kullanarak eski pencere için (12:00 - 12:10) sayımları güncellemesi gerekir. Bu durum pencere tabanlı gruplama içinde doğal olarak ele alınır. **Structured Streaming**, gecikmeli verilerin eski pencerelerin toplu sonuçlarını doğru şekilde güncelleyebilmesi için kısmi toplama işlemlerinin ara durumunu uzun süre saklayabilir. Aşağıdaki görselle bu durum daha iyi anlaşılabilir.
+
+!["Late Data Handling"](./images/ss5.png "Late Data Handling")
+
+Ancak, bu sorgunun günlerce çalıştırılabilmesi için sistemin, bellekte biriktirdiği ara durumu sınırlaması gerekir. Bu, sistemin bir eski toplamayı bellekten ne zaman kaldırması gerektiğini bilmesi anlamına gelir—çünkü uygulama artık o toplama yönelik gecikmeli veri almayacaktır. Bu sorunu çözmek için Spark 2.1’de **"watermarking" (su işareti) mekanizması** tanıtıldı. Watermarking, motorun verilerdeki geçerli olay zamanını otomatik olarak takip etmesini ve buna göre eski durumları temizlemeye çalışmasını sağlar. Bir sorgunun watermark’ını, olay zamanı sütununu ve verinin ne kadar gecikmeyle gelmesinin beklendiğini belirterek tanımlayabilirsiniz.  
+
+Özetle: Bir pencere `T` zamanında sona eriyorsa, Spark motoru şu koşula kadar ara durumu tutmaya ve gecikmeli veriyi işlemeye devam eder: `(motor tarafından görülen maksimum olay zamanı - gecikme eşiği > T)`. Yani: Gecikme eşiği içinde kalan veriler işlenir. Eşiği aşan veriler ise atılmaya başlar. (Bu mekanizmanın kesin garantileri bölümün ilerleyen kısmında açıklanmaktadır.) Örnek Üzerinden Açıklama: Önceki örnekte, watermarking'i `withWatermark()` kullanarak nasıl tanımlayabileceğimizi gösterelim.
+
+```Py
+words = ...  # streaming DataFrame of schema { timestamp: Timestamp, word: String }
+
+# Group the data by window and word and compute the count of each group
+windowedCounts = words \
+    .withWatermark("timestamp", "10 minutes") \
+    .groupBy(
+        window(words.timestamp, "10 minutes", "5 minutes"),
+        words.word) \
+    .count()
+```
+
+Bu örnekte sorgunun watermark’ını "timestamp" sütunu üzerinden tanımlıyoruz ve "10 dakika" gecikme eşiği belirliyoruz. Yani, veri en fazla 10 dakika gecikmeyle gelebilir. Eğer bu sorgu Update (Güncelleme) çıktı modunda çalıştırılırsa (Çıktı Modları bölümünde detaylandırılacaktır),  
+motor Sonuç Tablosu’ndaki pencereyi güncellemeye devam eder, ta ki pencere watermark’tan daha eski olana kadar. Watermark, geçerli olay zamanından (timestamp sütunundaki değerlerden) 10 dakika geride olacak şekilde ilerler. Aşağıda bir görselleştirme yer almaktadır.
+
+!["Result Table after Each Trigger"](./images/ss6.png "Result Table after Each Trigger")
+
+Oluşturulan Görselleştirmeye Göre: Motor tarafından takip edilen maksimum olay zamanı *(mavi kesik çizgi)* ile gösterilmiştir. Watermark her tetikleme başlangıcında `(maksimum olay zamanı - '10 dakika')` olarak belirlenir (kırmızı çizgi). Örnek: Motor, `(12:14, dog)` verisini gözlemlediğinde, bir sonraki tetikleme için watermark’ı 12:04 olarak ayarlar. Bu watermark, motorun gecikmeli veriyi sayabilmesi için 10 dakika boyunca ara durumu korumasına izin verir. `(12:09, cat)` verisi sıra dışıdır ve gecikmelidir, ancak şu pencerelere dahildir: 12:00 - 12:10 ve 12:05 - 12:15. Bu veri hâlâ watermark’tan (12:04) ileride olduğundan, motor ara durumları koruyarak ilgili pencerelerdeki sayımları doğru şekilde günceller. Ancak watermark 12:11’e güncellendiğinde, 12:00 - 12:10 penceresine ait ara durum silinir. Örneğin, `(12:04, donkey)` verisi watermark (12:11) gerisinde kaldığı için artık “çok geç” sayılır ve yok sayılır. Her Tetiklemeden Sonra: Güncellenen sayımlar (mor satırlar) güncelleme modu gereğince hedefe (sink) yazılır.
+
+Bazı hedefler (örneğin dosyalar) Update Mode’un gerektirdiği ince ayarlı güncellemeleri desteklemeyebilir. Bunun için Append Mode da desteklenmektedir; bu modda yalnızca nihai sayımlar hedefe yazılır. Append Mode’un nasıl çalıştığı aşağıdaki görselleştirmede gösterilmektedir. 
+
+Dikkat! `withWatermark`, akış dışı (batch) veri kümelerinde hiçbir işlem yapmaz. Watermark, herhangi bir toplu sorguyu etkilememelidir; bu yüzden Spark bunu doğrudan göz ardı eder.
+
+!["Grouped Aggregations with Append Mode"](./images/ss7.png "Grouped Aggregations with Append Mode")
+
+Önceki Update Moduna Benzer Şekilde: Motor her pencere için ara sayımları korur. Ancak, bu kısmi sayımlar Sonuç Tablosuna eklenmez ve hedefe (sink) yazılmaz. Motor, gecikmeli verinin sayılabilmesi için "10 dakika" bekler. Ardından, watermark’tan küçük olan pencerelerin ara durumlarını siler ve nihai sayımları Sonuç Tablosuna / hedefe ekler. Örnek: `12:00 - 12:10` penceresine ait nihai sayımlar, ancak watermark `12:11`’e güncellendikten sonra Sonuç Tablosuna eklenir.`
+
