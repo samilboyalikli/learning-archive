@@ -108,29 +108,29 @@ Batch: 1
 ***
 **Programlama Modeli**  
 
-Structured Streaming’in temel fikri, **canlı veri akışını sürekli olarak eklenen bir tablo gibi ele almaktır**. Bu yaklaşım, **toplu işleme modeline çok benzeyen yeni bir akış işleme modeli** ortaya çıkarır. Akış hesaplamanızı, **statik bir tablo üzerinde çalıştırılan standart bir toplu sorgu gibi ifade edersiniz** ve **Spark, bunu sınırsız bir giriş tablosu üzerinde artımlı bir sorgu olarak çalıştırır**. Şimdi, bu modeli daha ayrıntılı bir şekilde inceleyelim.
+Structured Streaming’in temel fikri, canlı veri akışını sürekli olarak eklenen bir tablo gibi ele almaktır. Bu yaklaşım, toplu işleme modeline çok benzeyen yeni bir akış işleme modeli ortaya çıkarır. Akış hesaplamanızı, statik bir tablo üzerinde çalıştırılan standart bir toplu sorgu gibi ifade edersiniz ve Spark, bunu sınırsız bir giriş tablosu üzerinde artımlı bir sorgu olarak çalıştırır. Şimdi, bu modeli daha ayrıntılı bir şekilde inceleyelim.
 
 ![Unbounded Table](./images/ss1.png "Unbounded Table")
 
-**Giriş tablosu** üzerindeki bir sorgu, **"Sonuç Tablosu"nu** oluşturur. Her **tetikleme aralığında** (örneğin, **her 1 saniyede bir**), **Giriş Tablosu'na yeni satırlar eklenir** ve bu da **Sonuç Tablosu'nun güncellenmesine neden olur**. **Sonuç Tablosu güncellendiğinde**, değişen sonuç satırlarını **harici bir hedefe (sink) yazmak isteriz**.
+Giriş tablosu üzerindeki bir sorgu, **"Sonuç Tablosu"nu** oluşturur. Her tetikleme aralığında (örneğin, **her 1 saniyede bir**), Giriş Tablosu'na yeni satırlar eklenir ve bu da Sonuç Tablosu'nun güncellenmesine neden olur. Sonuç Tablosu güncellendiğinde, değişen sonuç satırlarını harici bir hedefe (sink) yazmak isteriz.
 
 ![Programming Model](./images/ss2.png "Programming Model")
 
 **"Çıktı"**, dış depolamaya yazılan veriyi ifade eder. Çıktı, **farklı modlarda** tanımlanabilir:  
 
-- **Complete Mode (Tam Mod)** – **Güncellenmiş Sonuç Tablosu'nun tamamı** dış depolamaya yazılır. **Tüm tablonun nasıl yazılacağına** karar vermek, **depolama bağlayıcısına** bağlıdır.  
-- **Append Mode (Ekleme Modu)** – **Son tetikleme işleminden bu yana Sonuç Tablosu'na eklenen yeni satırlar** dış depolamaya yazılır. **Mevcut satırların değişmediği** sorgular için uygundur.  
-- **Update Mode (Güncelleme Modu)** – **Son tetikleme işleminden bu yana değişen satırlar** dış depolamaya yazılır (**Spark 2.1.1 sürümünden itibaren** mevcuttur). **Tam Mod’dan farkı**, yalnızca **son değişen satırları** dışa aktarmasıdır. **Eğer sorguda bir toplama (aggregation) işlemi yoksa**, **Ekleme Modu’na eşdeğer olur**.  
+- **Complete Mode (Tam Mod)** – Güncellenmiş Sonuç Tablosu'nun tamamı dış depolamaya yazılır. Tüm tablonun nasıl yazılacağına karar vermek, depolama bağlayıcısına bağlıdır.  
+- **Append Mode (Ekleme Modu)** – Son tetikleme işleminden bu yana Sonuç Tablosu'na eklenen yeni satırlar dış depolamaya yazılır. Mevcut satırların değişmediği sorgular için uygundur.  
+- **Update Mode (Güncelleme Modu)** – Son tetikleme işleminden bu yana değişen satırlar dış depolamaya yazılır (**Spark 2.1.1 sürümünden itibaren** mevcuttur). Tam Mod’dan farkı, yalnızca son değişen satırları dışa aktarmasıdır. Eğer sorguda bir toplama (aggregation) işlemi yoksa, Ekleme Modu’na eşdeğer olur.  
 
-Her modun **yalnızca belirli türdeki sorgular için geçerli olduğunu** unutmayın. Bu konuyu ilerleyen bölümlerde ayrıntılı olarak ele alacağız.  
+Her modun yalnızca belirli türdeki sorgular için geçerli olduğunu unutmayın. Bu konuyu ilerleyen bölümlerde ayrıntılı olarak ele alacağız.  
 
-Bu modelin kullanımını açıklamak için yukarıdaki **Hızlı Örnek (Quick Example)** bağlamında inceleyelim: İlk **lines DataFrame**, **giriş tablosunu** temsil eder. Nihai **wordCounts DataFrame**, **sonuç tablosudur**. **Streaming lines DataFrame üzerinde çalıştırılan sorgu**, **statik bir DataFrame üzerinde çalıştırılan sorguyla tamamen aynıdır**. Ancak, **bu sorgu çalıştırıldığında**, Spark: **Sürekli olarak socket bağlantısından yeni verileri kontrol eder**. **Yeni veri geldikçe**, **önceki sayımları yeni verilerle birleştiren bir "artımlı" sorgu çalıştırır**. Böylece **güncellenmiş kelime sayımları hesaplanır**. Aşağıda bu sürecin nasıl çalıştığını görebilirsiniz:
+Bu modelin kullanımını açıklamak için yukarıdaki **Hızlı Örnek (Quick Example)** bağlamında inceleyelim: İlk **lines DataFrame**, giriş tablosunu temsil eder. Nihai **wordCounts DataFrame**, sonuç tablosudur. Streaming lines DataFrame üzerinde çalıştırılan sorgu, statik bir DataFrame üzerinde çalıştırılan sorguyla tamamen aynıdır. Ancak, bu sorgu çalıştırıldığında, Spark: Sürekli olarak socket bağlantısından yeni verileri kontrol eder. Yeni veri geldikçe, önceki sayımları yeni verilerle birleştiren bir "artımlı" sorgu çalıştırır. Böylece güncellenmiş kelime sayımları hesaplanır. Aşağıda bu sürecin nasıl çalıştığını görebilirsiniz.
 
 ![Model of Quick Example](./images/ss3.png "Model of Quick Example")
 
-Structured Streaming’in **tüm tabloyu materyalize etmediğini** unutmayın. Bunun yerine: **En son kullanılabilir veriyi** akış veri kaynağından okur. **Sonucu güncellemek için** veriyi **artımlı (incremental) olarak işler**. **Kaynak veriyi işledikten sonra atar**. **Sonucu güncellemek için gerekli olan minimum ara durumu (örneğin, önceki örnekteki ara sayımlar) saklar**.  
+Structured Streaming’in tüm tabloyu materyalize etmediğini unutmayın. Bunun yerine: En son kullanılabilir veriyi akış veri kaynağından okur. Sonucu güncellemek için veriyi artımlı (incremental) olarak işler. Kaynak veriyi işledikten sonra atar. Sonucu güncellemek için gerekli olan minimum ara durumu (örneğin, önceki örnekteki ara sayımlar) saklar.  
 
-Bu model, **diğer birçok akış işleme motorundan önemli ölçüde farklıdır**. **Çoğu akış işleme sistemi**, **kullanıcının kendisinin sürekli agregasyonları yönetmesini gerektirir**. Bu durum, **hata toleransı (fault-tolerance)** ve **veri tutarlılığı (at-least-once, at-most-once, exactly-once gibi)** konularında **kullanıcının sorumluluk almasını gerektirir**. **Structured Streaming modeli** ise **yeni veri geldiğinde Sonuç Tablosu’nu güncelleme işini Spark’a bırakır**. **Böylece kullanıcılar, hata toleransı ve veri tutarlılığı gibi konularla uğraşmak zorunda kalmaz**. Bir örnek olarak, bu modelin **olay zamanı (event-time) tabanlı işlemeyi ve geç gelen verileri** nasıl ele aldığını inceleyelim.
+Bu model, diğer birçok akış işleme motorundan önemli ölçüde farklıdır. Çoğu akış işleme sistemi, kullanıcının kendisinin sürekli agregasyonları yönetmesini gerektirir. Bu durum, hata toleransı (fault-tolerance) ve veri tutarlılığı (at-least-once, at-most-once, exactly-once gibi) konularında kullanıcının sorumluluk almasını gerektirir. Structured Streaming modeli ise yeni veri geldiğinde Sonuç Tablosu’nu güncelleme işini Spark’a bırakır. Böylece kullanıcılar, hata toleransı ve veri tutarlılığı gibi konularla uğraşmak zorunda kalmaz. Bir örnek olarak, bu modelin olay zamanı (event-time) tabanlı işlemeyi ve geç gelen verileri nasıl ele aldığını inceleyelim.
 
 ### **Olay Zamanı (Event-time) ve Geç Gelen Verileri Yönetme**  
 
@@ -302,5 +302,5 @@ Dikkat! `withWatermark`, akış dışı (batch) veri kümelerinde hiçbir işlem
 
 !["Grouped Aggregations with Append Mode"](./images/ss7.png "Grouped Aggregations with Append Mode")
 
-Önceki Update Moduna Benzer Şekilde: Motor her pencere için ara sayımları korur. Ancak, bu kısmi sayımlar Sonuç Tablosuna eklenmez ve hedefe (sink) yazılmaz. Motor, gecikmeli verinin sayılabilmesi için "10 dakika" bekler. Ardından, watermark’tan küçük olan pencerelerin ara durumlarını siler ve nihai sayımları Sonuç Tablosuna / hedefe ekler. Örnek: `12:00 - 12:10` penceresine ait nihai sayımlar, ancak watermark `12:11`’e güncellendikten sonra Sonuç Tablosuna eklenir.`
+Önceki Update Moduna Benzer Şekilde: Motor her pencere için ara sayımları korur. Ancak, bu kısmi sayımlar Sonuç Tablosuna eklenmez ve hedefe (sink) yazılmaz. Motor, gecikmeli verinin sayılabilmesi için "10 dakika" bekler. Ardından, watermark’tan küçük olan pencerelerin ara durumlarını siler ve nihai sayımları Sonuç Tablosuna / hedefe ekler. Örnek: `12:00 - 12:10` penceresine ait nihai sayımlar, ancak watermark `12:11`’e güncellendikten sonra Sonuç Tablosuna eklenir.
 
