@@ -1,0 +1,15 @@
+TODO
+1. spark-streaming/main.py docker-compose'dan çalıştırılacak.
+    [ENH] spark-master'ı çalıştırıp hata almayı umuyorum.
+    [BUG] pyspark.sql.utils.AnalysisException:  Failed to find data source: kafka. Please deploy the application as per the deployment section of "Structured Streaming + Kafka Integration Guide".
+    [BUG] exec -it ile etkileşimli terminale girip main.py'ı çalıştırmak istedim ve kafka-sql-spark ara modülünün bulunamadığını bir kez daha gördüm.
+    [ENH] şimdi kafka-python install edip `spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.4` deneyeceğim.
+    [SUCCESSFUL] ilk defa main.py çalıştı ama okuyacak data bulamadığı için kendini kapattı.
+    [BUG] son haliyle `docker-compose build` oldukça uzun süre alıyor.
+    [ENH] bağımlılıkları manuel olarak indirip volume olarak kaydetmeyi deneyebilirim.
+    [BUG] bağımlılıkları manuel olarak indirmeme rağmen Dockerfile'ım .tgz dosyasını extract edemedi.
+    [BUG] failed to solve: process "/bin/sh -c tar xvz -C ./spark-modules/ -f ./spark-modules/spark-3.2.1-bin-hadoop3.2.tgz" did not complete successfully: exit code: 1
+    [ENH] önce kopyalayıp sonra çıkartmayı deniyoruz.
+    [BUG] failed to solve: failed to compute cache key: failed to calculate checksum of ref 9769cfc9-6546-4cbc-aea0-13b36222819a::anokbuzowwym23e8basiu88ew: "/spark-modules/spark-3.2.1-bin-hadoop3.2.tgz": not found
+    [BUG] spark-modules'ün içinde .tgz dosyasını bulamıyor.
+2. eğer başarılı olursa 110225.txt'teki todo liste geçilecek.
