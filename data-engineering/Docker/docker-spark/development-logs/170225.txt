@@ -1,0 +1,44 @@
+TODO
+1. spark-streaming/main.py docker-compose'dan çalıştırılacak.
+    [ENH] iki ihtimalden kaynaklanıyor olabilir. Bir, yetki problemi. İki, tar komutunu çalıştıramıyor olabilir. 
+    [ENH] bir ihtimal daha var. `tar` komutunu çalıştırırken `xvzf` seçeneklerinden önce tire koymamıştık, belki de problem orada.
+    [BUG] failed to solve: process "/bin/sh -c tar -xvzf /opt/spark-modules/spark-3.2.1-bin-hadoop3.2.tgz" did not complete successfully: exit code: 1
+    [ENH] şimdi de `tar` komutunu indirmeyi deneyelim.
+    [BUG] failed to solve: process "/bin/sh -c apt-get install tar" did not complete successfully: exit code: 127
+    [ENH] `apt-get install tar` bu komutu bir de içerde biz manuel olarak çalıştırmayı deneyelim.
+    [BUG] bash: apt-get: command not found
+    [ENH] sorun şu ki spark-master'da kullandığımız imaj debian veya ubuntu tabanlı değil de aphine linux tabanlı.
+    [ENH] bundan dolayı apt-get komutunu çalıştırmıyor. bunun muadili: `apk add --no-cache "file_name"`
+    [SUCCESSFULL] (1/1) Installing tar (1.32-r0)
+    [ENH] şimdi dockerfile'da indirmeye çalışalım.
+    [SUCCESSFULL] dockerfile'da tar başarıyla indirildi.
+    [ENH] şimdi tar komutunu kullanarak istediğimiz tgz dosyasının açılmasını sağlayalım.
+    [BUG] failed to solve: process "/bin/sh -c tar -xvzf /opt/spark-modules/spark-3.2.1-bin-hadoop3.2.tgz" did not complete successfully: exit code: 2
+    [INVALID] enteresandır, içerde dosya açılmış görünüyor.
+    [ENH] tgz dosyasını açmadan tekrar çalıştırıp, içeride dosya otomatik olarak açılmış mı kontrol edelim.
+    [SUCCESSFULL] tgz dosyası içeride otomatik açılmış sanırım.
+    [ENH] bide sadece spark-master servisini build ederek deneyelim.
+    [SUCCESSFULL] evet sadece spark-master'ı build ettiğimiz senaryolarda da içeride açılmış tgz dosyası mevcut.
+    [SUCCESSFULL] tüm komutlar başarılı biçimde çalıştı. main dosyası başarıyla başlayıp başarıyla kapandı.
+    [ENH] şimdi manuel yaptığımız tüm operasyonu dockerfile üzerinden deneyelim.
+    [SUCCESSFULL] gayet düzgün çalıştı.
+    [INVALID] herşey düzgün olmasına karşın, main.py'ın çalıştığına dair hiçbir izlenim elde edemedim.
+    [ENH] main.py'a control pointler koyalım.
+    [ENH] entrypoint çıktısını daha detaylı inceleyelim.
+    [SUCCESSFULL] main.py control pointer'larının output'larına göre main.py sorunsuz çalışıyor.
+    [BUG] entrypoint.sh: line 4: /opt/spark/bin/spark-class: No such file or directory
+    [ENH] entrypoint'in aradığı dosya gerçekten orada mı bakalım.
+    [BUG] ls: /opt/spark/bin/spark-class: No such file or directory
+    [BUG] bu komutta bir problem var: `RUN ln -s /opt/spark-3.2.1-bin-hadoop3.2 /opt/spark`
+    [BUG] spark-3.2.1-bin-hadoop3.2 modülü default biçimde .tgz dosyasının yanında extract oluyor. (dolayısıyla spark-modules dizinine)
+    [BUG] ama yukarıdaki komut onu opt dizininde arıyor.
+    [ENH] dockerfile'e spark-3.2.1-bin-hadoop3.2 modülünü spark-modules dizininden opt dizinine taşıyan bir komut ekliyoruz.
+    [BUG] failed to solve: process "/bin/sh -c mv /opt/spark-modules/spark-3.2.1-bin-hadoop3.2 /opt/spark-3.2.1-bin-hadoop3.2" did not complete successfully: exit code: 1
+    [ENH] dockerfile'da şu komutu revize etmeyi deniyoruz: `RUN ln -s /opt/spark-3.2.1-bin-hadoop3.2 /opt/spark`
+    [BUG] .tgz dosyası bu sefer açılmamış.
+    [INVALID] restart attım bu sefer açmış.
+    [ENH] ben main.py'ın sonuna `awaitTermination()` metodunu eklememişim, bir de öyle deneyelim.
+    [INVALID] restart atmadan, silip yeniden başlattım yine .tgz dosyasını açmış.
+    [BUG] An Error Occurred: 'DataFrame' object has no attribute 'awaitTermination'
+    [ENH] main.py'ın bu halini detaylıca gözden geçirelim.
+2. eğer başarılı olursa 110225.txt'teki todo liste geçilecek.
