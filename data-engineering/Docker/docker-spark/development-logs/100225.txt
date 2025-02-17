@@ -1,6 +1,11 @@
 TODO
     1. analyzer kodlanacak.
         1.1. önce sadece consume edecek.
+            [ENH] kafka-sql-spark modülünü Dockerfile'dan install etmeye çalışıyorum.
+            [SUCCESS] dosyalar başarıyla build edildi.
+            [ENH] şimdi streamingi çalıştırmalıyım.
+            [BUG] docker-compose.yml'de streaming servisi yok.
+            [ENH] streaming dizinini servis haline getirmeliyim.
         1.2. consume ettiği dataları flush edecek.
         1.3. consumer ettiği dataları count edecek.
     2. analyzer elde ettiği sonuçları result topic'ine yazacak.
