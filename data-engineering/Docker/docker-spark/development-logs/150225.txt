@@ -1,0 +1,11 @@
+TODO
+1. spark-streaming/main.py docker-compose'dan çalıştırılacak.
+    [BUG] failed to solve: process "/bin/sh -c tar xvz -C ./opt/ -f ./spark-modules/spark-3.2.1-bin-hadoop3.2.tgz" did not complete successfully: exit code: 1
+    [ENH] tgz dosyasını açmaya çalıştığımız komutu yorum satırına alıp etkileşimli terminalle kendim sorunu görmeye çalışacağım.
+    [ENH] dosya yolunda opt üst dizininin atlandığını farkettim, düzeltip tekrar deneyebilirim.
+    [BUG] failed to solve: "
+    [ENH] aynı problem oldu bu yüzden, direkt dosyayı içerde kendim açmayı denemeliyim.
+    [SUCCESSFUL] tgz başarıyla açıldı.
+    [BUG] ama dockerfile'dan açmaya çalıştığımda hata alıyorum.
+    [ENH] iki ihtimalden kaynaklanıyor olabilir. Bir, yetki problemi. İki, tar komutunu çalıştıramıyor olabilir. 
+2. eğer başarılı olursa 110225.txt'teki todo liste geçilecek.
