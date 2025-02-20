@@ -1,0 +1,24 @@
+TODO
+    1. spark-master/main.py docker-compose'dan çalıştırılacak.
+        [BUG] mismatched input 'as' expecting {')', ','}(line 1, pos 18) [spark-master/main.py]
+        [BUG] main.py'a sonradan eklediğim kod bloğunda sql syntax hatası var.
+        [BUG] kafka.errors.NoBrokersAvailable: NoBrokersAvailable [consumer/main.py]
+        [ENH] `NoBrokersAvailable` hatası alma sebebim bootstrap server'ı main.py'da yanlış yazmış olmam (localhost:9092 != kafka:9092)
+        [ENH] docker-compose.yml'deki kafka servisinden iki satırı sildim. (KAFKA_LISTENER_SECURITY_PROTOCOL: PLAINTEX \ KAFKA_LISTENER_PORT: 9092)
+        [ENH] çünkü zaten bu değerler tanımlanıyor.
+        [ENH] yanlışlıkla to_json metodunun parantezinde "as" operatörünü kullandığım için sql syntax hatasını almışım sanırım. 
+        [BUG] An Error Occurred:  checkpointLocation must be specified either through option("checkpointLocation", ...) or SparkSession.conf.set("spark.sql.streaming.checkpointLocation", ...)
+        [ENH] checkpoint ekledim.
+        [ENH] consumer'ı önce producer üzerinde test etmek istiyorum.
+        [ENH] producer'ın süresini uzatıyorum. bazı testler için 2 dk yetersiz geliyor.
+        [SUCCESSFUL] consumer gayet güzel çalışıyor.
+        [ENH] şimdi consumer result_streaming'i okuyacak.
+        [SUCCESSFUL] checkpoint hatası almadım.
+        [INVALID] result_streaming topic'inden hiçbir veri gelmedi.
+        [BUG] spark-master'dan veri gönderdiğim topic adı: result_topic, consumer'ın okuduğu topic: result_streaming
+        [ENH] consumer'a result_topic'i okutmaya başlayabilirim.
+        [SUCCESSFUL] result_topic'e veriler geldi, herşey mükemmel çalışıyor :)
+    2. spark-master/main.py count ettiği verilere ulaşılacak.
+        [SUCCESSFUL] verilere ulaşıldı.
+    3. 110225.txt todosuna geçilecek.
+        [SUCCESSFUL] docker-spark projesine kafka'yı entegre ettim. artık hospital-simulation projesine geri dönüp burada yaptıklarımla orayı ilerletebilirim.
