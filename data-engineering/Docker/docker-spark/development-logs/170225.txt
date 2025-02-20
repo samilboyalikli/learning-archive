@@ -41,4 +41,13 @@ TODO
     [INVALID] restart atmadan, silip yeniden başlattım yine .tgz dosyasını açmış.
     [BUG] An Error Occurred: 'DataFrame' object has no attribute 'awaitTermination'
     [ENH] main.py'ın bu halini detaylıca gözden geçirelim.
-2. eğer başarılı olursa 110225.txt'teki todo liste geçilecek.
+    [ENH] streaming'in sonuçlarını console'a geçirebilmek için bir kod bloğu ekledim.
+    [INVALID] output oldukça karmaşık ve kalabalık. herhangi bir çıktıyı göremiyorum.
+    [ENH] bunu çözmek için outputu sadeleştiremeye çalışabilirim.
+    [ENH] ama outputu sadeleştirmeden önce, main.py'ın direkt çalışmasını sağlamayı denemeliyim.
+    [SUCCESSFUL] main.py building'te sorunsuz çalıştı ama bu anlamsız oldu.
+    [ENH] outputu direkt result_stream topic'ine gönderip oradan consume etmek makul gözüküyor.
+    [ENH] counter'ın süresini 30 saniyeden 10 saniyeye indirebilirim.
+    [BUG] mismatched input 'as' expecting {')', ','}(line 1, pos 18) [spark-master/main.py]
+    [BUG] main.py'a sonradan eklediğim kod bloğunda sql syntax hatası var.
+    [BUG] kafka.errors.NoBrokersAvailable: NoBrokersAvailable [consumer/main.py]
