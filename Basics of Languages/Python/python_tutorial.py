@@ -117,6 +117,68 @@ def keywords():
     """)
 
 
+def bmi_index():
+    weight = float(input("Weight: "))
+    height = float(input("Height: "))
+    bmi = weight/(height**2)
+    print(f"BMI: {round(bmi,2)}")
+    if bmi < 18.5:
+        print("Underweight")
+    elif 18.5 <= bmi < 25.0:
+        print("Normal Weight")
+    elif 25.0 <= bmi < 30.0:
+        print("Overweight")
+    elif 30.0 <= bmi < 40.0:
+        print("Obese")
+    elif 40.0 <= bmi:
+        print("Morbidly Obese")
+    else: print("There is a problem.")
+
+
+def while_loop():
+    i = 1
+    while i <= 10:
+        print("*" * i)
+        i = i+1
+    while i <= 10:
+        print(i)
+
+
+def lists():
+    items = ["a","b","c","d","e"]
+    print(items)
+    print(items[0])
+    print(items[-1])
+    print(items[-2])
+    top_two = items[0:2]
+    print(top_two)
+
+
+def most_used_list_methods():
+    items = ["a","b","c","d","e"]
+    print(items)
+    items.append("f")
+    print("items.append('f') - ", items)
+    items.insert(0, "g")
+    print("items.insert(0,'g') - ", items)
+    items.remove("f")
+    print("items.remove('f') - ", items)
+    print("len(items) - ", len(items))
+    print("'d' in items - ", "d" in items)
+    items.clear()
+    print("items.clear() - ", items)   
+
+
+def for_loops():
+    items = [1,2,3,4,5]
+    for item in items:
+        print(item)
+    i = 0
+    while i<len(items):
+        print(items[i])
+        i += 1
+
+
 if __name__ == "__main__":
     #keywords()
     #prints()
@@ -128,6 +190,10 @@ if __name__ == "__main__":
     #comparison_operators()
     #logical_operators()
     #conditional_statements()
-
+    #bmi_index()
+    #while_loop()
+    #lists()
+    #most_used_list_methods()
+    #for_loops()
 
 
