@@ -1,0 +1,64 @@
+
+
+
+                SÖZLÜK
++-----------------+-------------------------------------------------------------------------------------------------+
+|   sudo          |      superuser do anlamına gelir                                                                   |
+|   apt           |      advanced package tool anlamına gelir, debian tabanlı dağıtımlardaki package manager'dır    |
++-----------------+-------------------------------------------------------------------------------------------------+
+
+
+
+                                WSL KOMUTLARI
++-------------------------------------+---------------------------------------------------------------------------------+
+|   wsl                               |      wsl'e bağlanmak için girilen komut                                         |
+|   wsl --list --all                  |      wsl üzerinde bağlı olan tüm dağıtımları listelemek için kullanılan komut   |
+|   wsl --unregister <dagitim_adi>    |      belli bir dağıtımı kaldırmak için kullanılan komut                         |
+|   wsl --list --verbose              |      kullanılan dağıtımları gösteren komut                                      |
+|   wsl -d <dagitim_adi>              |      seçilen belli bir dağıtımı başlatır                                        |
++-------------------------------------+---------------------------------------------------------------------------------+
+
+
+
+                                            LINUX KOMUTLARI
++-----------------------------------------------------+-----------------------------------------------------------------------------------+
+|   clear                                             |     komut satırını temizleyen komut                                               |
+|   df -h                                             |     disk alanı kullanımını kontrol etmek için kullanılan komut                    |
+|   sudo apt update                                   |     sistemdeki paketlerin listesini kontrol edip, olası güncellemeleri raporlar   |
+|   sudo apt upgrade                                  |     update ile güncellenen paket listesini direkt günceller                       |
+|   sudo apt install <paket_adi>                      |     adı verilen paketi indirir                                                    |
+|   sudo apt remove <paket_adi>                       |     adı verilen paketi siler                                                      |
+|   sudo apt autoremove                               |     artık gerekli olmayan bağımlılıkları ve paketleri sistemden temizler          |
+|   apt list                                          |     sistemdeki tüm paketleri listeler                                             |
+|   apt list --installed                              |     sistemde indirilmiş olan tüm paketleri listeler                               |
+|   apt list --upgradable                             |     sistemde güncellenebilen tüm paketleri listeler                               |
+|   sudo apt install postgresql postgresql-contrib    |     psql veritabanı sunucusunu ve bazı ek araçları yükler                         |
+|   sudo systemctl status postgresql                  |     psql servisinin başlayıp başlamadığını kontrol eder                           |
+|   sudo systemctl start postgresql                   |     eğer başlatılmamışsa psql servisini başlatır                                  |
+|   sudo -i -u postgres                               |     postgres kullanıcısı olarak oturum açan komut                                 |
+|   psql                                              |     oturum açtıktan sonra psql komut satırına bizi bağlayan komut                 |
++-----------------------------------------------------+-----------------------------------------------------------------------------------+             
+
+
+
+                                PSQL KOMUTLARI
++------------------------------------+-----------------------------------------------------------+
+|   \l                               |         veritabanlarını listeleyen komut                  |
+|   \list                            |         veritabanlarını listeleyen bir başka komut        |
+|   \q                               |         psql komut satırından çıkmamızı sağlayan komut    |
+|   \du                              |         psql kullanıcılarını ve rollerini gösterir        |
+|   createdb veritabani_adi          |         yeni bir psql veritabanı oluşturur                |
+|   dropdb veritabanı_adi            |         belirli bir psql veritabanını siler               |
+|   createuser yeni_kullanici_adi    |         yeni bir psql kullanıcısı oluşturur               |
+|   dropuser yeni_kullanici_adi      |         mevcut bir psql kullanıcısını siler               |
++------------------------------------+-----------------------------------------------------------+
+
+
+
+
+
+
+
+
+
+
