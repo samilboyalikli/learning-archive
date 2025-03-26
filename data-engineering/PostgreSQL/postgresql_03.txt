@@ -1,0 +1,90 @@
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|                                             SQL KOMUTLARI                                                                                                         |
++--------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+|   SELECT version();                              |     postgresql versiyonunu sorgulayan sql komutu                                                               |
+|   CREATE TABLE table_name                        |     bir tablo oluşturur(1)                                                                                     |
+|   SELECT * FROM table_name                       |     "table_name'de ne varsa seç getir" anlamına gelir.                                                         |
+|   INSERT INTO table_name (brand, model, year)    |     table_name'e parantez içindeki parametrelere sahip datalar atıyoruz(2)                                     |
+|   INSERT 0 1                                     |     bu bir output, table'a bir adet datanın girdiği ifade ediliyor.                                            |
+|   INSERT 0 3                                     |     table'a üç adet datanın girdiğini ifade eden output.                                                       |
+|   SELECT brand, year FROM cars                   |     bu komut 'cars' adında bir table'dan 'brand' ve 'year' kolonlarındaki tüm dataları getirir.                |
+|   UPDATE cars                                    |     bu komut cars table'ında bazı oynamaları hazırlar                                                          |
+|   SET color = 'red'                              |     cars table'ı UPDATE'e açıldıktan sonra color kolonuna 'red' stringinin ekleneceği ifade ediliyor(3)        |
+|   WHERE brand = 'Volvo';                         |     brand'ı 'Volvo' olan satırlarda bu işlem yapılacak                                                         |
+|   UPDATE 0                                       |     bu output, yapılan update işleminden 0 satırın etkilendiğini ifade ediyor.                                 |
+|   ALTER TABLE table_name                         |     adı yazılan table'daki bazı nitelikleri değiştirmeye hazırlanır.                                           |
+|   ALTER COLUMN year TYPE VARCHAR(4);             |     burada table, alter'a açıldıktan sonra year column'unun data type'ını değiştirdik.                         |
+|   ALTER TABLE cars                               |     cars table'ını değişikliğe hazırladık                                                                      |
+|   ALTER COLUMN color TYPE VARCHAR(30);           |     normalde color column'unun varchar'ı 255'ti. şimdi bunu 30'a indirdik.                                     |
+|   ALTER TABLE cars                               |     cars table'ını değişkliğe açıyoruz.                                                                        |
+|   ADD COLUMN color VARCHAR(30)                   |     burada ALTER TABLE'dan sonra tabloya "color" adında bir sütun ekledik.			 	  	    |
+|   DROP COLUMN color;                             |     color column'unu siliyoruz.                                                                                |
+|   DELETE FROM table_name                         |     table'da birşeyleri silmeye açıyoruz.                                                                      |
+|   WHERE brand = 'Volvo';                         |     Volvo row'unu sildik.                                                                                      |
+|   DELETE 1                                       |     bu output yukarıdaki işlem neticesinde bir satırın etkilendiğini ifade ediyor.                             |
+|   DELETE FROM cars;                              |     gg fadsfgfsg, tablonun içindeki tüm bilgileri sildik.                                                      |
+|   DELETE 3                                       |     kalan 3 satır da hacamat diyor output.                                                                     |
+|   TRUNCATE TABLE cars;                           |     tüm table'ın içindeki bilgileri silen bir diğer komut.                                                     |
+|   TRUNCATE TABLE                                 |     tüm table'ın içindeki bilgilerin silindiğini ifade eden output.                                            |
+|   DROP TABLE table_name;                         |     bir table tümden silen komut.                                                                              |
+|   DROP TABLE                                     |     bir table'ın tümden silindiğini ifade eden komut.                                                          |
+|   CREATE TABLE categories(                       |     bir table oluşturduk, buradan enteresan bir şey dikkatimi çekti;                                           |
+|   category_id SERIAL NOT NULL PRIMARY KEY)       |     bu komut girecek datalara category_id olarak rakam veriyor, 1'den sonsuza.                                 |
+|   \dt                                            |     bir database'deki tüm table'ları listeler.                                                                 |
+|   \c                                             |     şu anda hangi database'de hangi user olarak bulunduğumuzu bildiren komut.                                  |
+|   SELECT current_database();                     |     şu anda hangi database'de bulunduğumuzu gösteren sql komutu.                                               |
+|   SELECT datname FROM pg_database;               |     sunucuda yer alan tüm database'leri listeler. (\l gibi)                                                    |
++--------------------------------------------------+----------------------------------------------------------------------------------------------------------------+
+
+
+
+
+-> sql ifadelerini her zaman noktalı virgülle bitirmek gerekiyor.
+-> önce ana komut girilip ardından ardıl komut girilebiliyor: örneğin; SELECT, enter, version();, enter.
+-> çünkü, noktalı virgül koymadan komutu tamamlanmış saymıyor.
+(1) tablonun kolonlarını oluşturmak için parantez açıp girebiliyoruz:
+            CREATE TABLE cars (
+                brand VARCHAR(255),
+                model VARCHAR(255),
+                year INT
+            );
+(2) bu komuttan sonra girilecek dataların listesini veriyoruz:
+            VALUES ('Ford', 'Mustang', 1964);
+    veya daha da uzatabiliriz:
+            VALUES 
+                ('Ford', 'Mustang', 1964),
+                ('BMW', 'M1', 1978),
+                ('Toyota', 'Celica', 1975);
+(3) bu komutta değiştireceğimiz kolonların sayısını virgülle artırabiliyoruz:
+            UPDATE cars
+            SET color = 'White', year = 1970
+            WHERE brand = 'Toyota';
+
+
++---------------------+
+|   TABLE CRUD        |
++---------------------+-------------------------------+
+|   CREATE            |   CREATE TABLE table_name     |
+|   READ              |   SELECT * FROM table_name    |
+|   UPDATE            |   "updating according to R&C" |
+|   DELETE            |   DROP TABLE table_name       |
++---------------------+-------------------------------+
+
++--------------+
+|   ROW CRUD   |
++--------------+--------------------------------------------------------------+
+|   CREATE     |   INSERT INTO table_name (column1, column2)                  |
+|   READ       |   SELECT * FROM table_name WHERE id = 1;                     |
+|   UPDATE     |   UPDATE table_name SET column1 = 'new_data' WHERE id = 1;   |
+|   DELETE     |   DELETE FROM table_name WHERE column1 = 'new_data01';       |
++--------------+--------------------------------------------------------------+
+
++---------------------+
+|   COLUMN CRUD       |
++---------------------+-------------------------------------------------------------------+
+|   CREATE            |    ALTER TABLE table_name ADD COLUMN new_column data_type;        |
+|   READ              |    SELECT column1 FROM table_name;                                |
+|   UPDATE            |    ALTER TABLE table_name RENAME COLUMN new_column TO column3;    |
+|   DELETE            |    ALTER TABLE table_name DROP COLUMN column3;                    |
++---------------------+-------------------------------------------------------------------+
