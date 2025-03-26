@@ -1,0 +1,62 @@
+
+
+
+ctr+l                                                            komut istemini temizler
+SELECT column_name FROM table_name                               column_name adındaki sütunu döndürür
+SELECT DISTINCT column_name FROM table_name                      column_name sütunundaki farklı dataları döndürür
+SELECT COUNT (DISTINCT column_name) FROM table_name              column_name sütunundaki farklı dataların sayısını döndürür
+SELECT * FROM products ORDER BY price;                           products tablosundaki price sütununu en azdan en çoğa listeler
+SELECT * FROM products ORDER BY price DESC;                      products tablosundaki price sütununu en çoktan en aza listeler
+SELECT * FROM customers ORDER BY contact_name;                   customers tablosundaki contact_name sütununu alfabetik listeler
+SELECT * FROM customers ORDER BY contact_name DESC;              customers tablosundaki contact_name sütununu tersten alfabetik listeler
+SELECT * FROM products LIMIT 20;                                 products tablosundaki dataların ilk 20 satırını listeler
+SELECT * FROM products ORDER BY price OFFSET 50;                 products tablosundaki price sütununu azdan çoğa sıralayıp 51. satırdan itibaren listeler
+SELECT MIN(price) FROM products;                                 products tablosundaki price sütunundaki en küçük elemanı getirir.
+SELECT MAX(price) FROM products;                                 products tablosundaki price sütunundaki en büyük elemanı getirir.
+SELECT MIN(price) AS lowest FROM products;                       products tablosundaki price sütununun en küçük elemanını "lowest" adıyla getirir.
+SELECT COUNT(customer_id) FROM customers;                        customers tablosundaki customer_id'lerin sayısını getirir.
+SELECT SUM(quantity) FROM order_details;                         order_details tablosundaki quantity sütununun toplam değerini döndürür.*
+SELECT AVG(price) FROM products;                                 products tablosundaki price sütununun ortalamasını döndürür.
+SELECT AVG(price)::NUMERIC(10,2) FROM products;                  products tablosundaki price sütununun ortalamasını decimal olarak döndürür.
+SELECT * FROM customers WHERE customer_name LIKE 'A%';           customers tablosundaki customer_name sütununda A ile başlayan satırları döndürür.
+SELECT * FROM customers WHERE customer_name LIKE '%A%';          customers tablosundaki customer_name sütununda içinde A olan satırları döndürür.
+SELECT * FROM customers WHERE customer_name ILIKE '%A%';         customers tablosundaki customer_name sütununda içinde A/a olan tüm satırları döndürür.
+SELECT * FROM customers WHERE customer_name LIKE '%en';          customers tablosundaki customer_name sütununda sonu "en" ile biten tüm satırları döndürür.
+SELECT * FROM customers WHERE city LIKE 'L_nd__';                customers tablosundaki city sütununda gösterilen değerdeki rowları döndürür.(*)
+SELECT * FROM customers                                          customers tablosundaki tüm sütunlardan,
+WHERE country IN ('Germany', 'France', 'UK');                    country sütunu 'Germany', 'France' ve 'UK' olan rowları döndürüyor.
+SELECT * FROM customers                                          customers tablosundaki tüm sütunlardan,
+WHERE country NOT IN ('Germany', 'France', 'UK');                country sütunu 'Germany', 'France' ve 'UK' olmayan rowları döndürüyor.
+SELECT * FROM customers                                          customers tablosundaki tüm sütunlardan,
+WHERE customer_id IN (SELECT customer_id FROM orders);           customer_id'si orders tablosunda olan tüm satırları döndürür.
+SELECT * FROM customers                                          customers tablosundaki tüm sütunlardan,
+WHERE customer_id NOT IN (SELECT customer_id FROM orders);       customer_id'si orders tablosunda olmayan satırları döndürür.
+SELECT * FROM products                                           products tablosundaki tüm sütunlardan
+WHERE price BETWEEN 10 AND 15;                                   price değeri 10 ile 15 arasındaki satırları döndürür.
+SELECT * FROM products                                           products tablosundaki tüm sütunlardan
+WHERE product_name BETWEEN 'Pavlova' AND 'Tofu';                 product_name'i Pavlova ve Tofu olan satırların arasındaki satırları getirir(*)
+SELECT * FROM products                                           products tablosundaki tüm sütunlardan
+WHERE product_name BETWEEN 'Pavlova' AND 'Tofu';                 product_name'i Pavlova ve Tofu olan satırların arasındaki satırları getirir(*)        
+ORDER BY product_name;                                           döndürülecek listeyi alfabetik sırayla listeler
+SELECT * FROM orders                                             orders tablosundaki tüm sütunların
+WHERE order_date BETWEEN '2023-04-12' AND '2023-05-05';          order_date değeri '2023-04-12' ile '2023-05-05' tarihi arasında olan satırları döndürür.
+SELECT customer_id AS id FROM customers;                         customers tablosundaki customer_id sütununu 'id' adıyla listeler.
+SELECT customer_id id FROM cusotmers;                            aynı, customers tablosundaki customer_id sütununu 'id' adıyla listeler.(*)
+SELECT product_name || unit AS product                           product adı altında product_name ile unit sütunlarını birleştirir
+FROM products;                                                   produts sütunundan
+SELECT product_name || ' ' || unit AS product                    üstteki işlemi yaparken araya boşluk bırakmak istiyorsak...
+FROM products;                                                   aynı mantıkla '||' birleştirme operatörü kullanabiliriz.
+SELECT product_name AS "My Great Products"                       product_name sütununu "My Great Products" namıyla listeliyoruz
+FROM products;                                                   products tablosundaki.(*)
+
+
+
+
+
+
+
+(*) SUM, ingilizcede "toplam değer" gibi bir anlama geliyor.
+(*) "_" bir adet karakter anlamına gelmektedir.
+(*) alfabetik olarak getirir ama alfabetik olarak listelemez.
+(*) AS operatörü genelde iki alan birleştirildiğinde kullanılır.
+(*) eğer kullanacağımız isim birden fazla boşluk barındırıyorsa tırnak işareti kullanmalıyız: ""
