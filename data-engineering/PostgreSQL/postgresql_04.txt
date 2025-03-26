@@ -1,0 +1,39 @@
+
+
+
++-----------------------------------------------------------------------------------------------+
+|       OPERATORS IN THE "WHERE" CLAUSE                                                         |
++--------------+--------------------------------------------------------------------------------+
+|   =          |    eşittir.                                                                    |
+|   <          |    küçüktür.                                                                   |
+|   >          |    büyüktür.                                                                   |
+|   <=         |    küçük eşit.                                                                 |
+|   >=         |    büyük eşit.                                                                 |
+|   <>         |    eşit değildir.                                                              |
+|   !=         |    eşit değildir.                                                              |
+|   LIKE       |    (büyük küçük harflere duyarlı)                                              |
+|   ILIKE      |    (büyük küçük harflere duyarsız)                                             |
+|   AND        |    ve operatörü                                                                |
+|   OR         |    veya operatörü                                                              |
+|   IN         |    bir değerin belli bir değer aralığında olup olmadığını kontrol eder.        |
+|   BETWEEN    |    aynı şekilde bir değerin belli değer aralığında olup olmadığına bakar.      |
+|   IS NULL    |    değerin NULL olup olmadığını kontrol eder.                                  |
+|   NOT        |    negatif sonuç verir. (NOT LIKE, NOT BETWEEN, NOT IN)                        |
++--------------+--------------------------------------------------------------------------------+
+|   =          |    WHERE a = b;                                                                |
+|   <          |    WHERE a < b                                                                 |
+|   >          |    WHERE a > b                                                                 |
+|   <=         |    WHERE a <= b                                                                |
+|   >=         |    WHERE a >= b                                                                |
+|   <>         |    WHERE a <> b                                                                |
+|   !=         |    WHERE a != b                                                                |
+|   LIKE       |    WHERE LIKE '%a%'      |       WHERE LIKE '%a'                               |
+|   ILIKE      |    WHERE ILIKE '%a%'     |       WHERE ILIKE '%a'                              |
+|   AND        |    WHERE a AND b;                                                              |
+|   OR         |    WHERE a OR b;                                                               |
+|   IN         |    WHERE brand IN ('Volvo', 'Mercedes', 'Ford')                                |
+|   BETWEEN    |    WHERE BETWEEN a AND b;                                                      |
+|   IS NULL    |    WHERE model IS NULL;                                                        |
+|   NOT        |    NOT LIKE              |       NOT BETWEEN         |        NOT IN           |
++--------------+--------------------------------------------------------------------------------+
+
