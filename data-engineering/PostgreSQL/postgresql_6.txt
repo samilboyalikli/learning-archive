@@ -1,0 +1,20 @@
+SELECT CITY FROM STATION WHERE CITY REGEXP 'n$';
+n ile biten şehirleri seçer
+
+SELECT CITY FROM STATION WHERE CITY REGEXP '^n$';
+n ile bitmeyen şehirleri seçer
+
+SELECT CITY FROM STATION WHERE CITY REGEXP '^n';
+n ile başlayan şehirleri seçer
+(SELECT CITY FROM STATION WHERE CITY REGEXP '^[Nn]')
+
+SELECT CITY FROM STATION WHERE CITY REGEXP '^[^N]';
+n ile başlamayan şehirleri seçer
+(SELECT CITY FROM STATION WHERE CITY REGEXP '^[^Nn];)
+
+SELECT CITY FROM STATION WHERE CITY REGEXP '^[aeiouAEIOU]';
+ilk karakteri ünlü harf ile başlayan şehirleri seçer
+
+-> "^" işareti köşeli parantezin içine girdiği zaman aramayı köşeli parantezin içindekilerin zıttında yapıyor.
+
+
