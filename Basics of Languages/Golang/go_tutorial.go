@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"math"
 	"strconv"
+	"strings"
 )
 
 func prints() {
@@ -32,10 +33,27 @@ func received_input() {
 func dataTypeConversion() {
 	var year string
 	fmt.Print("What year were you born?")
+	fmt.Scanln(&year)
+	birthyear, err := strconv.Atoi(year)
+	if err != nil {
+		fmt.Println("Invalid input. Please enter a valid year.")
+		return
+	}
 	var age int
-	age = 2025 - 
-	//<<<<<<<<<<<<---------------------------------------------------------------------------------------------------------
-	
+	age = 2025 - birthyear
+	fmt.Printf("Your age in 2025 will be: %d\n", age)
+}
+
+func stringOperations() {
+	var word string
+	word = "Golang is so easy."
+	fmt.Println(strings.ToUpper(word))
+	fmt.Println(strings.ToLower(word))
+	fmt.Println(strings.Index(word,"G"))
+	fmt.Println(strings.Index(word,"Golang"))
+	fmt.Println(strings.Replace(word, "Golang", "Python", -1))
+	fmt.Println(strings.Contains(word, "Golang"))
+	fmt.Println(strings.Contains(word, "Python"))
 }
 
 func arithmetic_operators() {
@@ -52,11 +70,25 @@ func arithmetic_operators() {
 	fmt.Println(number)	
 }
 
+func comparisonOperators() {
+	fmt.Println("x=10>3")
+	x:=10>3
+	fmt.Println(x)
+	fmt.Println(10>3)
+	fmt.Println(10<3)
+	fmt.Println(10>=3)
+	fmt.Println(10<=3)
+	fmt.Println(10==10)
+	fmt.Println(10!=10)
+}
+
 func main() {
 	//prints()
 	//variables()
 	//received_input()
-	dataTypeConversion()
+	//dataTypeConversion()
+	//stringOperations()
 	//arithmetic_operators()
+	comparisonOperators()
 }
 
