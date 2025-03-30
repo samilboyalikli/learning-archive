@@ -103,6 +103,36 @@ func conditionalStatement() {
 	}
 }
 
+func keywords() {
+	var keywords string
+	keywords = `break
+case
+chan
+const
+continue
+default
+defer
+else
+fallthrough
+for
+func
+go
+goto
+if
+import
+interface
+map
+package
+range
+return
+select
+struct
+switch
+type
+var`
+	fmt.Println(keywords)
+}
+
 func main() {
 	//prints()
 	//variables()
@@ -112,6 +142,7 @@ func main() {
 	//arithmetic_operators()
 	//comparisonOperators()
 	//logicalOperators()
-	conditionalStatement()
+	//conditionalStatement()
+	keywords()
 }
 
