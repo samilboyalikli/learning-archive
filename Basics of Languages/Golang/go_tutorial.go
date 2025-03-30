@@ -82,6 +82,27 @@ func comparisonOperators() {
 	fmt.Println(10!=10)
 }
 
+func logicalOperators() {
+	value := 10
+	fmt.Println(value > 50 && value < 100)
+	fmt.Println(value > 50 || value < 100)
+	fmt.Println(!(value < 50))
+}
+
+func conditionalStatement() {
+	var grade int
+	fmt.Print("What is your grade? ")
+	fmt.Scan(&grade)
+
+	if grade >= 50 {
+		fmt.Println("Congratulation. You succeeded.")
+	} else if grade <= 50 {
+		fmt.Println("Unfortunately. You must try again.")
+	} else {
+		fmt.Println("There is no grade like you wrote.")
+	}
+}
+
 func main() {
 	//prints()
 	//variables()
@@ -89,6 +110,8 @@ func main() {
 	//dataTypeConversion()
 	//stringOperations()
 	//arithmetic_operators()
-	comparisonOperators()
+	//comparisonOperators()
+	//logicalOperators()
+	conditionalStatement()
 }
 
