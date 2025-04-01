@@ -146,7 +146,17 @@ func bmi_index() {
 	
 	if rounded_bmi < 18.5 {
 		fmt.Println("Underweight")
-	} else if 18.5 <= 
+	} else if 18.5 <= rounded_bmi < 25.0 {
+		fmt.Println("Normal Weight")
+	} else if 25.0 <= rounded_bmi < 30.0 {
+		fmt.Println("Overweight")
+	} else if 30.0 <= rounded_bmi < 40.0 {
+		fmt.Println("Obese")
+	} else if 40.0 <= rounded_bmi {
+		fmt.Println("Morbidly Obese")
+	} else {
+		fmt.Println("There is a problem.")
+	}
 }
 
 func main() {
