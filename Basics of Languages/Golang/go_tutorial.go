@@ -133,6 +133,22 @@ var`
 	fmt.Println(keywords)
 }
 
+func bmi_index() {
+	var weight float64
+	fmt.Print("Weight: ")
+	fmt.Scan(&weight)
+	var height float64
+	fmt.Print("Height: ")
+	fmt.Scan(&height)
+	var bmi float64
+	bmi = weight/float64(math.Pow(float64(height),2))
+	rounded_bmi := math.Round(bmi*100)/100
+	
+	if rounded_bmi < 18.5 {
+		fmt.Println("Underweight")
+	} else if 18.5 <= 
+}
+
 func main() {
 	//prints()
 	//variables()
@@ -143,6 +159,7 @@ func main() {
 	//comparisonOperators()
 	//logicalOperators()
 	//conditionalStatement()
-	keywords()
+	//keywords()
+	bmi_index()
 }
 
