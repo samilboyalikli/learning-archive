@@ -175,6 +175,17 @@ func for_loop_with_integers() {
 	}
 }
 
+func lists() {
+	items := []string{"a","b","c","d","e"}
+	fmt.Println(items)
+	fmt.Println(items[0])
+	fmt.Println(items[len(items)-1])
+	fmt.Println(items[len(items)-2])
+
+	topTwo := items[0:2]
+	fmt.Println(topTwo)
+}
+
 func main() {
 	//prints()
 	//variables()
@@ -189,6 +200,6 @@ func main() {
 	//bmi_index()
 	//for_loop_with_string()
 	//for_loop_with_integers()
-
+	lists()
 }
 
