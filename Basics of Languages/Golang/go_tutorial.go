@@ -159,6 +159,22 @@ func bmi_index() {
 	}
 }
 
+func for_loop_with_string() {
+	i := 1
+	for i <= 10 {
+		fmt.Println(strings.Repeat("*", i))
+		i++
+	}
+}
+
+func for_loop_with_integers() {
+	i := 1
+	for i <= 10 {
+		fmt.Println(i)
+		i++
+	}
+}
+
 func main() {
 	//prints()
 	//variables()
@@ -170,6 +186,9 @@ func main() {
 	//logicalOperators()
 	//conditionalStatement()
 	//keywords()
-	bmi_index()
+	//bmi_index()
+	//for_loop_with_string()
+	//for_loop_with_integers()
+
 }
 
