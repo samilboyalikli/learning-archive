@@ -186,6 +186,19 @@ func lists() {
 	fmt.Println(topTwo)
 }
 
+func mostUsedListMethods() {
+	items := []string{"a","b","c","d","e"}
+	fmt.Println(items)
+
+	items = append(items, "f")
+	fmt.Println("append(items,'f') - ", items)
+
+	items = append([]string{"g"}, items...)
+	fmt.Println("append([]string{'g'}, items...) - ", items)
+
+
+}
+
 func main() {
 	//prints()
 	//variables()
@@ -200,6 +213,6 @@ func main() {
 	//bmi_index()
 	//for_loop_with_string()
 	//for_loop_with_integers()
-	lists()
+	//lists()
 }
 
