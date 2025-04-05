@@ -196,7 +196,27 @@ func mostUsedListMethods() {
 	items = append([]string{"g"}, items...)
 	fmt.Println("append([]string{'g'}, items...) - ", items)
 
+	for i, v := range items {
+		if v == "f" {
+			items = append(items[:i])
+			break
+		}
+	}
+	fmt.Println("for i, v:= range items{\n\t\tif v == 'f' {\n\t\t\titems = append(items[:i])\n\t\t\tbreak\n\t\t\t}\n} - ", items)
 
+	fmt.Println("len(items) - ", len(items))
+	
+	found := false
+	for _, v := range items {
+		if v == "d" {
+			found = true
+			break
+		}
+	}
+	fmt.Println("\nfound := false\nfor _, v := range items {\n\tif v == 'd' {\n\t\tfound = true\n\t\tbreak\n\t}\n", found)
+
+	items = []string{}
+	fmt.Println("items = []string{} - " ,items)
 }
 
 func main() {
@@ -214,5 +234,6 @@ func main() {
 	//for_loop_with_string()
 	//for_loop_with_integers()
 	//lists()
+	//mostUsedListMethods()
 }
 
