@@ -20,13 +20,21 @@ func basicCalculator() string {
     fmt.Scanln(&process)
     switch process {
     case "+":
-        var result float64
-        result := firstTarget + secondTarget
+        var result int
+        result = firstTarget + secondTarget
         return fmt.Sprintf("Sonuç: %d", result)
     case "-":
-        var result float64
+        var result int
         result = firstTarget - secondTarget
         return fmt.Sprintf("Sonuç: %d", result)
+    case "*":
+        var result float64
+        result = float64(firstTarget) * float64(secondTarget)
+        return fmt.Sprintf("Sonuç: %f", result)
+    case "/":
+        var result float64
+        result = float64(firstTarget) / float64(secondTarget)
+        return fmt.Sprintf("Sonuç: %f", result)
     default:
         return "Geçersiz işlem!"
     }
