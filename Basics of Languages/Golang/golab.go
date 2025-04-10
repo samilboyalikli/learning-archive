@@ -15,11 +15,24 @@ func basicCalculator() string {
     var secondTarget int
     fmt.Print("Second Target: ")
     fmt.Scanln(&secondTarget)
-    return fmt.Sprintf("%d + %d", firstTarget, secondTarget)
+    var process string
+    fmt.Print("Process: ")
+    fmt.Scanln(&process)
+    switch process {
+    case "+":
+        result := firstTarget + secondTarget
+        return fmt.Sprintf("Sonuç: %d", result)
+    case "-":
+        result := firstTarget - secondTarget
+        return fmt.Sprintf("Sonuç: %d", result)
+    default:
+        return "Geçersiz işlem!"
+    }
 }
 
 func main() {
     // --> Level 1
     // helloWorld()
-    fmt.Println(basicCalculator())
+    result := basicCalculator()
+    fmt.Println(result)
 }
