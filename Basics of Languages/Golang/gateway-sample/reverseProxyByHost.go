@@ -29,9 +29,10 @@ func reverseProxy(route string) *httputil.ReverseProxy {
 
 func main() {
 	handler := func(w http.ResponseWriter, r *http.Request) {
-		log.Printf("İstek yönlendiriliyor: %s %s", r.Method, r.URL.Path)
+		// log.Printf("İstek yönlendiriliyor: %s %s", r.Method, r.URL.Path)
 		for hostOfClient, hostOfServer := range routes {
 			if strings.HasPrefix(r.Host, hostOfClient) {
+				log.Printf("İstek yönlendiriliyor: %s %s", r.Method, hostOfServer)
 				log.Printf("This req for %v.", hostOfClient)
 				reverseProxy(hostOfServer).ServeHTTP(w, r) 
 			}
