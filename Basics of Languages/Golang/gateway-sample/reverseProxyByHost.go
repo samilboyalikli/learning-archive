@@ -16,7 +16,7 @@ var routes = map[string]string {
 func parseURL(route string) *url.URL {
     parsedURL, err := url.Parse(route)
     if err != nil {
-        log.Fatalf("URL çözümlenemedi: %v", err)
+        log.Fatalf("Invalid URL provided: %v", err)
     }
     return parsedURL
 }
@@ -24,26 +24,34 @@ func parseURL(route string) *url.URL {
 func reverseProxy(route string) *httputil.ReverseProxy {
 	url := parseURL(route)
 	proxy := httputil.NewSingleHostReverseProxy(url)
+	proxy.Director = func(req *http.Request) {
+		req.URL.Scheme = url.Scheme
+		req.Host = url.Host
+		req.URL.Host = url.Host
+		req.URL.Path = url.Path
+	}
 	return proxy
 }
 
 func main() {
 	handler := func(w http.ResponseWriter, r *http.Request) {
-		// log.Printf("İstek yönlendiriliyor: %s %s", r.Method, r.URL.Path)
 		for hostOfClient, hostOfServer := range routes {
 			if strings.HasPrefix(r.Host, hostOfClient) {
-				log.Printf("İstek yönlendiriliyor: %s %s", r.Method, hostOfServer)
-				log.Printf("This req for %v.", hostOfClient)
-				reverseProxy(hostOfServer).ServeHTTP(w, r) 
-			}
+				var address string
+				address = hostOfServer+r.URL.Path
+				log.Printf("[INFO] Redirecting request...")
+				log.Printf("[INFO] Method: '%s'", r.Method)
+				log.Printf("[INFO] Adress: '%s'", address)
+				reverseProxy(address).ServeHTTP(w, r)
+			}	
 		}
 	}
 
 	http.HandleFunc("/", handler)
-	log.Println("API Gateway çalışıyor: http://localhost:8080")
+	log.Println("[INFO] API Gateway is running (Port: 8080).")
 	
 	err := http.ListenAndServe(":8080", nil)
 	if err != nil {
-		log.Fatalf("Sunucu başlatılamadı: %v", err)
+		log.Fatalf("Server failed to start (Port: 8080). Error:  %v", err)
 	}
 }
