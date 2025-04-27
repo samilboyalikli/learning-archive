@@ -6,12 +6,19 @@ import (
 	"net/http/httputil"
 	"net/url"
 	"strings"
+	"time"
+	"sync"
 )
 
 var routes = map[string]string {
 	"/service1": "http://localhost:8081",
 	"/service2": "http://localhost:8082",
 }
+
+var (
+    ipStore = make(map[string][]time.Time)
+    mu      sync.Mutex
+)
 
 func parseURL(route string) *url.URL {
     parsedURL, err := url.Parse(route)
@@ -33,13 +40,59 @@ func reverseProxy(route string) *httputil.ReverseProxy {
 	return proxy
 }
 
+func checkStore(ip string) {
+	mu.Lock()
+	defer mu.Unlock()
+
+	now := time.Now()
+	requests := ipStore[ip]
+
+	count := 0
+	for _, timeOfRequest := range requests {
+		if now.Sub(timeOfRequest) <= time.Minute {
+			count++
+		}
+	}
+
+	if count == 2 {
+		log.Printf("[INFO] IP %s sent two requests in the same second.", ip)
+	} else if count == 3 {
+		log.Printf("[WARNING] IP %s sent three requests in the same second.", ip)
+	} else if count > 3 {
+		log.Printf("[WARNING] IP %s sent more than three requests in the same second.", ip)
+	}
+}
+
+func addIP(ip string) {
+	mu.Lock()
+	defer mu.Unlock()
+	ipStore[ip] = append(ipStore[ip], time.Now())
+}
+
+func resetStore() {
+	mu.Lock()
+	defer mu.Unlock()
+	ipStore = make(map[string][]time.Time)
+}
+
+func periodicReset(interval time.Duration) {
+	for {
+		time.Sleep(interval)
+		resetStore()
+		log.Println("[INFO] IP Store reset")
+	}
+}
+
 func main() {
+	go periodicReset(15 * time.Minute)
 	handler := func(w http.ResponseWriter, r *http.Request) {
 		for servicePath, domain := range routes {
 			if strings.HasPrefix(r.URL.Path, servicePath) {
 				var address string
 				address = domain+r.URL.Path
 				clientIP := r.RemoteAddr
+				checkStore(clientIP)
+				addIP(clientIP)
 				log.Printf("[INFO] IP: '%s'", clientIP)
 				log.Printf("[INFO] Redirecting request...")
 				log.Printf("[INFO] Method: '%s'", r.Method)
