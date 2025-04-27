@@ -6,12 +6,24 @@ import (
 	"net/http/httputil"
 	"net/url"
 	"strings"
+	"time"
+	"sync"
 )
 
 var routes = map[string]string {
 	"subdomain1": "http://localhost:8081",
 	"subdomain2": "http://localhost:8082",
 }
+
+type IPData struct {
+	IP        		string
+	Timestamp 		time.Time
+}
+
+var (
+    ipStore = make(map[string][]time.Time)
+    mu      sync.Mutex
+)
 
 func parseURL(route string) *url.URL {
     parsedURL, err := url.Parse(route)
@@ -33,17 +45,59 @@ func reverseProxy(route string) *httputil.ReverseProxy {
 	return proxy
 }
 
+func checkStore(ip string) {
+	mu.Lock()
+	defer mu.Unlock()
+
+	now := time.Now()
+	requests := ipStore[ip]
+
+	count := 0
+	for _, timeOfRequest := range requests {
+		if now.Sub(timeOfRequest) <= time.Minute {
+			count++
+		}
+	}
+
+	if count == 2 {
+		log.Printf("[INFO] IP %s sent two requests in the same second.", ip)
+	} else if count == 3 {
+		log.Printf("[WARNING] IP %s sent three requests in the same second.", ip)
+	} else if count > 3 {
+		log.Printf("[WARNING] IP %s sent more than three requests in the same second.", ip)
+	}
+}
+
+func addIP(ip string) {
+	mu.Lock()
+	defer mu.Unlock()
+	ipStore[ip] = append(ipStore[ip], time.Now())
+}
+
+func resetStore() {
+	mu.Lock()
+	defer mu.Unlock()
+	ipStore = make(map[string][]time.Time)
+}
+
+func periodicReset(interval time.Duration) {
+	for {
+		time.Sleep(interval)
+		resetStore()
+		log.Println("[INFO] IP Store reset")
+	}
+}
+
 func main() {
+	go periodicReset(15 * time.Minute)
 	handler := func(w http.ResponseWriter, r *http.Request) {
 		for hostOfClient, hostOfServer := range routes {
 			if strings.HasPrefix(r.Host, hostOfClient) {
 				var address string
 				address = hostOfServer+r.URL.Path
 				clientIP := r.RemoteAddr
-				// TODO - Should be saved IP with timestamp.
-				// TODO - If same IP send message with same timestamp, rate limiter will write an info log.
-				// TODO - If same IP send mesage with same timestamp, rate limiter will write a warn log.
-				// TODO - The structure which IP's saved there, will reset all 15 min.
+				checkStore(clientIP)
+				addIP(clientIP)
 				log.Printf("[INFO] IP: '%s'", clientIP)
 				log.Printf("[INFO] Redirecting request...")
 				log.Printf("[INFO] Method: '%s'", r.Method)
