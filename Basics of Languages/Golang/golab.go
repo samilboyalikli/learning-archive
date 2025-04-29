@@ -2,6 +2,7 @@ package main
 
 import (
     "fmt"
+    "os"
 )
 
 func helloWorld() {
@@ -60,9 +61,24 @@ func percentageCalculation() string {
     return fmt.Sprintf("%d is %.2f%% of %d.\n", int(firstTarget), result, int(secondTarget))
 }
 
+func check(e error) {
+    if e != nil {
+        panic(e)
+    }
+}
+
+func fileReadingWriting() string {
+    data, err := os.ReadFile("sql_problems.txt")
+    check(err)
+    return fmt.Sprintf(string(data))
+}
+
 func main() {
     // --> Level 1
     // helloWorld()
     // basicCalculator()
     // percentageCalculation()
+
+    // --> Level 2
+    fmt.Print(fileReadingWriting())
 }
