@@ -44,9 +44,25 @@ func basicCalculator() string {
     }
 }
 
+func percentageCalculation() string {
+    var (
+        firstTarget     int
+        secondTarget    int
+    )   
+
+    fmt.Print("First Number: ")
+    fmt.Scanln(&firstTarget)
+    fmt.Print("Second Number: ")
+    fmt.Scanln(&secondTarget)
+
+    var result float64
+    result = (float64(firstTarget)/float64(secondTarget)) * 100
+    return fmt.Sprintf("%d is %.2f%% of %d.\n", int(firstTarget), result, int(secondTarget))
+}
+
 func main() {
     // --> Level 1
     // helloWorld()
-    result := basicCalculator()
-    fmt.Println(result)
-} 
+    // basicCalculator()
+    // percentageCalculation()
+}
