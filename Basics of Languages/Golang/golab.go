@@ -9,34 +9,38 @@ func helloWorld() {
 }
 
 func basicCalculator() string {
-    var firstTarget int
+    var (
+        firstTarget     int
+        secondTarget    int
+        process         string
+    )   
+
     fmt.Print("First Target: ")
     fmt.Scanln(&firstTarget)
-    var secondTarget int
     fmt.Print("Second Target: ")
     fmt.Scanln(&secondTarget)
-    var process string
     fmt.Print("Process: ")
     fmt.Scanln(&process)
+
     switch process {
     case "+":
         var result int
         result = firstTarget + secondTarget
-        return fmt.Sprintf("Sonuç: %d", result)
+        return fmt.Sprintf("Result: %d", result)
     case "-":
         var result int
         result = firstTarget - secondTarget
-        return fmt.Sprintf("Sonuç: %d", result)
+        return fmt.Sprintf("Result: %d", result)
     case "*":
         var result float64
         result = float64(firstTarget) * float64(secondTarget)
-        return fmt.Sprintf("Sonuç: %f", result)
+        return fmt.Sprintf("Result: %f", result)
     case "/":
         var result float64
         result = float64(firstTarget) / float64(secondTarget)
-        return fmt.Sprintf("Sonuç: %f", result)
+        return fmt.Sprintf("Result: %f", result)
     default:
-        return "Geçersiz işlem!"
+        return "invalid act :/"
     }
 }
 
@@ -45,4 +49,4 @@ func main() {
     // helloWorld()
     result := basicCalculator()
     fmt.Println(result)
-}
+} 
