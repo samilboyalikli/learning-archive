@@ -43,6 +43,10 @@ def hexadecimal_main(number):
         check_quotient = hexadecimal_non_zero_quotient(number)
 
 
+def convert_to_hex_char(value):
+    hex_chars = "0123456789ABCDEF"
+    return hex_chars[value]
+
 # BINARY PROCESSES
 
 def binary_divide(x):
@@ -65,15 +69,15 @@ def binary_main(number):
 
 # CONVERTING
 
-def binary_calculator(n):
+def print_formatted(n):
     for i in range(1,n+1):
         global binary_mods
         global octal_mods
         global hexadecimal_mods
-        # todo - 10/A | 11/B | 12/C | 13/D | 14/E | 15/F
         binary_main(i)  
         octal_main(i)  
         hexadecimal_main(i)
+        hexadecimal_mods = [convert_to_hex_char(i) for i in hexadecimal_mods]
         binary_result = ''.join(map(str,binary_mods[::-1]))
         octal_result = ''.join(map(str,octal_mods[::-1])) 
         hexadecimal_result = ''.join(map(str,hexadecimal_mods[::-1]))
@@ -83,7 +87,5 @@ def binary_calculator(n):
         hexadecimal_mods = []
 
 if __name__ == '__main__':
-    #n = int(input())
-    #print_formatted(n)
-    binary_calculator(10)   
-
+    n = int(input())
+    print_formatted(n)
