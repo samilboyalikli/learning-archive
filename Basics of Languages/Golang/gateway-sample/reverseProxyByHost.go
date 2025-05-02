@@ -10,14 +10,16 @@ import (
 	"sync"
 )
 
+const (
+	infoLogParameter int = 50
+	warnLogParameter int = 75
+	tooManyReqParameter int = 100
+	resetStoreParameter int = 10
+)
+
 var routes = map[string]string {
 	"subdomain1": "http://localhost:8081",
 	"subdomain2": "http://localhost:8082",
-}
-
-type IPData struct {
-	IP        		string
-	Timestamp 		time.Time
 }
 
 var (
@@ -59,11 +61,11 @@ func checkStore(ip string) {
 		}
 	}
 
-	if count == 2 {
+	if count == infoLogParameter {
 		log.Printf("[INFO] IP %s sent two requests in the same second.", ip)
-	} else if count == 3 {
+	} else if count == warnLogParameter {
 		log.Printf("[WARNING] IP %s sent three requests in the same second.", ip)
-	} else if count > 3 {
+	} else if count > tooManyReqParameter {
 		log.Printf("[WARNING] IP %s sent more than three requests in the same second.", ip)
 	}
 }
@@ -89,7 +91,7 @@ func periodicReset(interval time.Duration) {
 }
 
 func main() {
-	go periodicReset(15 * time.Minute)
+	go periodicReset(time.Duration(resetStoreParameter) * time.Minute)
 	handler := func(w http.ResponseWriter, r *http.Request) {
 		for hostOfClient, hostOfServer := range routes {
 			if strings.HasPrefix(r.Host, hostOfClient) {
