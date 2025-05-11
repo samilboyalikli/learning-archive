@@ -20,7 +20,22 @@ def others_python_if_else():
         print("Not Weird")
 
 
+def sb_arithmetic_operations():
+    a = int(input())
+    b = int(input())
+    print(f"{a+b}\n{a-b}\n{a*b}")
+
+
+def others_arithmetic_operations():
+    a = int(input())
+    b = int(input())
+    results = [a+b,a-b,a*b]
+    print(*results,sep='\n')
+
+
 if __name__ == '__main__':
     #sb_python_if_else() 
-    others_python_if_else()  
+    #others_python_if_else()  
+    #sb_arithmetic_operations()
+    others_arithmetic_operations()
 
