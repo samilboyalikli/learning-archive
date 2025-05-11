@@ -1,4 +1,16 @@
 
+def others_print_function():
+    n = int(input())
+    for i in range(1,n+1):
+        print(i,end='')
+
+
+def sb_print_function():
+    n = int(input())
+    results = [i for i in range(1,n+1)]
+    print(*results,sep='')
+
+
 def others_loops():
     n = int(input())
     results = [i*i for i in range(n)]
@@ -58,7 +70,9 @@ if __name__ == '__main__':
     #others_arithmetic_operations()
     #sb_python_division()
     #sb_loops()
-    others_loops()
+    #others_loops()
+    #sb_print_function()
+    others_print_function()
 
 
 
