@@ -72,7 +72,5 @@ if __name__ == '__main__':
     #sb_loops()
     #others_loops()
     #sb_print_function()
-    others_print_function()
-
-
+    #others_print_function()
 
