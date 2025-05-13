@@ -1,4 +1,40 @@
 
+def others_list_comprehensions():
+    x = int(input())
+    y = int(input())
+    z = int(input())
+    n = int(input())
+    print(
+        [
+            [i,j,k]
+            for i in range(x+1)
+            for j in range(y+1)
+            for k in range(z+1)
+            if i+j+k != n
+        ]
+    )
+
+
+def sb_list_comprehensions():
+    x = int(input())
+    y = int(input())
+    z = int(input())
+    n = int(input())
+
+    i = [item for item in range(0,x+1)]
+    j = [item for item in range(0,y+1)]
+    k = [item for item in range(0,z+1)]
+
+    all_combinations = [[a,b,c] for a in i for b in j for c in k]
+    result = []
+
+    for combination in all_combinations:
+        if sum(combination) != n:
+            result.append(combination)
+    
+    print(result)
+
+
 def others_print_function():
     n = int(input())
     for i in range(1,n+1):
@@ -73,4 +109,6 @@ if __name__ == '__main__':
     #others_loops()
     #sb_print_function()
     #others_print_function()
+    #sb_list_comprehensions()
+    others_list_comprehensions()
 
