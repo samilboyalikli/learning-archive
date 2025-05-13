@@ -1,27 +1,55 @@
 
+def others_finding_the_percentage():
+    n = int(input())
+    student_marks = {}
+    for _ in range(n):
+        name, *line = input().split()
+        scores = list(map(float,line))
+        student_marks[name] = scores
+    query_name = input()
+    
+    result = sum(student_marks[query_name])/len(student_marks[query_name])
+    print(f"{o:.2f}")
+
+
+def sb_finding_the_percentage():
+    n = int(input())
+    student_marks = {}
+    for _ in range(n):
+        name, *line = input().split()
+        scores = list(map(float,line))
+        student_marks[name] = scores
+    query_name = input()
+
+    for key,value in student_marks.items():
+        if key == query_name:
+            average = sum(value)/3
+            print(f"{average:.2f}")
+
+
 def others_nested_list():
-    add = []
+    students = []
     for _ in range(int(input())):
         name = input()
         score = float(input())
-        add.append([name,score])
+        students.append([name,score])
 
-    new = [lis[1] for lis in add]
-    new = list(set(new))
-    new.sort()
+    grades = [lis[1] for lis in students]
+    grades = list(set(grades))
+    grades.sort()
 
-    end = [lis for lis in add if new[1] == lis[1]]
-    end = [lis[0] for lis in end]
-    end.sort()
+    runnerup = [lis for lis in students if grades[1] == lis[1]]
+    runnerup = [lis[0] for lis in runnerup]
+    runnerup.sort()
 
-    for name in end:
+    for name in runnerup:
         print(name)
 
 
 def sb_nested_list():
     students = []
     runnerups = []
-
+    
     for _ in range(int(input())):
         name = input()
         score = float(input())
@@ -29,7 +57,7 @@ def sb_nested_list():
         students.append(student)
 
     students = sorted(students)
-
+    
     for student in list(set(map(tuple,students))):
         if student[0] == students[1][0]:
             runnerups.append(student[1])
@@ -59,7 +87,7 @@ def sb_list_comprehensions():
     y = int(input())
     z = int(input())
     n = int(input())
-
+    
     i = [item for item in range(0,x+1)]
     j = [item for item in range(0,y+1)]
     k = [item for item in range(0,z+1)]
@@ -70,7 +98,7 @@ def sb_list_comprehensions():
     for combination in all_combinations:
         if sum(combination) != n:
             result.append(combination)
-    
+
     print(result)
 
 
@@ -150,4 +178,6 @@ if __name__ == '__main__':
     #others_print_function()
     #sb_list_comprehensions()
     others_list_comprehensions()
+
+
 
