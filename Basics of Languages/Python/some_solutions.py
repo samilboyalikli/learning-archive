@@ -1,4 +1,43 @@
 
+def others_nested_list():
+    add = []
+    for _ in range(int(input())):
+        name = input()
+        score = float(input())
+        add.append([name,score])
+
+    new = [lis[1] for lis in add]
+    new = list(set(new))
+    new.sort()
+
+    end = [lis for lis in add if new[1] == lis[1]]
+    end = [lis[0] for lis in end]
+    end.sort()
+
+    for name in end:
+        print(name)
+
+
+def sb_nested_list():
+    students = []
+    runnerups = []
+
+    for _ in range(int(input())):
+        name = input()
+        score = float(input())
+        student = [score,name]
+        students.append(student)
+
+    students = sorted(students)
+
+    for student in list(set(map(tuple,students))):
+        if student[0] == students[1][0]:
+            runnerups.append(student[1])
+
+    for student in runnerups:
+        print(student)
+
+
 def others_list_comprehensions():
     x = int(input())
     y = int(input())
