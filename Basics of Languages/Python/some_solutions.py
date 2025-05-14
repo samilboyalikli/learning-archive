@@ -1,4 +1,50 @@
 
+def others_lists():
+    N = int(input())
+    numbers = []
+
+    commands = {
+        "insert": lambda x: numbers.insert(x[0],x[1]),
+        "print": lambda x: print(numbers),
+        "remove": lambda x: numbers.remove(x[0]),
+        "append": lambda x: numbers.append(x[0]),
+        "sort": lambda x: numbers.sort(),
+        "pop": lambda x: numbers.pop(),
+        "reverse": lambda x: numbers.reverse(),
+    }
+
+    for _ in range(N):
+        command = input().strip().split()
+        cmd,args = command[0], list(map(int,command[1:]))
+
+        if cmd in commands:
+            commands[cmd](args)
+
+
+def sb_lists():
+    N = int(input())
+    result = []
+
+    for _ in range(N):
+        command = input()
+        if "insert" in command:
+            numbers = command[6:].split()
+            index,new_number = map(int,numbers)
+            result.insert(index,new_number)
+        elif "print" in command:
+            print(result)
+        elif "remove" in command:
+            result.remove(int(command[7]))
+        elif "append" in command:
+            result.append(int(command[7]))
+        elif "sort" in command:
+            result.sort()
+        elif "pop" in command:
+            result.pop()
+        elif "reverse" in command:
+            result.reverse()
+
+
 def others_finding_the_percentage():
     n = int(input())
     student_marks = {}
@@ -177,7 +223,14 @@ if __name__ == '__main__':
     #sb_print_function()
     #others_print_function()
     #sb_list_comprehensions()
-    others_list_comprehensions()
+    #others_list_comprehensions()
+    #sb_nested_list()
+    #others_nested_list()
+    #sb_finding_the_percentage()
+    #others_finding_the_percentage()
+    #sb_list()
+    others_list()
+
 
 
 
