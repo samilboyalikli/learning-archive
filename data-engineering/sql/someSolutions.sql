@@ -14,3 +14,11 @@ FROM STATION
 WHERE LAT_N > 38.7880
   AND LAT_N < 137.2345;
 
+/* There a required:
+ * Maximum LAT_N value between all LAT_N values which rounded 4 decimal.
+ * LAT_N values should be less than 137.2345.
+ */
+SELECT MAX(ROUND(LAT_N,4)) 
+FROM STATION 
+WHERE LAT_N < 137.2345;
+
