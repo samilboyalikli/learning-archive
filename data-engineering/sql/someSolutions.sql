@@ -41,6 +41,20 @@ SELECT ROUND(MIN(LAT_N),4)
 FROM STATION 
 WHERE LAT_N > 38.7780;
 
+/* Requests:
+ * Western longitude rounded 4 decimal
+ * which southernmost north latitude biggest than 38.7780.
+ */
+SELECT ROUND(LONG_W,4) 
+FROM STATION 
+WHERE LAT_N = (
+    SELECT MIN(LAT_N) 
+    FROM STATION 
+    WHERE LAT_N > 38.7780);
+
+
+
+
 
 
 
