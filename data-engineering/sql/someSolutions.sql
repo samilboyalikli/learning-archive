@@ -33,4 +33,14 @@ WHERE LAT_N = (
     FROM STATION 
     WHERE LAT_N < 137.2345);
 
+/* Requests:
+ * Southernmost norht latitude rounded 4 decimal
+ * which biggest than 38.7780.
+ */
+SELECT ROUND(MIN(LAT_N),4) 
+FROM STATION 
+WHERE LAT_N > 38.7780;
+
+
+
 
