@@ -1,4 +1,14 @@
 
+def sb_string_and_join(line):
+    return '-'.join(line.split(' '))
+
+
+def string_and_join_main():
+    line = input()
+    result = split_and_join(line) #sb_string_and_join()
+    print(result)
+
+
 def others_sWAPcASE():
     return s.swapcase()
 
