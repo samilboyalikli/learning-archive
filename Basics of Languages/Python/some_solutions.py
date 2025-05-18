@@ -1,4 +1,19 @@
 
+def others_sWAPcASE():
+    return s.swapcase()
+
+
+def sb_sWAPcASE():
+    s = s.swapcase()
+    return s
+
+
+def sWAPcASE_main():
+    s = input()
+    result = swap_case(s) #sb_sWAPcASE() or others_sWAPcASE()
+    print(result)
+
+
 def sb_tuples():
     n = int(input())
     integer_list = map(int,input().split())
