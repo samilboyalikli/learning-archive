@@ -1,4 +1,10 @@
 
+def sb_tuples():
+    n = int(input())
+    integer_list = map(int,input().split())
+    print(hash(tuple(integer_list)))
+
+
 def others_lists():
     N = int(input())
     numbers = []
