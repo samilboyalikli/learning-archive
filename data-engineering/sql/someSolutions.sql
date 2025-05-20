@@ -58,12 +58,42 @@ WHERE LAT_N = (
  * one of them city and second country table
  */
 SELECT SUM(CITY.POPULATION)
-FROM CITY 
-JOIN COUNTRY ON CITY.COUNTRYCODE = COUNTRY.CODE 
+FROM CITY JOIN COUNTRY 
+ON CITY.COUNTRYCODE = COUNTRY.CODE 
 WHERE CITY.COUNTRYCODE IN (
     SELECT CODE 
     FROM COUNTRY 
     WHERE CONTINENT = 'Asia');
+
+/* Another alternative:
+ * More minimal and effective:
+ */
+SELECT SUM(CITY.POPULATION) 
+FROM CITY JOIN COUNTRY 
+ON CITY.COUNTRYCODE = COUNTRY.CODE 
+WHERE CONTINENT = 'Asia';
+
+/* Requests:
+ * All city names which exist in Africa
+ * Given two tables as previous problem
+ * But there is a point: All tables have Name column.
+ */
+SELECT CITY.NAME 
+FROM CITY JOIN COUNTRY 
+ON CITY.COUNTRYCODE = COUNTRY.CODE 
+WHERE CONTINENT = 'Asia';
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
