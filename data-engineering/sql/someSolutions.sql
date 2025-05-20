@@ -52,6 +52,20 @@ WHERE LAT_N = (
     FROM STATION 
     WHERE LAT_N > 38.7780);
 
+/* Requests:
+ * Sum of asian city population
+ * Given 2 table countrycodes are matching
+ * one of them city and second country table
+ */
+SELECT SUM(CITY.POPULATION)
+FROM CITY 
+JOIN COUNTRY ON CITY.COUNTRYCODE = COUNTRY.CODE 
+WHERE CITY.COUNTRYCODE IN (
+    SELECT CODE 
+    FROM COUNTRY 
+    WHERE CONTINENT = 'Asia');
+
+
 
 
 
