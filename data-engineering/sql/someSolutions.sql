@@ -84,8 +84,14 @@ ON CITY.COUNTRYCODE = COUNTRY.CODE
 WHERE CONTINENT = 'Asia';
 
 
-
-
+/* Requests:
+ * Avetage city populations of each continents.
+ * But averages must be rounded down nearest integer. 
+ */
+SELECT COUNTRY.CONTINENT, FLOOR(AVG(CITY.POPULATION))
+FROM CITY JOIN COUNTRY 
+ON CITY.COUNTRYCODE = COUNTRY.CODE 
+GROUP BY COUNTRY.CONTINENT;
 
 
 
