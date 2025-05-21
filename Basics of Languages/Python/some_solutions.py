@@ -1,4 +1,15 @@
 
+def sb_find_a_string(string,sub_string):
+    return sum(1 for i in range(len(string)) if string[i:i+len(sub_string)] == sub_string)
+
+
+def find_a_string_main():
+    string = input().strip()
+    sub_string = input().strip()
+    count = count_substring(string, sub_string) #sb_find_a_string()
+    print(count)
+
+
 def others_mutations(string,position,character):
     return string[:position]+character+string[position+1:]
 
