@@ -94,8 +94,16 @@ ON CITY.COUNTRYCODE = COUNTRY.CODE
 GROUP BY COUNTRY.CONTINENT;
 
 
-
-
+/* Request: a triagle made with stars (like that: *) 
+ */
+WITH RECURSIVE temporary_table AS (
+    SELECT 20 AS star_count 
+    UNION ALL
+    SELECT star_count - 1
+    FROM temporary_table 
+    WHERE star_count > 0)
+SELECT REPEAT('* ', star_count)
+FROM temporary_table;
 
 
 
