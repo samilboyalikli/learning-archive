@@ -1,4 +1,35 @@
 
+def others_mutations(string,position,character):
+    return string[:position]+character+string[position+1:]
+
+
+def sb_mutations(string,position,character):
+    list_version_of_word = list(string)
+    list_version_of_word[position] = f'{character}'
+    return ''.join(list_version_of_word)
+
+
+def mutations_main():
+    s = input()
+    i,c = input().split()
+    s_new = mutate_string(s,int(i),c) #sb_mutations() or others_mutations()
+    print(s_new)
+
+
+def others_whats_your_name(first_name_of_user,second_name_of_user):
+    return print(f"Hello, {} {}! You just delved into Python.".format(first_name_of_user,second_name_of_user))
+
+
+def sb_whats_your_name(first_name,second_name):
+    return print(f"Hello, {first_name} {second_name}! You just delved into Python.")
+
+
+def whats_your_name_main():
+    first_name = input()
+    last_name = input()
+    print_full_name(first_name,last_name) #sb_whats_your_name() or others_whats_your_name()
+
+
 def sb_string_and_join(line):
     return '-'.join(line.split(' '))
 
@@ -43,11 +74,11 @@ def others_lists():
         "pop": lambda x: numbers.pop(),
         "reverse": lambda x: numbers.reverse(),
     }
-
+    
     for _ in range(N):
         command = input().strip().split()
         cmd,args = command[0], list(map(int,command[1:]))
-
+        
         if cmd in commands:
             commands[cmd](args)
 
@@ -55,7 +86,7 @@ def others_lists():
 def sb_lists():
     N = int(input())
     result = []
-
+    
     for _ in range(N):
         command = input()
         if "insert" in command:
@@ -254,14 +285,7 @@ if __name__ == '__main__':
     #sb_print_function()
     #others_print_function()
     #sb_list_comprehensions()
-    #others_list_comprehensions()
-    #sb_nested_list()
-    #others_nested_list()
-    #sb_finding_the_percentage()
-    #others_finding_the_percentage()
-    #sb_list()
-    others_list()
-
+    others_list_comprehensions()
 
 
 
