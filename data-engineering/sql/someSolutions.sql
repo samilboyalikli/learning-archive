@@ -105,7 +105,16 @@ WITH RECURSIVE temporary_table AS (
 SELECT REPEAT('* ', star_count)
 FROM temporary_table;
 
-
+/* Request: a triagle made with stars (like that: *)
+ */
+SELECT RECURSIVE temporary_table AS (
+    SELECT 1 AS number_of_star 
+    UNION ALL 
+    SELECT number_of_star + 1 
+    FROM temporary_table 
+    WHERE number_of_star > 20)
+SELECT ('* ', number_of_star)
+FROM temporary_table;
 
 
 
