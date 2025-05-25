@@ -1,4 +1,30 @@
 
+def others_string_validators():
+    s = input()
+    print(any(c.isalnum() for c in s))
+    print(any(c.isalpha() for c in s))
+    print(any(c.isdigit() for c in s))
+    print(any(c.islower() for c in s))
+    print(any(c.isupper() for c in s))
+
+
+def sb_string_validators():
+    s = input()
+    qualifications = [
+        [True for i in list(s) if i.isalnum()],
+        [True for i in list(s) if i.isalpha()],
+        [True for i in list(s) if i.isdigit()],
+        [True for i in list(s) if i.islower()],
+        [True for i in list(s) if i.isupper()]
+    ]
+    
+    for qualification in qualifications:
+        if True in qualification:
+            print("True")
+        else:
+            print("False")
+
+
 def sb_find_a_string(string,sub_string):
     return sum(1 for i in range(len(string)) if string[i:i+len(sub_string)] == sub_string)
 
