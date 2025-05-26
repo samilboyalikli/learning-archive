@@ -1,4 +1,18 @@
 
+def sb_text_wrap():
+    results = []
+    for i in range(0,len(string),max_width):
+        group = string[i:i+max_width]
+        results.append(group)
+    return '\n'.join(results)
+
+
+def text_wrap_main():
+    string, max_width = input(), int(input())
+    result = wrap(string,max_width) #sb_text_wrap()
+    print(result)
+
+
 def sb_text_alignment():
     thickness = int(input())
     
