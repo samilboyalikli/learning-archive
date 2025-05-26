@@ -1,4 +1,29 @@
 
+def sb_text_alignment():
+    thickness = int(input())
+    
+    for i in range(thickness):
+        print(('H'*i).rjust(thickness-1)+'H'+('H'*i).ljust(thickness-1))
+
+    for i in range(thickness+1): 
+        print(('H'*thickness).center(thickness*2)+('H'*thickness).center(thickness*6))
+
+    for i in range((thickness+1)//2):
+        print(('H'*thickness*5).center(thickness*6))    
+
+    for i in range(thickness+1):
+        print(('H'*thickness).center(thickness*2)+('H'*thickness).center(thickness*6))    
+
+    for i in range(thickness):
+        print(
+            (
+                ('H'*(thickness-i-1)).rjust(thickness)
+                +'H'+
+                ('H'*(thickness-i-1)).ljust(thickness)
+            ).rjust(thickness*6)
+        )
+
+
 def others_string_validators():
     s = input()
     print(any(c.isalnum() for c in s))
