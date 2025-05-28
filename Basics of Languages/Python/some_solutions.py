@@ -1,4 +1,12 @@
 
+def sb_designer_door_map(): 
+    n,m = map(int,input().split())
+    pattern = ['.|.'*((2*i)+1).center(m,'-') for i in range(n//2)]
+    print('\n'.join(pattern))
+    print('WELCOME'.center(m,'-'))
+    print('\n'.join(pattern)[::-1])
+
+
 def sb_text_wrap():
     results = []
     for i in range(0,len(string),max_width):
