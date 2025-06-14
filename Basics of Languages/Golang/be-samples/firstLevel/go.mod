@@ -1,4 +1,4 @@
-module gateway
+module wordbox
 
 go 1.19
 
