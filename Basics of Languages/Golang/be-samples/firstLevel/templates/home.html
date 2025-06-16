@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Kelime Ekle</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: sans-serif;
+      background-color: #f5f5f5;
+    }
+    .form-container {
+      background-color: #ffffff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    label, input, textarea {
+      display: block;
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+    button {
+      margin-right: 0.5rem;
+      padding: 0.5rem 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <form action="/submit" method="POST">
+      <label for="kelime">Kelime:</label>
+      <input type="text" id="kelime" name="kelime" required>
+
+      <label for="anlam">Kelimenin Anlamı:</label>
+      <input id="anlam" name="anlam" required>
+
+      <button type="submit" name="action" value="ekle">Ekle</button>
+      <button type="submit" name="action" value="sil">Sil</button>
+    </form>
+  </div>
+</body>
+</html>
