@@ -3,9 +3,20 @@ package main
 import (
 	"fmt"
 	"net/http"
+    "database/sql"
+    _ "modernc.org/sqlite"
 )
 
+func db_connection() {
+    db, err := sql.Open("sqlite", "database.db")
+    if err != nil {
+        panic(err)
+    }
+    defer db.Close()
+}
+
 func main() {
+    db_connection()
     http.HandleFunc("/submit", func(w http.ResponseWriter, r *http.Request) {
         fmt.Fprintf(w, "Service available...\n")
     })
@@ -20,6 +31,10 @@ func main() {
 
 // TODOS
 // 1. wordsaving component in home.html (checked)
-// 2. main.go will be connected with home.html 
+// 2. main.go will be connected with home.html (checked)
 // 3. creating sqlite database
 // 4. database structure
+
+// BUGS
+// 1. no required module provides package modernc.org/sqlite; to add it: go get modernc.org/sqlite
+// 2. 
