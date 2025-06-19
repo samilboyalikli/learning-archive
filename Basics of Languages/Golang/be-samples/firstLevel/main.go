@@ -7,24 +7,19 @@ import (
     _ "modernc.org/sqlite"
 )
 
-func db_connection() {
+func main() {
     db, err := sql.Open("sqlite", "database.db")
     if err != nil {
         panic(err)
     }
     defer db.Close()
-}
-
-func main() {
-    db_connection()
     http.HandleFunc("/submit", func(w http.ResponseWriter, r *http.Request) {
         fmt.Fprintf(w, "Service available...\n")
     })
 	fmt.Println("Backend is Working: http://localhost:8080/home.html")
     page := http.FileServer(http.Dir("templates"))
     http.Handle("/", page)
-    err := http.ListenAndServe(":8080", nil)
-	if err != nil {
+    if err := http.ListenAndServe(":8080", nil); err != nil {
         panic(err)
     }
 }
