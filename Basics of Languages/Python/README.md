@@ -1,0 +1,1 @@
+ATTENTION: The first language I learned was Python. Because of that, ur eye may bleed inside.
