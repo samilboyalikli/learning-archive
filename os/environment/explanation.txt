@@ -1,0 +1,3 @@
+environment bir uygulamanın çalıştırıldığı konfigürasyon kümesidir.
+os tarafından default olarak her process'e bir grup konfigürasyon atanır.
+başlatılan process bu konfigürasyonlarla başlar.
