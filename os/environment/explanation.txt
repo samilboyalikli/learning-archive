@@ -1,3 +1,18 @@
-environment bir uygulamanın çalıştırıldığı konfigürasyon kümesidir.
+environment variables bir uygulamanın çalıştırıldığı konfigürasyon kümesidir.
 os tarafından default olarak her process'e bir grup konfigürasyon atanır.
 başlatılan process bu konfigürasyonlarla başlar.
+process çalıştıktan sonra -artık programdır- bu konfigrüasyonlara içeriden erişim sağlanabilir.
+
+peki tüm bu süreç nasıl çalışıyor?
+
+iki katman var.
+1. user-space layer (program - glibc modülü)
+2. kernel-space layer (glibc syscall'ları - linux kernel'ı)
+
+linux/fs/exec.c -> bu dosya işletim sistemindeki dosyaların execution işlerini düzenler.
+
+448. satırda `copy_strings` adında bir fonksiyon vardır. bu argüman aldığı stringlerin eski işlemlerin belleğinden yeni işlemlerin stack'ine taşınmasını sağlar. aynı zamanda user space'den gelen argümanları ve çevre değişkenlerini kernel space'e kopyalar.
+
+1836. satırda bu `copy_strings` metoduna argüman olarak bprm pointer'ından envc integer'ı, envp ve bprm atanmıştır. böylece evnc sayısınca envp ve bprm yeni process'e kopyalanabilir.
+
+
