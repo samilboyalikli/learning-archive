@@ -11,8 +11,16 @@ iki katman var.
 
 linux/fs/exec.c -> bu dosya işletim sistemindeki dosyaların execution işlerini düzenler.
 
-448. satırda `copy_strings` adında bir fonksiyon vardır. bu argüman aldığı stringlerin eski işlemlerin belleğinden yeni işlemlerin stack'ine taşınmasını sağlar. aynı zamanda user space'den gelen argümanları ve çevre değişkenlerini kernel space'e kopyalar.
+glibc/stdlib/getenv.c -> bu dosya bir environment stringini çekebilmemizi sağlar.
+glibc/stdlib/setenv.c -> bu dosya environment stringlerini düzenlememizi sağlar.
+glibc/stdlib/putenv.c -> bu dosya da environment stringlerini düzenlememizi sağlar.
 
-1836. satırda bu `copy_strings` metoduna argüman olarak bprm pointer'ından envc integer'ı, envp ve bprm atanmıştır. böylece evnc sayısınca envp ve bprm yeni process'e kopyalanabilir.
-
-
+setenv ile putenv arasında bazı farklar vardır:
+    1a. putenv daha eski bir metottur.
+    1b. setenv ise görece daha yenidir.
+    2a. putenv env stringinin keyini de valuesünü de tek bir string olarak alır.
+    2b. setenv ise key stringini ayrı value stringini ayrı alır.
+    3a. putenv tek bir dosyadan ibarettir. (putenv.c)
+    3b. setenv metodu ise, setenv.c ile birlikte setenv.h dosyasına da ihtiyaç duyar.
+    4a. putenv doğrudan kendisine verilen girdi dizesini alır ve ortam listesine ekler.
+    4b. setenv ise yeni bellek (heap) tahsis eder.
