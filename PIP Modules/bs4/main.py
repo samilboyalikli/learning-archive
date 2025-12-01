@@ -66,12 +66,15 @@ def category_book_counter(path):
 
 def second_lab():
     target = pagination("index.html")
+    book_categories_results = []
     for item in target.find('div', class_='side_categories').find_all('a'):
-        print(f"BOOK TYPE: {item.get_text(strip=True)}")
-        print(f"BOOK COUNT: {category_book_counter(item.get('href'))}")
-        print(f"TYPE URL: {item.get('href')}")
+        category_path = item.get('href')
+        result = (item.get_text(strip=True), category_book_counter(category_path), f"https://books.toscrape.com/{category_path}")
+        book_categories_results.append(result)
+        print("INFO - Category processed:", item.get_text(strip=True))
+    saving_results('second_lab_results.csv', book_categories_results, ["Book Type", "Book Count", "Type URL"])
 
 
 if __name__ == "__main__":
     #first_lab()
-    #second_lab()
+    second_lab()
