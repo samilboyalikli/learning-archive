@@ -59,13 +59,19 @@ def first_lab():
         print("ERROR - ", e)
 
 
+def category_book_counter(path):
+    target = pagination(path)
+    return target.find(class_='form-horizontal').find('strong').get_text(strip=True)
+
+
 def second_lab():
     target = pagination("index.html")
     for item in target.find('div', class_='side_categories').find_all('a'):
         print(f"BOOK TYPE: {item.get_text(strip=True)}")
+        print(f"BOOK COUNT: {category_book_counter(item.get('href'))}")
         print(f"TYPE URL: {item.get('href')}")
 
 
 if __name__ == "__main__":
     #first_lab()
-    second_lab()
+    #second_lab()
