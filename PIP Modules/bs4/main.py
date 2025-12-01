@@ -47,19 +47,25 @@ def saving_results(csv_file, dataset, headers):
             open_csv_file.writerow(row)
 
 
-def main():
+def first_lab():
     while True:
         status = book_price_availability(path)
         if status == 0:
             break 
         print(f"INFO - {path} scraped.")
-    
     try: 
         saving_results('result.csv', result, ["Book Name", "Price", "Availability"])
     except Exception as e: 
         print("ERROR - ", e)
 
 
-if __name__ == "__main__":
-    main()
+def second_lab():
+    target = pagination("index.html")
+    for item in target.find('div', class_='side_categories').find_all('a'):
+        print(f"BOOK TYPE: {item.get_text(strip=True)}")
+        print(f"TYPE URL: {item.get('href')}")
 
+
+if __name__ == "__main__":
+    #first_lab()
+    second_lab()
