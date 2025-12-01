@@ -15,6 +15,7 @@
 
 int __init init_mount(const char *dev_name, const char *dir_name,
 		const char *type_page, unsigned long flags, void *data_page)
+// Initialize a mount operation during system initialization.
 {
 	struct path path;
 	int ret;
@@ -28,6 +29,7 @@ int __init init_mount(const char *dev_name, const char *dir_name,
 }
 
 int __init init_umount(const char *name, int flags)
+// Initialize an unmount operation during system initialization.
 {
 	int lookup_flags = LOOKUP_MOUNTPOINT;
 	struct path path;
@@ -42,6 +44,7 @@ int __init init_umount(const char *name, int flags)
 }
 
 int __init init_chdir(const char *filename)
+// Change the current working directory during system initialization.
 {
 	struct path path;
 	int error;
@@ -57,6 +60,7 @@ int __init init_chdir(const char *filename)
 }
 
 int __init init_chroot(const char *filename)
+// Change the root directory during system initialization.
 {
 	struct path path;
 	int error;
@@ -80,6 +84,7 @@ dput_and_out:
 }
 
 int __init init_chown(const char *filename, uid_t user, gid_t group, int flags)
+// Change the ownership of a file during system initialization.
 {
 	int lookup_flags = (flags & AT_SYMLINK_NOFOLLOW) ? 0 : LOOKUP_FOLLOW;
 	struct path path;
@@ -98,6 +103,7 @@ int __init init_chown(const char *filename, uid_t user, gid_t group, int flags)
 }
 
 int __init init_chmod(const char *filename, umode_t mode)
+// Change the permissions of a file during system initialization.
 {
 	struct path path;
 	int error;
@@ -111,6 +117,7 @@ int __init init_chmod(const char *filename, umode_t mode)
 }
 
 int __init init_eaccess(const char *filename)
+// Check effective access permissions for a file during system initialization.
 {
 	struct path path;
 	int error;
@@ -124,6 +131,7 @@ int __init init_eaccess(const char *filename)
 }
 
 int __init init_stat(const char *filename, struct kstat *stat, int flags)
+// Get file status during system initialization.
 {
 	int lookup_flags = (flags & AT_SYMLINK_NOFOLLOW) ? 0 : LOOKUP_FOLLOW;
 	struct path path;
@@ -139,6 +147,7 @@ int __init init_stat(const char *filename, struct kstat *stat, int flags)
 }
 
 int __init init_mknod(const char *filename, umode_t mode, unsigned int dev)
+// Create a filesystem node during system initialization.
 {
 	struct dentry *dentry;
 	struct path path;
@@ -163,6 +172,7 @@ int __init init_mknod(const char *filename, umode_t mode, unsigned int dev)
 }
 
 int __init init_link(const char *oldname, const char *newname)
+// Create a hard link during system initialization.
 {
 	struct dentry *new_dentry;
 	struct path old_path, new_path;
@@ -198,6 +208,7 @@ out:
 }
 
 int __init init_symlink(const char *oldname, const char *newname)
+// Create a symbolic link during system initialization.
 {
 	struct dentry *dentry;
 	struct path path;
@@ -215,11 +226,13 @@ int __init init_symlink(const char *oldname, const char *newname)
 }
 
 int __init init_unlink(const char *pathname)
+// Remove a file during system initialization.
 {
 	return do_unlinkat(AT_FDCWD, getname_kernel(pathname));
 }
 
 int __init init_mkdir(const char *pathname, umode_t mode)
+// Create a directory during system initialization.
 {
 	struct dentry *dentry;
 	struct path path;
@@ -242,11 +255,13 @@ int __init init_mkdir(const char *pathname, umode_t mode)
 }
 
 int __init init_rmdir(const char *pathname)
+// Remove a directory during system initialization.
 {
 	return do_rmdir(AT_FDCWD, getname_kernel(pathname));
 }
 
 int __init init_utimes(char *filename, struct timespec64 *ts)
+// Update file access and modification times during system initialization.
 {
 	struct path path;
 	int error;
@@ -260,6 +275,7 @@ int __init init_utimes(char *filename, struct timespec64 *ts)
 }
 
 int __init init_dup(struct file *file)
+// Duplicate a file descriptor during system initialization.
 {
 	int fd;
 
