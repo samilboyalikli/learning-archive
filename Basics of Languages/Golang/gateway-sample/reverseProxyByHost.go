@@ -61,13 +61,14 @@ func checkStore(ip string) {
 		}
 	}
 
-	if count == infoLogParameter {
-		log.Printf("[INFO] IP %s sent two requests in the same second.", ip)
-	} else if count == warnLogParameter {
-		log.Printf("[WARNING] IP %s sent three requests in the same second.", ip)
-	} else if count > tooManyReqParameter {
-		log.Printf("[WARNING] IP %s sent more than three requests in the same second.", ip)
-	}
+	switch {
+	case count >= tooManyReqParameter:
+		log.Printf("[WARNING] IP %s sent more than %d requests in the last minute.", ip, tooManyReqParameter)
+	case count >= warnLogParameter:
+		log.Printf("[WARNING] IP %s sent more than %d requests in the last minute.", ip, warnLogParameter)
+	case count >= infoLogParameter:
+		log.Printf("[INFO] IP %s sent more than %d requests in the last minute.", ip, infoLogParameter)
+	}	
 }
 
 func addIP(ip string) {
