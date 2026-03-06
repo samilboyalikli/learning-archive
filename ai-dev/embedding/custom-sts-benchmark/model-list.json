@@ -1,12 +1,14 @@
 [
-    {"global-models": 
-        [
-
+    {
+        "global-models": [
+            "all-MiniLM-L6-v2",
+            "all-mpnet-base-v2"
         ]
     },
-    {"turkish-models":
-        [
-
+    {
+        "turkish-models": [
+            "dbmdz/bert-base-turkish-cased",
+            "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
         ]
     }
 ]
