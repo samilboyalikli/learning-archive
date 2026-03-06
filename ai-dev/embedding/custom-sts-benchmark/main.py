@@ -3,14 +3,7 @@
 # from numpy.linalg import norm
 import json
 
-# TODO - write simple 2 global model and turkish model into the model-list.json
-# TODO - open model names from model-list.json
 # TODO - integrate dataset outputs to the script
-
-# model = SentenceTransformer("all-miniLM-L6-v2")
-
-# first_text = input("Enter first text please: ")
-# second_text = input("Enter second text please: ")
 
 # e1 = model.encode(first_text)
 # e2 = model.encode(second_text)
@@ -30,16 +23,26 @@ def models():
 
 
 def tester(level, model):
+    # embedding_model = SentenceTransformer(model)
     if level == "simple":
-        dataset = examples()[""]
-    pass
+        dataset = examples()["simple"]
+        for data in dataset:
+            first_word = list(data.values())[0][0]
+            second_word = list(data.values())[0][1]
+            print(f"Model Name: {model}")
+            print(f"First Word: {first_word}")
+            print(f"Second Word: {second_word}")
+            print(f"Cosine Similarity: 0.75\n")
+
+
+def global_model_tester():
+    dataset = models()
+    for model in dataset["global-models"]:
+        tester("simple", model)
 
 
 def main():
-    words = examples()["simple"]
-    for word in words:
-        print(f"first word: {list(word.values())[0][0]}")
-        print(f"second word: {list(word.values())[0][1]}\n")
+    global_model_tester()
 
 
 if __name__ == "__main__":
