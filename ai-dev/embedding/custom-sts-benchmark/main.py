@@ -3,7 +3,6 @@
 # from numpy.linalg import norm
 import json
 
-# TODO - integrate dataset outputs to the script
 
 # e1 = model.encode(first_text)
 # e2 = model.encode(second_text)
@@ -29,15 +28,20 @@ def tester(level, model):
         for data in dataset:
             first_word = list(data.values())[0][0]
             second_word = list(data.values())[0][1]
-            print(f"Model Name: {model}")
-            print(f"First Word: {first_word}")
-            print(f"Second Word: {second_word}")
-            print(f"Cosine Similarity: 0.75\n")
+            result_dictionary = {
+                "Model Name": model,
+                "Cosine Similarity": 0.75,
+                "First Word": first_word,
+                "Second Word": second_word
+            }
+            print(result_dictionary)
 
 
 def global_model_tester():
     dataset = models()
     for model in dataset["global-models"]:
+        tester("simple", model)
+    for model in dataset["turkish-models"]:
         tester("simple", model)
 
 
