@@ -1,6 +1,6 @@
 import os
 
-TARGET_FOLDER = "/mnt/c/Users/cenavar/Desktop/edit-space/frame_base"
+TARGET_FOLDER = "target_folder"
 
 try:
     if os.path.exists(TARGET_FOLDER):
